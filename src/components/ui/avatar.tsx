@@ -1,8 +1,11 @@
+// Importiert React und die Avatar-Komponenten von Radix UI
 import * as React from "react"
 import * as AvatarPrimitive from "@radix-ui/react-avatar"
 
+// Importiert eine Hilfsfunktion zum Kombinieren von CSS-Klassen
 import { cn } from "@/lib/utils"
 
+// Haupt-Avatar-Komponente, stellt den Container für das Avatar-Bild bereit
 const Avatar = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>
@@ -18,6 +21,7 @@ const Avatar = React.forwardRef<
 ))
 Avatar.displayName = AvatarPrimitive.Root.displayName
 
+// AvatarImage-Komponente, zeigt das eigentliche Bild an
 const AvatarImage = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Image>,
   React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
@@ -30,6 +34,7 @@ const AvatarImage = React.forwardRef<
 ))
 AvatarImage.displayName = AvatarPrimitive.Image.displayName
 
+// AvatarFallback-Komponente, zeigt einen Platzhalter, wenn kein Bild geladen werden kann
 const AvatarFallback = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Fallback>,
   React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>
@@ -45,4 +50,5 @@ const AvatarFallback = React.forwardRef<
 ))
 AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName
 
+// Exportiert alle Avatar-Komponenten für die Verwendung in anderen Dateien
 export { Avatar, AvatarImage, AvatarFallback }

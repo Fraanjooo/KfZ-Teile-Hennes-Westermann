@@ -1,15 +1,21 @@
+// Importiert React und die AlertDialog-Komponenten von Radix UI
 import * as React from "react"
 import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog"
 
+// Importiert Hilfsfunktionen für CSS-Klassen und Button-Varianten
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 
+// Root-Komponente für das AlertDialog, stellt das Grundgerüst bereit
 const AlertDialog = AlertDialogPrimitive.Root
 
+// Trigger-Komponente, öffnet das Dialogfenster beim Klick
 const AlertDialogTrigger = AlertDialogPrimitive.Trigger
 
+// Portal-Komponente, rendert das Dialog außerhalb des normalen DOM-Baums
 const AlertDialogPortal = AlertDialogPrimitive.Portal
 
+// Overlay-Komponente, legt einen halbtransparenten Hintergrund über die Seite
 const AlertDialogOverlay = React.forwardRef<
   React.ElementRef<typeof AlertDialogPrimitive.Overlay>,
   React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Overlay>
@@ -25,6 +31,7 @@ const AlertDialogOverlay = React.forwardRef<
 ))
 AlertDialogOverlay.displayName = AlertDialogPrimitive.Overlay.displayName
 
+// Content-Komponente, enthält den eigentlichen Dialog-Inhalt
 const AlertDialogContent = React.forwardRef<
   React.ElementRef<typeof AlertDialogPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Content>
@@ -43,6 +50,7 @@ const AlertDialogContent = React.forwardRef<
 ))
 AlertDialogContent.displayName = AlertDialogPrimitive.Content.displayName
 
+// Header-Komponente für den Dialog, z.B. für Titel und Beschreibung
 const AlertDialogHeader = ({
   className,
   ...props
@@ -57,6 +65,7 @@ const AlertDialogHeader = ({
 )
 AlertDialogHeader.displayName = "AlertDialogHeader"
 
+// Footer-Komponente für den Dialog, z.B. für Buttons
 const AlertDialogFooter = ({
   className,
   ...props
@@ -71,6 +80,7 @@ const AlertDialogFooter = ({
 )
 AlertDialogFooter.displayName = "AlertDialogFooter"
 
+// Titel-Komponente für den Dialog
 const AlertDialogTitle = React.forwardRef<
   React.ElementRef<typeof AlertDialogPrimitive.Title>,
   React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Title>
@@ -83,6 +93,7 @@ const AlertDialogTitle = React.forwardRef<
 ))
 AlertDialogTitle.displayName = AlertDialogPrimitive.Title.displayName
 
+// Beschreibung-Komponente für den Dialog
 const AlertDialogDescription = React.forwardRef<
   React.ElementRef<typeof AlertDialogPrimitive.Description>,
   React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Description>
@@ -96,6 +107,7 @@ const AlertDialogDescription = React.forwardRef<
 AlertDialogDescription.displayName =
   AlertDialogPrimitive.Description.displayName
 
+// Action-Komponente, z.B. für den Bestätigungs-Button
 const AlertDialogAction = React.forwardRef<
   React.ElementRef<typeof AlertDialogPrimitive.Action>,
   React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Action>
@@ -108,6 +120,7 @@ const AlertDialogAction = React.forwardRef<
 ))
 AlertDialogAction.displayName = AlertDialogPrimitive.Action.displayName
 
+// Cancel-Komponente, z.B. für den Abbrechen-Button
 const AlertDialogCancel = React.forwardRef<
   React.ElementRef<typeof AlertDialogPrimitive.Cancel>,
   React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Cancel>
@@ -124,6 +137,7 @@ const AlertDialogCancel = React.forwardRef<
 ))
 AlertDialogCancel.displayName = AlertDialogPrimitive.Cancel.displayName
 
+// Exportiert alle Komponenten für die Verwendung in anderen Dateien
 export {
   AlertDialog,
   AlertDialogPortal,
