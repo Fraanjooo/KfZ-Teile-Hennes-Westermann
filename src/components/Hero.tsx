@@ -34,13 +34,6 @@ const Hero = () => {
             >
               Request a Quote
             </Button>
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="text-lg px-8 py-6 border-corporate-white text-corporate-white hover:bg-corporate-white hover:text-corporate-primary"
-            >
-              Learn More
-            </Button>
           </div>
         </div>
       </div>
