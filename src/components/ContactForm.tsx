@@ -218,9 +218,7 @@ const ContactForm = () => {
                   </div>
 
                   <Button 
-                    type="submit" 
-                    variant="automotive" 
-                    size="lg" 
+                    type="submit"  
                     disabled={isLoading}
                     className="w-full"
                   >

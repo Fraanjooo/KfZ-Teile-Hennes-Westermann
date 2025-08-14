@@ -18,12 +18,6 @@ const Header = () => {
           </div>
           
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#services" className="text-corporate-medium-gray hover:text-corporate-accent transition-colors">
-              Services
-            </a>
-            <a href="#contact" className="text-corporate-medium-gray hover:text-corporate-accent transition-colors">
-              Contact
-            </a>
             <Button variant="automotive" onClick={scrollToContact}>
               Get Quote
             </Button>
