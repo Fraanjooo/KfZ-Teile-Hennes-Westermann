@@ -52,12 +52,15 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				automotive: {
-					blue: 'hsl(var(--automotive-blue))',
-					dark: 'hsl(var(--automotive-dark))',
-					orange: 'hsl(var(--automotive-orange))',
-					gray: 'hsl(var(--automotive-gray))',
-					light: 'hsl(var(--automotive-light))'
+				corporate: {
+					primary: 'hsl(var(--corporate-primary))',
+					accent: 'hsl(var(--corporate-accent))',
+					highlight: 'hsl(var(--corporate-highlight))',
+					'dark-gray': 'hsl(var(--corporate-dark-gray))',
+					'medium-gray': 'hsl(var(--corporate-medium-gray))',
+					'light-gray': 'hsl(var(--corporate-light-gray))',
+					black: 'hsl(var(--corporate-black))',
+					white: 'hsl(var(--corporate-white))'
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',

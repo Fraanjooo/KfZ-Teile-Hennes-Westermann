@@ -81,13 +81,13 @@ const ContactForm = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-b from-automotive-light to-white">
+    <section id="contact" className="py-20 bg-gradient-to-b from-corporate-light-gray to-corporate-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-automotive-dark mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-corporate-dark-gray mb-4">
             Request a Quote
           </h2>
-          <p className="text-xl text-automotive-gray max-w-2xl mx-auto">
+          <p className="text-xl text-corporate-medium-gray max-w-2xl mx-auto">
             Tell us what you need and we'll provide you with a competitive quote and availability information.
           </p>
         </div>
@@ -95,44 +95,44 @@ const ContactForm = () => {
         <div className="grid lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
           {/* Contact Information */}
           <div className="lg:col-span-1">
-            <Card className="h-full border-0 bg-automotive-blue text-white">
+            <Card className="h-full border-0 bg-corporate-primary text-corporate-white">
               <CardHeader>
                 <CardTitle className="text-2xl">Get in Touch</CardTitle>
-                <CardDescription className="text-blue-100">
+                <CardDescription className="text-corporate-highlight/80">
                   Multiple ways to reach our team
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <Mail className="w-6 h-6 text-automotive-orange mt-1" />
+                  <Mail className="w-6 h-6 text-corporate-highlight mt-1" />
                   <div>
                     <h4 className="font-semibold mb-1">Email</h4>
-                    <p className="text-blue-100">parts@yourcompany.com</p>
+                    <p className="text-corporate-highlight/80">parts@yourcompany.com</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start gap-4">
-                  <Phone className="w-6 h-6 text-automotive-orange mt-1" />
+                  <Phone className="w-6 h-6 text-corporate-highlight mt-1" />
                   <div>
                     <h4 className="font-semibold mb-1">Phone</h4>
-                    <p className="text-blue-100">(555) 123-4567</p>
+                    <p className="text-corporate-highlight/80">(555) 123-4567</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start gap-4">
-                  <MapPin className="w-6 h-6 text-automotive-orange mt-1" />
+                  <MapPin className="w-6 h-6 text-corporate-highlight mt-1" />
                   <div>
                     <h4 className="font-semibold mb-1">Address</h4>
-                    <p className="text-blue-100">
+                    <p className="text-corporate-highlight/80">
                       123 Auto Parts Blvd<br />
                       Your City, State 12345
                     </p>
                   </div>
                 </div>
                 
-                <div className="pt-4 border-t border-blue-400">
+                <div className="pt-4 border-t border-corporate-accent/30">
                   <h4 className="font-semibold mb-2">Business Hours</h4>
-                  <div className="text-blue-100 text-sm space-y-1">
+                  <div className="text-corporate-highlight/80 text-sm space-y-1">
                     <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
                     <p>Saturday: 9:00 AM - 4:00 PM</p>
                     <p>Sunday: Closed</p>
@@ -146,7 +146,7 @@ const ContactForm = () => {
           <div className="lg:col-span-2">
             <Card className="border-0 shadow-lg">
               <CardHeader>
-                <CardTitle className="text-2xl text-automotive-dark">Request Your Part</CardTitle>
+                <CardTitle className="text-2xl text-corporate-dark-gray">Request Your Part</CardTitle>
                 <CardDescription>
                   Fill out the form below and we'll get back to you with pricing and availability.
                 </CardDescription>
@@ -228,7 +228,7 @@ const ContactForm = () => {
                   </Button>
                   
                   {/* TODO: REMOVE THIS COMMENT BLOCK WHEN IMPLEMENTING EMAIL */}
-                  <div className="text-sm text-automotive-gray bg-automotive-light p-4 rounded-lg">
+                  <div className="text-sm text-corporate-medium-gray bg-corporate-light-gray p-4 rounded-lg">
                     <strong>Developer Note:</strong> The form is ready but needs email functionality. 
                     Check the handleSubmit function in ContactForm.tsx for implementation details.
                   </div>

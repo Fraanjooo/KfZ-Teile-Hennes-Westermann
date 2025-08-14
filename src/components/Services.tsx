@@ -30,33 +30,33 @@ const Services = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-automotive-light">
+    <section className="py-20 bg-gradient-to-b from-corporate-white to-corporate-light-gray">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-automotive-dark mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-corporate-dark-gray mb-4">
             Our Services
           </h2>
-          <p className="text-xl text-automotive-gray max-w-2xl mx-auto">
+          <p className="text-xl text-corporate-medium-gray max-w-2xl mx-auto">
             Whether you're a business or individual customer, we have the parts and expertise to keep you moving.
           </p>
         </div>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
-            <Card key={index} className="hover:shadow-lg transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm">
+            <Card key={index} className="hover:shadow-lg transition-all duration-300 border-0 bg-corporate-white/80 backdrop-blur-sm">
               <CardHeader className="text-center">
-                <div className="mx-auto mb-4 p-3 bg-automotive-blue rounded-full w-16 h-16 flex items-center justify-center">
-                  <service.icon className="w-8 h-8 text-white" />
+                <div className="mx-auto mb-4 p-3 bg-corporate-primary rounded-full w-16 h-16 flex items-center justify-center">
+                  <service.icon className="w-8 h-8 text-corporate-white" />
                 </div>
-                <CardTitle className="text-xl text-automotive-dark">{service.title}</CardTitle>
+                <CardTitle className="text-xl text-corporate-dark-gray">{service.title}</CardTitle>
               </CardHeader>
               <CardContent className="text-center">
-                <CardDescription className="text-automotive-gray mb-4 leading-relaxed">
+                <CardDescription className="text-corporate-medium-gray mb-4 leading-relaxed">
                   {service.description}
                 </CardDescription>
                 <ul className="space-y-2">
                   {service.features.map((feature, idx) => (
-                    <li key={idx} className="text-sm text-automotive-blue font-medium">
+                    <li key={idx} className="text-sm text-corporate-accent font-medium">
                       • {feature}
                     </li>
                   ))}
