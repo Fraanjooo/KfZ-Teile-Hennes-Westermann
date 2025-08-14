@@ -1,6 +1,10 @@
+//Die klasse ist für das plugin von der website!
+
+
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
+import { fileURLToPath } from "url";
 import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
