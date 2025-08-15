@@ -86,7 +86,7 @@ const ContactForm = () => {
                   <Mail className="w-6 h-6 text-corporate-highlight mt-1" />
                   <div>
                     <h4 className="font-semibold mb-1">E-Mail</h4>
-                    <p className="text-corporate-highlight/80">teile@kfz-hennes-westermann.de</p>
+                    <p className="text-corporate-highlight/80">info@kfz-westermann.de</p>
                   </div>
                 </div>
                 
