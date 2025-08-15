@@ -28,13 +28,13 @@ const Hero = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            Premium Car Parts
-            <span className="block text-corporate-highlight">For Every Vehicle</span>
+            Premium Kfz-Teile
+            <span className="block text-corporate-highlight">Für jedes Fahrzeug</span>
           </h1>
           
           <p className="text-xl md:text-2xl mb-8 text-corporate-highlight/80 max-w-2xl mx-auto leading-relaxed">
-            Quality automotive parts for both businesses and individual customers. 
-            Fast delivery, competitive prices, expert support.
+            Hochwertige Fahrzeugteile für Geschäftskunden und Privatpersonen. 
+            Schnelle Lieferung, faire Preise, kompetente Beratung.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -44,7 +44,7 @@ const Hero = () => {
               onClick={scrollToContact}
               className="text-lg px-8 py-6"
             >
-              Request a Quote
+              Angebot anfordern
             </Button>
           </div>
         </div>

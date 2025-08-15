@@ -53,8 +53,8 @@ const ContactForm = () => {
     // Show success message after brief delay (form will redirect)
     setTimeout(() => {
       toast({
-        title: "Request Submitted!",
-        description: "We'll get back to you within 24 hours with a quote.",
+        title: "Anfrage gesendet!",
+        description: "Wir melden uns innerhalb von 24 Stunden mit einem Angebot zurück.",
       });
     }, 500);
   };
@@ -64,10 +64,10 @@ const ContactForm = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-corporate-dark-gray mb-4">
-            Request a Quote
+            Angebot anfordern
           </h2>
           <p className="text-xl text-corporate-medium-gray max-w-2xl mx-auto">
-            Tell us what you need and we'll provide you with a competitive quote and availability information.
+            Teilen Sie uns mit, was Sie benötigen und wir erstellen Ihnen ein günstiges Angebot mit Verfügbarkeitsinformationen.
           </p>
         </div>
 
@@ -76,25 +76,25 @@ const ContactForm = () => {
           <div className="lg:col-span-1">
             <Card className="h-full border-0 bg-corporate-primary text-corporate-white">
               <CardHeader>
-                <CardTitle className="text-2xl">Get in Touch</CardTitle>
+                <CardTitle className="text-2xl">Kontakt</CardTitle>
                 <CardDescription className="text-corporate-highlight/80">
-                  Multiple ways to reach our team
+                  Verschiedene Wege, unser Team zu erreichen
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="flex items-start gap-4">
                   <Mail className="w-6 h-6 text-corporate-highlight mt-1" />
                   <div>
-                    <h4 className="font-semibold mb-1">Email</h4>
-                    <p className="text-corporate-highlight/80">parts@yourcompany.com</p>
+                    <h4 className="font-semibold mb-1">E-Mail</h4>
+                    <p className="text-corporate-highlight/80">teile@kfz-hennes-westermann.de</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start gap-4">
                   <Phone className="w-6 h-6 text-corporate-highlight mt-1" />
                   <div>
-                    <h4 className="font-semibold mb-1">Phone</h4>
-                    <p className="text-corporate-highlight/80">(555) 123-4567</p>
+                    <h4 className="font-semibold mb-1">Telefon</h4>
+                    <p className="text-corporate-highlight/80">+49 (0) 123 456789</p>
                   </div>
                 </div>
               </CardContent>
@@ -105,9 +105,9 @@ const ContactForm = () => {
           <div className="lg:col-span-2">
             <Card className="border-0 shadow-lg">
               <CardHeader>
-                <CardTitle className="text-2xl text-corporate-dark-gray">Request Your Part</CardTitle>
+                <CardTitle className="text-2xl text-corporate-dark-gray">Ihr Wunschteil anfragen</CardTitle>
                 <CardDescription>
-                  Fill out the form below and we'll get back to you with pricing and availability.
+                  Füllen Sie das Formular aus und wir melden uns mit Preisen und Verfügbarkeit zurück.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -119,7 +119,7 @@ const ContactForm = () => {
                 >
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="firstName">First Name *</Label>
+                      <Label htmlFor="firstName">Vorname *</Label>
                       <Input
                         id="firstName"
                         name="firstName"
@@ -130,7 +130,7 @@ const ContactForm = () => {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="lastName">Last Name *</Label>
+                      <Label htmlFor="lastName">Nachname *</Label>
                       <Input
                         id="lastName"
                         name="lastName"
@@ -144,7 +144,7 @@ const ContactForm = () => {
 
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="email">Email Address *</Label>
+                      <Label htmlFor="email">E-Mail-Adresse *</Label>
                       <Input
                         id="email"
                         name="email"
@@ -156,7 +156,7 @@ const ContactForm = () => {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="phone">Phone Number</Label>
+                      <Label htmlFor="phone">Telefonnummer</Label>
                       <Input
                         id="phone"
                         name="phone"
@@ -169,7 +169,7 @@ const ContactForm = () => {
                   </div>
 
                   <div>
-                    <Label htmlFor="desiredPart">Desired Part Description *</Label>
+                    <Label htmlFor="desiredPart">Beschreibung des gewünschten Teils *</Label>
                     <Textarea
                       id="desiredPart"
                       name="desiredPart"
@@ -177,7 +177,7 @@ const ContactForm = () => {
                       onChange={handleInputChange}
                       required
                       className="mt-1 min-h-[100px]"
-                      placeholder="Please describe the part you need (e.g., brake pads for 2018 Honda Civic, alternator for Ford F-150, etc.)"
+                      placeholder="Bitte beschreiben Sie das benötigte Teil (z.B. Bremsbeläge für Honda Civic 2018, Lichtmaschine für Ford F-150, etc.)"
                     />
                   </div>
 
@@ -186,7 +186,7 @@ const ContactForm = () => {
                     disabled={isLoading}
                     className="w-full"
                   >
-                    {isLoading ? "Submitting..." : "Submit Request"}
+                    {isLoading ? "Wird gesendet..." : "Anfrage senden"}
                   </Button>
                   
                 </form>

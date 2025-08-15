@@ -22,27 +22,27 @@ const Services = () => {
   const services = [
     {
       icon: Building2,
-      title: "B2B Solutions",
-      description: "Bulk orders for auto shops, dealerships, and repair facilities. Volume discounts and dedicated account management.",
-      features: ["Wholesale pricing", "Custom invoicing", "Priority shipping"]
+      title: "B2B-Lösungen",
+      description: "Großbestellungen für Werkstätten, Autohäuser und Reparaturbetriebe. Mengenrabatte und persönliche Kundenbetreuung.",
+      features: ["Großhandelspreise", "Individuelle Rechnungsstellung", "Prioritätsversand"]
     },
     {
       icon: User,
-      title: "Individual Customers",
-      description: "High-quality parts for DIY enthusiasts and car owners. Expert guidance and competitive retail prices.",
-      features: ["Expert advice", "Quality guarantee", "Easy returns"]
+      title: "Privatkunden",
+      description: "Hochwertige Teile für Hobby-Schrauber und Autobesitzer. Fachberatung und faire Preise.",
+      features: ["Fachberatung", "Qualitätsgarantie", "Einfache Rückgabe"]
     },
     {
       icon: Truck,
-      title: "Fast Delivery",
-      description: "Quick turnaround times with reliable shipping partners. Local and nationwide delivery options.",
-      features: ["Same-day local", "2-day nationwide", "Tracking included"]
+      title: "Schnelle Lieferung",
+      description: "Kurze Lieferzeiten durch zuverlässige Versandpartner. Lokale und deutschlandweite Lieferoptionen.",
+      features: ["Taggleich lokal", "2 Tage deutschlandweit", "Sendungsverfolgung"]
     },
     {
       icon: Wrench,
-      title: "Expert Support",
-      description: "Technical support and part identification assistance. Our team helps you find the right parts.",
-      features: ["Technical guidance", "Part identification", "Installation tips"]
+      title: "Fachkundige Beratung",
+      description: "Technischer Support und Hilfe bei der Teilefindung. Unser Team hilft Ihnen, die richtigen Teile zu finden.",
+      features: ["Technische Beratung", "Teilefindung", "Einbautipps"]
     }
   ];
 
@@ -51,10 +51,10 @@ const Services = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-corporate-dark-gray mb-4">
-            Our Services
+            Unsere Leistungen
           </h2>
           <p className="text-xl text-corporate-medium-gray max-w-2xl mx-auto">
-            Whether you're a business or individual customer, we have the parts and expertise to keep you moving.
+            Ob Geschäftskunde oder Privatperson - wir haben die Teile und das Know-how, um Sie mobil zu halten.
           </p>
         </div>
         
