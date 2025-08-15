@@ -45,56 +45,18 @@ const ContactForm = () => {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = (e: React.FormEvent) => {
+    // Using formsubmit.co for email sending - no JavaScript processing needed
+    // The form will be submitted directly to formsubmit.co endpoint
     setIsLoading(true);
-
-    // TODO: IMPLEMENT EMAIL SENDING VIA SUPABASE
-    // After connecting to Supabase, implement email sending here:
-    // 1. Create a Supabase Edge Function for email sending
-    // 2. Use a service like Resend or SendGrid via the Edge Function
-    // 3. Send form data to franzjoschmitt@gmail.com
-    // 
-    // Example implementation after Supabase setup:
-    // const { data, error } = await supabase.functions.invoke('send-email', {
-    //   body: {
-    //     to: 'franzjoschmitt@gmail.com',
-    //     subject: 'New Car Part Request',
-    //     formData: formData
-    //   }
-    // });
     
-    try {
-      // PLACEHOLDER: Replace this with Supabase email function
-      console.log("Form data to be sent to franzjoschmitt@gmail.com:", formData);
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+    // Show success message after brief delay (form will redirect)
+    setTimeout(() => {
       toast({
         title: "Request Submitted!",
         description: "We'll get back to you within 24 hours with a quote.",
       });
-      
-      // Reset form
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        desiredPart: ""
-      });
-      
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      toast({
-        title: "Error",
-        description: "Failed to submit your request. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsLoading(false);
-    }
+    }, 500);
   };
 
   return (
@@ -149,7 +111,12 @@ const ContactForm = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form 
+                  action="https://formsubmit.co/franzjoschmitt@gmail.com" 
+                  method="POST"
+                  onSubmit={handleSubmit} 
+                  className="space-y-6"
+                >
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="firstName">First Name *</Label>
@@ -222,11 +189,6 @@ const ContactForm = () => {
                     {isLoading ? "Submitting..." : "Submit Request"}
                   </Button>
                   
-                  {/* DEVELOPER NOTE: Email functionality requires Supabase integration */}
-                  <div className="text-sm text-corporate-medium-gray bg-corporate-light-gray p-4 rounded-lg">
-                    <strong>Developer Note:</strong> Connect to Supabase to enable email sending to franzjoschmitt@gmail.com. 
-                    Check ContactForm.tsx handleSubmit function for implementation details.
-                  </div>
                 </form>
               </CardContent>
             </Card>
