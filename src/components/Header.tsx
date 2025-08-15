@@ -1,3 +1,16 @@
+/**
+ * Header Component
+ * 
+ * This component renders the main navigation header for the car parts website.
+ * Features:
+ * - Company logo with "AP" initials
+ * - Navigation with smooth scroll to contact section
+ * - Professional corporate styling using the design system
+ * - Responsive design with mobile-friendly button
+ * 
+ * TODO: Add mobile menu for full navigation if needed
+ */
+
 import { Button } from "@/components/ui/button";
 
 const Header = () => {

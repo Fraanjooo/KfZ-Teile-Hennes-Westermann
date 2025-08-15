@@ -1,3 +1,20 @@
+/**
+ * Services Component
+ * 
+ * Displays the main service offerings for both B2B and B2C customers:
+ * - B2B Solutions: Bulk ordering, wholesale pricing, account management
+ * - Individual Customers: Retail parts, expert advice, quality guarantee
+ * - Fast Delivery: Quick shipping options and tracking
+ * - Expert Support: Technical guidance and part identification
+ * 
+ * Each service is displayed in a card with:
+ * - Icon representation using Lucide React icons
+ * - Service title, description, and feature list
+ * - Professional styling using corporate colors
+ * 
+ * TODO: Consider adding service-specific contact forms or pricing info
+ */
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Building2, User, Truck, Wrench } from "lucide-react";
 

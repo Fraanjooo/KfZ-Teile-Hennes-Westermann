@@ -1,3 +1,22 @@
+/**
+ * ContactForm Component
+ * 
+ * Main contact form for customer inquiries featuring:
+ * - Customer information fields (first name, last name, email, phone)
+ * - Part description textarea for detailed requests
+ * - Form validation and loading states
+ * - Contact information display (email and phone)
+ * 
+ * Backend Integration Required:
+ * - Form submission needs to send email to franzjoschmitt@gmail.com
+ * - Currently shows placeholder functionality
+ * - Requires Supabase integration for email sending capabilities
+ * 
+ * TODO: Implement actual email sending via Supabase Edge Functions
+ * TODO: Add form validation feedback
+ * TODO: Consider adding file upload for part images
+ */
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -5,7 +24,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -30,29 +49,27 @@ const ContactForm = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    // TODO: IMPLEMENT EMAIL SENDING FUNCTIONALITY
-    // This is where you'll need to add your backend logic to send emails
-    // You can either:
-    // 1. Connect to a backend API endpoint
-    // 2. Use a service like EmailJS
-    // 3. Implement server-side email sending
+    // TODO: IMPLEMENT EMAIL SENDING VIA SUPABASE
+    // After connecting to Supabase, implement email sending here:
+    // 1. Create a Supabase Edge Function for email sending
+    // 2. Use a service like Resend or SendGrid via the Edge Function
+    // 3. Send form data to franzjoschmitt@gmail.com
+    // 
+    // Example implementation after Supabase setup:
+    // const { data, error } = await supabase.functions.invoke('send-email', {
+    //   body: {
+    //     to: 'franzjoschmitt@gmail.com',
+    //     subject: 'New Car Part Request',
+    //     formData: formData
+    //   }
+    // });
     
     try {
-      // PLACEHOLDER: Replace this with actual email sending logic
-      console.log("Form data to be sent:", formData);
+      // PLACEHOLDER: Replace this with Supabase email function
+      console.log("Form data to be sent to franzjoschmitt@gmail.com:", formData);
       
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // TODO: Replace this with actual email sending
-      // Example API call structure:
-      // const response = await fetch('/api/send-email', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify(formData)
-      // });
       
       toast({
         title: "Request Submitted!",
@@ -116,26 +133,6 @@ const ContactForm = () => {
                   <div>
                     <h4 className="font-semibold mb-1">Phone</h4>
                     <p className="text-corporate-highlight/80">(555) 123-4567</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4">
-                  <MapPin className="w-6 h-6 text-corporate-highlight mt-1" />
-                  <div>
-                    <h4 className="font-semibold mb-1">Address</h4>
-                    <p className="text-corporate-highlight/80">
-                      123 Auto Parts Blvd<br />
-                      Your City, State 12345
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="pt-4 border-t border-corporate-accent/30">
-                  <h4 className="font-semibold mb-2">Business Hours</h4>
-                  <div className="text-corporate-highlight/80 text-sm space-y-1">
-                    <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
-                    <p>Saturday: 9:00 AM - 4:00 PM</p>
-                    <p>Sunday: Closed</p>
                   </div>
                 </div>
               </CardContent>
@@ -225,10 +222,10 @@ const ContactForm = () => {
                     {isLoading ? "Submitting..." : "Submit Request"}
                   </Button>
                   
-                  {/* TODO: REMOVE THIS COMMENT BLOCK WHEN IMPLEMENTING EMAIL */}
+                  {/* DEVELOPER NOTE: Email functionality requires Supabase integration */}
                   <div className="text-sm text-corporate-medium-gray bg-corporate-light-gray p-4 rounded-lg">
-                    <strong>Developer Note:</strong> The form is ready but needs email functionality. 
-                    Check the handleSubmit function in ContactForm.tsx for implementation details.
+                    <strong>Developer Note:</strong> Connect to Supabase to enable email sending to franzjoschmitt@gmail.com. 
+                    Check ContactForm.tsx handleSubmit function for implementation details.
                   </div>
                 </form>
               </CardContent>

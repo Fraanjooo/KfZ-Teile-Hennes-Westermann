@@ -1,3 +1,15 @@
+/**
+ * Footer Component
+ * 
+ * Footer section with company information including:
+ * - Company branding (logo and description)
+ * - Quick navigation links to main sections
+ * - Contact information (email, phone, address)
+ * - Copyright notice with current year
+ * 
+ * Uses a three-column responsive grid layout
+ */
+
 const Footer = () => {
   return (
     <footer className="bg-corporate-dark-gray text-corporate-white py-12">

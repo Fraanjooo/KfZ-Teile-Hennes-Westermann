@@ -1,3 +1,15 @@
+/**
+ * Hero Component
+ * 
+ * Main landing section of the website featuring:
+ * - Compelling headline for B2B and B2C customers
+ * - Call-to-action button that scrolls to contact form
+ * - Professional gradient background with automotive styling
+ * - Responsive typography and layout
+ * 
+ * Uses semantic design tokens for consistent branding
+ */
+
 import { Button } from "@/components/ui/button";
 
 const Hero = () => {
