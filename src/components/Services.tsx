@@ -37,12 +37,6 @@ const Services = () => {
       title: "Schnelle Lieferung",
       description: "Kurze Lieferzeiten durch zuverlässige Versandpartner. Lokale und deutschlandweite Lieferoptionen.",
       features: ["Taggleich lokal", "2 Tage deutschlandweit", "Sendungsverfolgung"]
-    },
-    {
-      icon: Wrench,
-      title: "Fachkundige Beratung",
-      description: "Technischer Support und Hilfe bei der Teilefindung. Unser Team hilft Ihnen, die richtigen Teile zu finden.",
-      features: ["Technische Beratung", "Teilefindung", "Einbautipps"]
     }
   ];
 
