@@ -19,6 +19,9 @@ export default {
       }
     },
     extend: {
+      fontFamily: {
+        'garamond': ['EB Garamond', 'serif'],
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',

@@ -1,20 +1,19 @@
 /**
  * ContactForm Component
  * 
- * Main contact form for customer inquiries featuring:
- * - Customer information fields (first name, last name, email, phone)
- * - Part description textarea for detailed requests
- * - Form validation and loading states
- * - Contact information display (email and phone)
+ * Hauptkontaktformular für Kundenanfragen mit folgenden Features:
+ * - Kundeninformationsfelder (Vorname, Nachname, E-Mail, Telefon)
+ * - Textarea für detaillierte Teilebeschreibung
+ * - Formularvalidierung und Loading-States
+ * - Kontaktinformationsanzeige (E-Mail und Telefon)
  * 
- * Backend Integration Required:
- * - Form submission needs to send email to franzjoschmitt@gmail.com
- * - Currently shows placeholder functionality
- * - Requires Supabase integration for email sending capabilities
+ * Backend-Integration:
+ * - Formular sendet über formsubmit.co an franzjoschmitt@gmail.com
+ * - Direkter POST-Request ohne JavaScript-Backend erforderlich
+ * - Zeigt Success-Toast nach Absendung
  * 
- * TODO: Implement actual email sending via Supabase Edge Functions
- * TODO: Add form validation feedback
- * TODO: Consider adding file upload for part images
+ * Verwendet das Corporate Design System für konsistente Darstellung
+ * und responsive Grid-Layout für optimale UX auf allen Geräten.
  */
 
 import { useState } from "react";
@@ -26,7 +25,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone } from "lucide-react";
 
+/**
+ * ContactForm Functional Component
+ * Rendert das Hauptkontaktformular mit Kontaktinformationen
+ */
 const ContactForm = () => {
+  // State für Formulardaten
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -34,9 +38,17 @@ const ContactForm = () => {
     phone: "",
     desiredPart: ""
   });
+  
+  // Loading-State für Submit-Button
   const [isLoading, setIsLoading] = useState(false);
+  
+  // Toast-Hook für Benachrichtigungen
   const { toast } = useToast();
 
+  /**
+   * Handler für Eingabefeld-Änderungen (Input und Textarea)
+   * Aktualisiert den entsprechenden Wert im formData State
+   */
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -45,12 +57,16 @@ const ContactForm = () => {
     }));
   };
 
+  /**
+   * Submit-Handler für Formular
+   * Da formsubmit.co verwendet wird, erfolgt der eigentliche Versand über POST
+   * JavaScript zeigt nur Success-Toast an
+   */
   const handleSubmit = (e: React.FormEvent) => {
-    // Using formsubmit.co for email sending - no JavaScript processing needed
-    // The form will be submitted directly to formsubmit.co endpoint
+    // formsubmit.co übernimmt E-Mail-Versand - kein JavaScript-Backend nötig
     setIsLoading(true);
     
-    // Show success message after brief delay (form will redirect)
+    // Success-Message nach kurzer Verzögerung (Formular wird weitergeleitet)
     setTimeout(() => {
       toast({
         title: "Anfrage gesendet!",
@@ -62,6 +78,7 @@ const ContactForm = () => {
   return (
     <section id="contact" className="py-20 bg-gradient-to-b from-corporate-light-gray to-corporate-white">
       <div className="container mx-auto px-6">
+        {/* Sektion-Header mit Titel und Beschreibung */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-corporate-dark-gray mb-4">
             Angebot anfordern
@@ -71,8 +88,10 @@ const ContactForm = () => {
           </p>
         </div>
 
+        {/* Grid-Layout: Kontaktinfo (1/3) + Formular (2/3) */}
         <div className="grid lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
-          {/* Contact Information */}
+          
+          {/* Linke Spalte: Kontaktinformationen */}
           <div className="lg:col-span-1">
             <Card className="h-full border-0 bg-corporate-primary text-corporate-white">
               <CardHeader>
@@ -82,6 +101,7 @@ const ContactForm = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
+                {/* E-Mail Kontakt */}
                 <div className="flex items-start gap-4">
                   <Mail className="w-6 h-6 text-corporate-highlight mt-1" />
                   <div>
@@ -90,6 +110,7 @@ const ContactForm = () => {
                   </div>
                 </div>
                 
+                {/* Telefon Kontakt */}
                 <div className="flex items-start gap-4">
                   <Phone className="w-6 h-6 text-corporate-highlight mt-1" />
                   <div>
@@ -101,7 +122,7 @@ const ContactForm = () => {
             </Card>
           </div>
 
-          {/* Contact Form */}
+          {/* Rechte Spalte: Kontaktformular */}
           <div className="lg:col-span-2">
             <Card className="border-0 shadow-lg">
               <CardHeader>
@@ -111,12 +132,14 @@ const ContactForm = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
+                {/* Formular mit formsubmit.co Integration */}
                 <form 
                   action="https://formsubmit.co/franzjoschmitt@gmail.com" 
                   method="POST"
                   onSubmit={handleSubmit} 
                   className="space-y-6"
                 >
+                  {/* Erste Reihe: Vor- und Nachname */}
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="firstName">Vorname *</Label>
@@ -142,6 +165,7 @@ const ContactForm = () => {
                     </div>
                   </div>
 
+                  {/* Zweite Reihe: E-Mail und Telefon */}
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="email">E-Mail-Adresse *</Label>
@@ -168,6 +192,7 @@ const ContactForm = () => {
                     </div>
                   </div>
 
+                  {/* Textarea für Teilebeschreibung */}
                   <div>
                     <Label htmlFor="desiredPart">Beschreibung des gewünschten Teils *</Label>
                     <Textarea
@@ -181,6 +206,7 @@ const ContactForm = () => {
                     />
                   </div>
 
+                  {/* Submit Button mit Loading-State */}
                   <Button 
                     type="submit"  
                     disabled={isLoading}
