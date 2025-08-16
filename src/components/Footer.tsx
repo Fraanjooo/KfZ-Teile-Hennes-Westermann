@@ -26,15 +26,19 @@ import { List } from "lucide-react";
       if(e.currentTarget.textContent == "Angebot anfordern"){
         const contactSection = document.getElementById('contact');
         contactSection?.scrollIntoView({ behavior: 'smooth' });
-      } else if(e.currentTarget.textContent == "Unsere Leistungen"){
-        
-        const contactSection = document.getElementById('services');
-        contactSection?.scrollIntoView({behavior: 'smooth'});
-      }
-    } else {
+      } else {
       // Auf anderen Seiten: Navigiere zur Startseite mit Kontakt-Anker
       window.location.href = '/#contact';
     }
+
+    if(e.currentTarget.textContent == "Unsere Leistungen"){
+        
+        const contactSection = document.getElementById('services');
+        contactSection?.scrollIntoView({behavior: 'smooth'});
+    } else {
+      window.location.href = '/#services';
+    }
+  }
   };
 
 /**
@@ -95,5 +99,7 @@ const Footer = () => {
     </footer>
   );
 };
+
+
 
 export default Footer;
