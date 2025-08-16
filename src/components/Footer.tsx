@@ -35,18 +35,13 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-4">Schnellzugriff</h4>
             <ul className="space-y-2 text-corporate-medium-gray">
               <li>
-                <a href="#services" className="hover:text-corporate-highlight transition-colors">
+                <a href="/#services" className="hover:text-corporate-highlight transition-colors">
                   Unsere Leistungen
                 </a>
               </li>
               <li>
-                <a href="#contact" className="hover:text-corporate-highlight transition-colors">
+                <a href="/#contact" className="hover:text-corporate-highlight transition-colors">
                   Angebot anfordern
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-corporate-highlight transition-colors">
-                  Über uns
                 </a>
               </li>
               <li>

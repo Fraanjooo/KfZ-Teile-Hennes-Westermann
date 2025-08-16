@@ -14,41 +14,50 @@
  */
 
 import { Button } from "@/components/ui/button";
+import { useLocation } from "react-router-dom";
 
 /**
  * Header Functional Component
  * Rendert die obere Navigationsleiste mit Logo und Angebot-Button
  */
 const Header = () => {
+  const location = useLocation();
+
   /**
-   * Scroll-Funktion für sanftes Navigieren zur Kontakt-Sektion
-   * Verwendet die native scrollIntoView API für smooth scrolling
+   * Navigations-Funktion für "Angebot anfordern" Button
+   * Scrollt zur Kontakt-Sektion auf der Startseite oder navigiert zur Startseite
    */
-  const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
-    contactSection?.scrollIntoView({ behavior: 'smooth' });
+  const handleRequestQuote = () => {
+    if (location.pathname === '/') {
+      // Auf der Startseite: Scroll zur Kontakt-Sektion
+      const contactSection = document.getElementById('contact');
+      contactSection?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // Auf anderen Seiten: Navigiere zur Startseite mit Kontakt-Anker
+      window.location.href = '/#contact';
+    }
   };
 
   return (
     <header className="bg-corporate-white/95 backdrop-blur-sm border-b border-corporate-light-gray sticky top-0 z-50">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          {/* Firmenlogo mit EB Garamond Schriftart */}
+          {/* Anklickbares Firmenlogo mit EB Garamond Schriftart */}
           <div className="flex items-center">
-            <h1 className="text-2xl font-bold text-corporate-dark-gray font-garamond">
+            <a href="/" className="text-2xl font-bold text-corporate-dark-gray font-garamond hover:text-corporate-primary transition-colors">
               Kfz-Teile Hennes Westermann
-            </h1>
+            </a>
           </div>
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Button variant="automotive" onClick={scrollToContact}>
+            <Button variant="automotive" onClick={handleRequestQuote}>
               Angebot anfordern
             </Button>
           </nav>
           
           {/* Mobile Navigation Button */}
-          <Button variant="automotive" className="md:hidden" onClick={scrollToContact}>
+          <Button variant="automotive" className="md:hidden" onClick={handleRequestQuote}>
             Angebot
           </Button>
         </div>
