@@ -13,6 +13,27 @@
  */
 
 /**
+   * Navigations-Funktion für "Angebot anfordern" Button
+   * Scrollt zur Kontakt-Sektion auf der Startseite oder navigiert zur Startseite
+   */
+   const handleRequestQuote = () => {
+    if (location.pathname === '/') {
+      // Auf der Startseite: Scroll zur Kontakt-Sektion
+      if(onclick[0].text == "Angebot anfordern"){
+        const contactSection = document.getElementById('contact');
+        contactSection?.scrollIntoView({ behavior: 'smooth' });
+      } else if(onclick[0].text == "Unsere Leistungen"){
+        
+        const contactSection = document.getElementById('service');
+        contactSection?.scrollIntoView({behavior: 'smooth'});
+      }
+    } else {
+      // Auf anderen Seiten: Navigiere zur Startseite mit Kontakt-Anker
+      window.location.href = '/#contact';
+    }
+  };
+
+/**
  * Footer Functional Component
  * Rendert den Fußbereich der Website mit Firmeninfos und Navigation
  */
@@ -40,7 +61,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="/#contact" className="hover:text-corporate-highlight transition-colors">
+                <a href="/#contact" className="hover:text-corporate-highlight transition-colors" onClick={handleRequestQuote}>
                   Angebot anfordern
                 </a>
               </li>
