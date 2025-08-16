@@ -46,7 +46,7 @@ const Services = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-corporate-white to-corporate-light-gray">
+    <section id="services" className="py-20 bg-gradient-to-b from-corporate-white to-corporate-light-gray">
       <div className="container mx-auto px-6">
         {/* Überschrift und Beschreibung der Services-Sektion */}
         <div className="text-center mb-16">
