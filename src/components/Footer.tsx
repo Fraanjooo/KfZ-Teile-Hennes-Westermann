@@ -12,17 +12,20 @@
  * mit Corporate Design Farben für professionelle Darstellung.
  */
 
+import { List } from "lucide-react";
+
 /**
    * Navigations-Funktion für "Angebot anfordern" Button
    * Scrollt zur Kontakt-Sektion auf der Startseite oder navigiert zur Startseite
    */
-   const handleRequestQuote = () => {
+   const handleRequestQuote = (e) => {
     if (location.pathname === '/') {
       // Auf der Startseite: Scroll zur Kontakt-Sektion
-      if(onclick[0].text == "Angebot anfordern"){
+       e.preventDefault();
+      if(e.currentTarget.textContent == "Angebot anfordern"){
         const contactSection = document.getElementById('contact');
         contactSection?.scrollIntoView({ behavior: 'smooth' });
-      } else if(onclick[0].text == "Unsere Leistungen"){
+      } else if(e.currentTarget.textContent == "Unsere Leistungen"){
         
         const contactSection = document.getElementById('service');
         contactSection?.scrollIntoView({behavior: 'smooth'});
