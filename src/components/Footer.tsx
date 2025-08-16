@@ -22,12 +22,13 @@ import { List } from "lucide-react";
     if (location.pathname === '/') {
       // Auf der Startseite: Scroll zur Kontakt-Sektion
        e.preventDefault();
+
       if(e.currentTarget.textContent == "Angebot anfordern"){
         const contactSection = document.getElementById('contact');
         contactSection?.scrollIntoView({ behavior: 'smooth' });
       } else if(e.currentTarget.textContent == "Unsere Leistungen"){
         
-        const contactSection = document.getElementById('service');
+        const contactSection = document.getElementById('services');
         contactSection?.scrollIntoView({behavior: 'smooth'});
       }
     } else {
@@ -50,7 +51,7 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-4 font-garamond">Kfz-Teile Hennes Westermann</h3>
             <p className="text-corporate-medium-gray leading-relaxed">
-              Ihr vertrauensvoller Partner für hochwertige Kfz-Teile. Wir beliefern Geschäftskunden und Privatpersonen seit 2010 mit Exzellenz.
+              Ihr vertrauensvoller Partner für hochwertige Kfz-Teile. Wir beliefern Geschäftskunden und Privatpersonen seit 2025 mit Exzellenz.
             </p>
           </div>
           
