@@ -210,6 +210,7 @@ const ContactForm = () => {
                   <Button 
                     type="submit"  
                     disabled={isLoading}
+                    variant="automotive"
                     className="w-full"
                   >
                     {isLoading ? "Wird gesendet..." : "Anfrage senden"}

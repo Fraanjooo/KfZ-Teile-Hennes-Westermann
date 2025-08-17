@@ -29,7 +29,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative bg-gradient-to-br from-corporate-primary to-corporate-accent min-h-[600px] flex items-center justify-center text-corporate-white overflow-hidden">
+    <section className="relative bg-corporate-primary min-h-[600px] flex items-center justify-center text-corporate-white overflow-hidden">
       
       {/* Dekoratives Hintergrundmuster mit Radial-Gradient */}
       <div className="absolute inset-0 opacity-10">
@@ -55,7 +55,7 @@ const Hero = () => {
           {/* Call-to-Action Button Bereich */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
-              variant="accent" 
+              variant="automotive" 
               size="lg"
               onClick={scrollToContact}
               className="text-lg px-8 py-6"
