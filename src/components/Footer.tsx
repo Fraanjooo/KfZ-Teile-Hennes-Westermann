@@ -19,27 +19,21 @@ import { List } from "lucide-react";
    * Scrollt zur Kontakt-Sektion auf der Startseite oder navigiert zur Startseite
    */
    const handleRequestQuote = (e) => {
-    if (location.pathname === '/') {
-      // Auf der Startseite: Scroll zur Kontakt-Sektion
-       e.preventDefault();
+  e.preventDefault(); // verhindert hartes Anchor-Springen
 
-      if(e.currentTarget.textContent == "Angebot anfordern"){
-        const contactSection = document.getElementById('contact');
-        contactSection?.scrollIntoView({ behavior: 'smooth' });
-      } else {
-      // Auf anderen Seiten: Navigiere zur Startseite mit Kontakt-Anker
-      window.location.href = '/#contact';
+  if (location.pathname === '/') {
+    if (e.currentTarget.textContent === "Angebot anfordern") {
+      document.getElementById('contact')
+        ?.scrollIntoView({ behavior: 'smooth' });
+    } else if (e.currentTarget.textContent === "Unsere Leistungen") {
+      document.getElementById('service')
+        ?.scrollIntoView({ behavior: 'smooth' });
     }
-
-    if(e.currentTarget.textContent == "Unsere Leistungen"){
-        
-        const contactSection = document.getElementById('services');
-        contactSection?.scrollIntoView({behavior: 'smooth'});
-    } else {
-      window.location.href = '/#services';
-    }
+  } else {
+    // Auf anderen Seiten: zur Startseite, ohne direkten Anker
+    window.location.href = '/?scroll=contact'; 
   }
-  };
+};
 
 /**
  * Footer Functional Component
