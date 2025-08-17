@@ -18,20 +18,27 @@ import { List } from "lucide-react";
    * Navigations-Funktion für "Angebot anfordern" Button
    * Scrollt zur Kontakt-Sektion auf der Startseite oder navigiert zur Startseite
    */
-   const handleRequestQuote = (e) => {
+   const handleRequestQuote = (e: React.MouseEvent<HTMLAnchorElement>) => {
   e.preventDefault(); // verhindert hartes Anchor-Springen
 
-  if (location.pathname === '/') {
+  const isHomePage = window.location.pathname === '/';
+  
+  if (isHomePage) {
+    // Auf der Startseite: Smooth Scroll zu den entsprechenden Sektionen
     if (e.currentTarget.textContent === "Angebot anfordern") {
-      document.getElementById('contact')
-        ?.scrollIntoView({ behavior: 'smooth' });
+      const contactSection = document.getElementById('contact');
+      contactSection?.scrollIntoView({ behavior: 'smooth' });
     } else if (e.currentTarget.textContent === "Unsere Leistungen") {
-      document.getElementById('services')
-        ?.scrollIntoView({ behavior: 'smooth' });
+      const servicesSection = document.getElementById('services');
+      servicesSection?.scrollIntoView({ behavior: 'smooth' });
     }
   } else {
-    // Auf anderen Seiten: zur Startseite, ohne direkten Anker
-    window.location.href = '/?scroll=contact'; 
+    // Auf anderen Seiten: Navigiere zur Startseite mit entsprechendem Anker
+    if (e.currentTarget.textContent === "Angebot anfordern") {
+      window.location.href = '/?scroll=contact';
+    } else if (e.currentTarget.textContent === "Unsere Leistungen") {
+      window.location.href = '/?scroll=services';
+    }
   }
 };
 
@@ -58,7 +65,7 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-4">Schnellzugriff</h4>
             <ul className="space-y-2 text-corporate-medium-gray">
               <li>
-                <a href="/#services" className="hover:text-corporate-highlight transition-colors">
+                <a href="/#services" className="hover:text-corporate-highlight transition-colors" onClick={handleRequestQuote}>
                   Unsere Leistungen
                 </a>
               </li>

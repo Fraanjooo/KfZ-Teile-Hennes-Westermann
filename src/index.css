@@ -36,15 +36,15 @@ All colors MUST be HSL.
     --input: 0 0% 90%;
     --ring: 215 85% 31%;
 
-    /* Professional Corporate Color Palette */
-    --corporate-primary: 215 85% 31%;      /* Dunkelblau #0B3D91 */
-    --corporate-accent: 210 75% 46%;       /* Mittelblau #1976D2 */
-    --corporate-highlight: 210 71% 86%;    /* Hellblau #BBDEFB */
-    --corporate-dark-gray: 0 0% 18%;       /* Dunkelgrau #2E2E2E */
-    --corporate-medium-gray: 0 0% 62%;     /* Mittelgrau #9E9E9E */
-    --corporate-light-gray: 0 0% 96%;      /* Hellgrau #F5F5F5 */
+    /* Seriöse & Technische Corporate Color Palette */
+    --corporate-primary: 209 75% 21%;      /* Dunkelblau #0A3D62 - Vertrauen, Technik, Seriosität */
+    --corporate-accent: 27 81% 52%;        /* Signalorange #E67E22 - Auffällig, freundlich, Call-to-Action */
+    --corporate-highlight: 27 81% 52%;     /* Signalorange #E67E22 für Highlights */
+    --corporate-dark-gray: 210 29% 24%;    /* Anthrazitgrau #2C3E50 - Modern, stabil, seriös */
+    --corporate-medium-gray: 210 20% 50%;  /* Mittleres Grau für Text */
+    --corporate-light-gray: 192 15% 94%;   /* Hellgrau #ECF0F1 - Aufgeräumte Hintergründe */
     --corporate-black: 0 0% 0%;            /* Schwarz #000000 */
-    --corporate-white: 0 0% 100%;          /* Weiß #FFFFFF */
+    --corporate-white: 0 0% 100%;          /* Weiß #FFFFFF - Kontraste, Texte auf dunklem Hintergrund */
     
     /* Gradients with professional colors */
     --gradient-hero: linear-gradient(135deg, hsl(var(--corporate-primary)), hsl(var(--corporate-accent)));
