@@ -26,7 +26,7 @@ import { List } from "lucide-react";
       document.getElementById('contact')
         ?.scrollIntoView({ behavior: 'smooth' });
     } else if (e.currentTarget.textContent === "Unsere Leistungen") {
-      document.getElementById('service')
+      document.getElementById('services')
         ?.scrollIntoView({ behavior: 'smooth' });
     }
   } else {
