@@ -28,20 +28,20 @@ const Services = () => {
     {
       icon: Building2, // Gebäude-Icon für B2B-Bereich
       title: "B2B-Lösungen",
-      description: "Großbestellungen für Werkstätten, Autohäuser und Reparaturbetriebe. Mengenrabatte und persönliche Kundenbetreuung.",
+      description: "Individuelle Betreuung und attraktive Konditionen für Werkstätten, Autohäuser und Reparaturbetriebe – inklusive unkomplizierter Abwicklung von Großbestellungen.",
       features: ["Großhandelspreise", "Individuelle Rechnungsstellung", "Prioritätsversand"]
     },
     {
       icon: User, // Benutzer-Icon für Privatkunden
       title: "Privatkunden", 
-      description: "Hochwertige Teile für Hobby-Schrauber und Autobesitzer. Fachberatung und faire Preise.",
-      features: ["Fachberatung", "Qualitätsgarantie", "Einfache Rückgabe"]
+      description: "Persönliche Beratung und hochwertige Ersatzteile für Privatkunden. Profitieren Sie von unserer Qualitätsgarantie.",
+      features: ["Fachberatung", "Qualitätsgarantie"]
     },
     {
       icon: MapPin, // Standort-Icon für Lieferung/Abholung
       title: "Lieferung oder Abholung",
       description: "Flexible Bezugsmöglichkeiten für alle Kunden. Schnelle Lieferung oder bequeme Abholung vor Ort.",
-      features: ["Taggleich lokal", "2 Tage deutschlandweit", "Kostenlose Abholung"]
+      features: ["Schnelle Lieferung", "Flexible Abholzeiten"]
     }
   ];
 

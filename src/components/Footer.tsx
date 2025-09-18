@@ -54,9 +54,9 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-8">
           {/* Erste Spalte: Firmenbranding und Beschreibung */}
           <div>
-            <h3 className="text-xl font-bold mb-4 font-garamond">Kfz-Teile Hennes Westermann</h3>
+            <h3 className="text-xl mb-4 font-garamond">Kfz-Teile Hennes Westermann</h3>
             <p className="text-corporate-medium-gray leading-relaxed">
-              Ihr vertrauensvoller Partner für hochwertige Kfz-Teile. Wir beliefern Geschäftskunden und Privatpersonen seit 2025 mit Exzellenz.
+              Ihr vertrauensvoller Partner für hochwertige Kfz-Teile. Wir beliefern Geschäftskunden und Privatpersonen.
             </p>
           </div>
           
@@ -75,8 +75,13 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="/datenschutz" className="hover:text-corporate-highlight transition-colors">
+                <a href="/datenschutz" className="hover:text-corporate-highlight transition-colors" onClick={handleRequestQuote}>
                   Datenschutzerklärung
+                </a>
+              </li>
+              <li>
+                <a href="/impressum" className="hover:text-corporate-highlight transition-colors" onClick={handleRequestQuote}>
+                  Impressum
                 </a>
               </li>
             </ul>
@@ -86,8 +91,8 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Kontaktdaten</h4>
             <div className="space-y-2 text-corporate-medium-gray">
-              <p>📧 teile@kfz-hennes-westermann.de</p>
-              <p>📞 +49 (0) 123 456789</p>
+              <p>📧 info@kfz-westermann.de</p>
+              <p></p>
             </div>
           </div>
         </div>

@@ -115,7 +115,7 @@ const ContactForm = () => {
                   <Phone className="w-6 h-6 text-corporate-highlight mt-1" />
                   <div>
                     <h4 className="font-semibold mb-1">Telefon</h4>
-                    <p className="text-corporate-highlight/80">+49 (0) 123 456789</p>
+                    <p className="text-corporate-highlight/80"></p>
                   </div>
                 </div>
               </CardContent>
@@ -134,7 +134,7 @@ const ContactForm = () => {
               <CardContent>
                 {/* Formular mit formsubmit.co Integration */}
                 <form 
-                  action="https://formsubmit.co/franzjoschmitt@gmail.com" 
+                  action="https://formsubmit.co/info@kfz-westermann.de" 
                   method="POST"
                   onSubmit={handleSubmit} 
                   className="space-y-6"
@@ -202,7 +202,7 @@ const ContactForm = () => {
                       onChange={handleInputChange}
                       required
                       className="mt-1 min-h-[100px]"
-                      placeholder="Bitte beschreiben Sie das benötigte Teil (z.B. Bremsbeläge für Honda Civic 2018, Lichtmaschine für Ford F-150, etc.)"
+                      placeholder="Bitte beschreiben Sie das benötigte Teil und geben Sie bestenfalls ihre Fahrgestellnummer ein (z.B. Bremsbeläge für SL500 (R129), Lichtmaschine für Porsche 964 WP0ZZZ..., Hydraulikpumpe für New Holland T7, etc.)"
                     />
                   </div>
 

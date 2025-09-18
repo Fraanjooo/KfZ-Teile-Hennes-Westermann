@@ -44,7 +44,7 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Anklickbares Firmenlogo mit EB Garamond Schriftart */}
           <div className="flex items-center">
-            <a href="/" className="text-2xl font-bold text-corporate-dark-gray font-garamond hover:text-corporate-primary transition-colors">
+            <a href="/" className="text-2xl text-corporate-dark-gray font-garamond hover:text-corporate-primary transition-colors">
               Kfz-Teile Hennes Westermann
             </a>
           </div>
