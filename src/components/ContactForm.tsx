@@ -110,7 +110,7 @@ const ContactForm = () => {
                   </div>
                 </div>
                 
-                {/* Telefon Kontakt */}
+                {/*
                 <div className="flex items-start gap-4">
                   <Phone className="w-6 h-6 text-corporate-highlight mt-1" />
                   <div>
@@ -118,6 +118,8 @@ const ContactForm = () => {
                     <p className="text-corporate-highlight/80"></p>
                   </div>
                 </div>
+                */}
+                
               </CardContent>
             </Card>
           </div>

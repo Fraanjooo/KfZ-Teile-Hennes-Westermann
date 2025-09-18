@@ -75,12 +75,12 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="/datenschutz" className="hover:text-corporate-highlight transition-colors" onClick={handleRequestQuote}>
+                <a href="/datenschutz" className="hover:text-corporate-highlight transition-colors">
                   Datenschutzerklärung
                 </a>
               </li>
               <li>
-                <a href="/impressum" className="hover:text-corporate-highlight transition-colors" onClick={handleRequestQuote}>
+                <a href="/impressum" className="hover:text-corporate-highlight transition-colors">
                   Impressum
                 </a>
               </li>

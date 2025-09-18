@@ -43,7 +43,7 @@ const Hero = () => {
           {/* Hauptschlagzeile mit zwei Zeilen für visuelle Hierarchie */}
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
             Kfz-Teile
-            <span className="block text-corporate-highlight">Für jedes Fahrzeug</span>
+            <span className="block text-corporate-highlight">für jedes Fahrzeug</span>
           </h1>
           
           {/* Untertitel mit Wertversprechen */}
