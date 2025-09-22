@@ -110,15 +110,15 @@ const ContactForm = () => {
                   </div>
                 </div>
                 
-                {/*
+                {
                 <div className="flex items-start gap-4">
                   <Phone className="w-6 h-6 text-corporate-highlight mt-1" />
                   <div>
                     <h4 className="font-semibold mb-1">Telefon</h4>
-                    <p className="text-corporate-highlight/80"></p>
+                    <p className="text-corporate-highlight/80">+49 (0) 155 66486776</p>
                   </div>
                 </div>
-                */}
+                }
                 
               </CardContent>
             </Card>
