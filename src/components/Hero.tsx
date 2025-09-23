@@ -33,7 +33,7 @@ const Hero = () => {
       
       {/* Dekoratives Hintergrundmuster mit Radial-Gradient */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0))]"></div>
       </div>
       
       {/* Hauptinhalt des Hero-Bereichs */}
