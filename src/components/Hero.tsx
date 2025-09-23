@@ -13,6 +13,7 @@
  */
 
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
 /**
  * Hero Functional Component
@@ -38,32 +39,34 @@ const Hero = () => {
       
       {/* Hauptinhalt des Hero-Bereichs */}
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          
-          {/* Hauptschlagzeile mit zwei Zeilen für visuelle Hierarchie */}
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            Kfz-Teile
-            <span className="block text-corporate-highlight">für jedes Fahrzeug</span>
-          </h1>
-          
-          {/* Untertitel mit Wertversprechen */}
-          <p className="text-xl md:text-2xl mb-8 text-corporate-highlight/80 max-w-2xl mx-auto leading-relaxed">
-            Hochwertige Fahrzeugteile für Geschäftskunden und Privatpersonen. 
-            Schnelle Lieferung, faire Preise, kompetente Beratung.
-          </p>
-          
-          {/* Call-to-Action Button Bereich */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              variant="automotive" 
-              size="lg"
-              onClick={scrollToContact}
-              className="text-lg px-8 py-6"
-            >
-              Angebot anfordern
-            </Button>
-          </div>
-        </div>
+        <Card className="max-w-4xl mx-auto hover:shadow-lg transition-all duration-300 border-0 bg-corporate-white/80 backdrop-blur-sm">
+          <CardContent className="text-center p-12">
+            
+            {/* Hauptschlagzeile mit zwei Zeilen für visuelle Hierarchie */}
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-corporate-dark-gray">
+              Kfz-Teile
+              <span className="block text-corporate-highlight">für jedes Fahrzeug</span>
+            </h1>
+            
+            {/* Untertitel mit Wertversprechen */}
+            <p className="text-xl md:text-2xl mb-8 text-corporate-medium-gray max-w-2xl mx-auto leading-relaxed">
+              Hochwertige Fahrzeugteile für Geschäftskunden und Privatpersonen. 
+              Schnelle Lieferung, faire Preise, kompetente Beratung.
+            </p>
+            
+            {/* Call-to-Action Button Bereich */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                variant="automotive" 
+                size="lg"
+                onClick={scrollToContact}
+                className="text-lg px-8 py-6"
+              >
+                Angebot anfordern
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </section>
   );
