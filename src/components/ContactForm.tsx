@@ -106,7 +106,7 @@ const ContactForm = () => {
                   <Mail className="w-6 h-6 text-corporate-highlight mt-1" />
                   <div>
                     <h4 className="font-semibold mb-1">E-Mail</h4>
-                    <p className="text-corporate-highlight/80">info@kfz-westermann.de</p>
+                    <p className="text-white">info@kfz-westermann.de</p>
                   </div>
                 </div>
                 
@@ -115,7 +115,7 @@ const ContactForm = () => {
                   <Phone className="w-6 h-6 text-corporate-highlight mt-1" />
                   <div>
                     <h4 className="font-semibold mb-1">Telefon</h4>
-                    <p className="text-corporate-highlight/80">+49 (0) 155 66486776</p>
+                    <p className="text-white">+49 (0) 155 66486776</p>
                   </div>
                 </div>
                 }
