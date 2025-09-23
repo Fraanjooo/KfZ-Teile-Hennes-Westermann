@@ -96,7 +96,7 @@ const ContactForm = () => {
             <Card className="h-full border-0 bg-corporate-primary text-corporate-white">
               <CardHeader>
                 <CardTitle className="text-2xl">Kontakt</CardTitle>
-                <CardDescription className="text-corporate-highlight/80">
+                <CardDescription className="text-white">
                   Verschiedene Wege, unser Team zu erreichen
                 </CardDescription>
               </CardHeader>
