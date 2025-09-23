@@ -13,6 +13,7 @@
  */
 
 import { Button } from "@/components/ui/button";
+import heroAutomotiveBg from "@/assets/hero-automotive-bg.jpg";
 
 /**
  * Hero Functional Component
@@ -31,9 +32,14 @@ const Hero = () => {
   return (
     <section className="relative bg-background min-h-[600px] flex items-center justify-center text-foreground overflow-hidden">
       
-      {/* Dekoratives Hintergrundmuster mit Radial-Gradient */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0))]"></div>
+      {/* Automotive Hintergrundbild */}
+      <div className="absolute inset-0 opacity-20">
+        <img 
+          src={heroAutomotiveBg} 
+          alt="Automotive drivetrain illustration" 
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-background/80"></div>
       </div>
       
       {/* Hauptinhalt des Hero-Bereichs */}
