@@ -29,7 +29,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative bg-corporate-primary min-h-[600px] flex items-center justify-center text-corporate-white overflow-hidden">
+    <section className="relative bg-background min-h-[600px] flex items-center justify-center text-foreground overflow-hidden">
       
       {/* Dekoratives Hintergrundmuster mit Radial-Gradient */}
       <div className="absolute inset-0 opacity-10">

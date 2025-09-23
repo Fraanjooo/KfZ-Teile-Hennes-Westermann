@@ -38,8 +38,8 @@ All colors MUST be HSL.
 
     /* Seriöse & Technische Corporate Color Palette */
     --corporate-primary: 209 75% 21%;      /* Dunkelblau #0A3D62 - Vertrauen, Technik, Seriosität */
-    --corporate-accent: 27 81% 52%;        /* Signalorange #E67E22 - Auffällig, freundlich, Call-to-Action */
-    --corporate-highlight: 27 81% 52%;     /* Signalorange #E67E22 für Highlights */
+    --corporate-accent: 209 75% 21%;        /* Dunkelblau #0A3D62 - Vertrauen, Technik, Seriosität */
+    --corporate-highlight: 209 75% 21%;     /* Dunkelblau #0A3D62 für Highlights */
     --corporate-dark-gray: 210 29% 24%;    /* Anthrazitgrau #2C3E50 - Modern, stabil, seriös */
     --corporate-medium-gray: 210 20% 50%;  /* Mittleres Grau für Text */
     --corporate-light-gray: 192 15% 94%;   /* Hellgrau #ECF0F1 - Aufgeräumte Hintergründe */
