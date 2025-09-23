@@ -28,20 +28,17 @@ const Services = () => {
     {
       icon: Building2, // Gebäude-Icon für B2B-Bereich
       title: "B2B-Lösungen",
-      description: "Individuelle Betreuung und attraktive Konditionen für Werkstätten, Autohäuser und Reparaturbetriebe – inklusive unkomplizierter Abwicklung von Großbestellungen.",
-      features: ["Großhandelspreise", "Individuelle Rechnungsstellung", "Prioritätsversand"]
+      description: "Individuelle Betreuung und attraktive Konditionen für Werkstätten, Autohäuser und Reparaturbetriebe – inklusive unkomplizierter Abwicklung von Großbestellungen."
     },
     {
       icon: User, // Benutzer-Icon für Privatkunden
       title: "Privatkunden", 
-      description: "Persönliche Beratung und hochwertige Ersatzteile für Privatkunden. Profitieren Sie von unserer Qualitätsgarantie.",
-      features: ["Fachberatung", "Qualitätsgarantie"]
+      description: "Persönliche Beratung und hochwertige Ersatzteile für Privatkunden. Profitieren Sie von unserer Qualitätsgarantie."
     },
     {
       icon: MapPin, // Standort-Icon für Lieferung/Abholung
       title: "Lieferung oder Abholung",
-      description: "Flexible Bezugsmöglichkeiten für alle Kunden. Schnelle Lieferung oder bequeme Abholung vor Ort.",
-      features: ["Schnelle Lieferung", "Flexible Abholzeiten"]
+      description: "Flexible Bezugsmöglichkeiten für alle Kunden. Schnelle Lieferung oder bequeme Abholung vor Ort."
     }
   ];
 
@@ -74,14 +71,6 @@ const Services = () => {
                 <CardDescription className="text-corporate-medium-gray mb-4 leading-relaxed">
                   {service.description}
                 </CardDescription>
-                {/* Feature-Liste mit Bullet Points */}
-                <ul className="space-y-2">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className="text-sm text-corporate-accent font-medium">
-                      • {feature}
-                    </li>
-                  ))}
-                </ul>
               </CardContent>
             </Card>
           ))}
