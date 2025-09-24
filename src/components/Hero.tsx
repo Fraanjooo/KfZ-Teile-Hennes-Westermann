@@ -55,7 +55,7 @@ const Hero = () => {
           {/* Untertitel mit Wertversprechen */}
           <p className="text-xl md:text-2xl mb-8 text-corporate-highlight/80 max-w-2xl mx-auto leading-relaxed">
             Hochwertige Fahrzeugteile für Geschäftskunden und Privatpersonen. 
-            Schnelle Lieferung, faire Preise, kompetente Beratung.
+            Schnelle Lieferung, unverbindliche Preise, kompetente Beratung.
           </p>
           
           {/* Call-to-Action Button Bereich */}
