@@ -84,7 +84,7 @@ const ContactForm = () => {
             Angebot anfordern
           </h2>
           <p className="text-xl text-corporate-medium-gray max-w-2xl mx-auto">
-            Teilen Sie uns mit, was Sie benötigen und wir erstellen Ihnen ein günstiges Angebot mit Verfügbarkeitsinformationen.
+            Teilen Sie uns mit, was Sie benötigen und wir erstellen Ihnen ein unverbindliches Angebot von verschiedenen Herstellern.
           </p>
         </div>
 
