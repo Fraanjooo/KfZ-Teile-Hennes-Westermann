@@ -11,6 +11,8 @@ import Impressum from "./pages/Impressum";
 import Login from "./pages/admin/Login";
 import Dashboard from "./pages/admin/Dashboard";
 import Editor from "./pages/admin/Editor";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 
 /**
  * QueryClient-Instanz für React Query
@@ -56,6 +58,8 @@ const App = () => (
 
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/datenschutz" element={<Datenschutz />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/admin/login" element={<Login />} />

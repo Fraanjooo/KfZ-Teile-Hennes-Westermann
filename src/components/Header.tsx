@@ -14,7 +14,7 @@
  */
 
 import { Button } from "@/components/ui/button";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 /**
  * Header Functional Component
@@ -51,15 +51,29 @@ const Header = () => {
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
+            <Link 
+              to="/blog" 
+              className="text-corporate-dark-gray hover:text-corporate-primary transition-colors"
+            >
+              Blog
+            </Link>
             <Button variant="automotive" onClick={handleRequestQuote}>
               Angebot anfordern
             </Button>
           </nav>
           
-          {/* Mobile Navigation Button */}
-          <Button variant="automotive" className="md:hidden" onClick={handleRequestQuote}>
-            Angebot
-          </Button>
+          {/* Mobile Navigation */}
+          <div className="md:hidden flex items-center gap-4">
+            <Link 
+              to="/blog" 
+              className="text-sm text-corporate-dark-gray hover:text-corporate-primary transition-colors"
+            >
+              Blog
+            </Link>
+            <Button variant="automotive" size="sm" onClick={handleRequestQuote}>
+              Angebot
+            </Button>
+          </div>
         </div>
       </div>
     </header>
