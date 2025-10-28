@@ -127,7 +127,32 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground;
-  }
+body {
+  @apply bg-background text-foreground;
+}
+
+/* Blog Content Styles */
+.blog-content {
+  font-size: 1.125rem;
+  line-height: 1.8;
+}
+
+.blog-content p:first-of-type::first-letter {
+  float: left;
+  font-size: 3.5rem;
+  line-height: 0.9;
+  font-weight: 700;
+  margin-right: 0.5rem;
+  margin-top: 0.1rem;
+  font-family: 'Playfair Display', serif;
+  color: hsl(var(--blog-accent));
+}
+
+.blog-content blockquote {
+  border-left: 4px solid hsl(var(--blog-accent));
+  padding-left: 1.5rem;
+  font-style: italic;
+  color: hsl(var(--muted-foreground));
+  margin: 1.5rem 0;
+}
 }

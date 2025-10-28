@@ -23,7 +23,9 @@ export default {
         'garamond': ['"EB Garamond"', 'serif'],
         'poppins': ['Poppins', 'sans-serif'],
         'roboto': ['Roboto', 'sans-serif'],
-        'sans': ['Roboto', 'sans-serif'],
+        'inter': ['Inter', 'sans-serif'],
+        'serif': ['"Playfair Display"', 'serif'],
+        'sans': ['Inter', 'sans-serif'],
         'heading': ['Poppins', 'sans-serif'],
       },
       colors: {

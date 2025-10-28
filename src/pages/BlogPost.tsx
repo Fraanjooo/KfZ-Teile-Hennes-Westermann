@@ -188,7 +188,7 @@ const BlogPost = () => {
           )}
 
           {/* Article Content */}
-          <article className="container mx-auto px-4 py-12 max-w-4xl">
+          <article className="container mx-auto px-8 py-12 max-w-[1400px]">
             {/* Back to Blog Link */}
             <Link 
               to="/blog" 
@@ -243,10 +243,10 @@ const BlogPost = () => {
 
             {/* Article Body */}
             <div
-              className="prose prose-lg max-w-none font-roboto
-                prose-headings:font-heading prose-headings:font-bold prose-headings:text-blog-text
-                prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
-                prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
+              className="blog-content prose prose-lg max-w-none font-roboto
+                prose-headings:font-bold prose-headings:text-blog-text
+                prose-h2:font-serif prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
+                prose-h3:font-serif prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
                 prose-p:text-blog-text prose-p:leading-relaxed prose-p:mb-6
                 prose-a:text-blog-accent prose-a:no-underline hover:prose-a:underline
                 prose-strong:text-blog-text prose-strong:font-semibold
