@@ -5,7 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Edit, Trash2, Eye, LogOut } from "lucide-react";
+import { Plus, Edit, Trash2, Eye, LogOut, Download } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import {
   AlertDialog,
@@ -17,14 +17,19 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { exportBlogPostsToExcel } from "@/lib/exportToExcel";
 
 interface BlogPost {
   id: string;
   title: string;
+  slug: string;
   status: string;
   published_at: string | null;
   view_count: number;
   created_at: string;
+  tags: string[] | null;
+  excerpt: string | null;
+  meta_description: string | null;
 }
 
 const Dashboard = () => {
@@ -51,7 +56,7 @@ const Dashboard = () => {
     setPostsLoading(true);
     const { data, error } = await supabase
       .from("blog_posts")
-      .select("id, title, status, published_at, view_count, created_at")
+      .select("id, title, slug, status, published_at, view_count, created_at, tags, excerpt, meta_description")
       .order("created_at", { ascending: false });
 
     if (error) {
@@ -64,6 +69,23 @@ const Dashboard = () => {
       setPosts(data || []);
     }
     setPostsLoading(false);
+  };
+
+  const handleExport = () => {
+    if (posts.length === 0) {
+      toast({
+        variant: "destructive",
+        title: "Keine Daten",
+        description: "Es gibt keine Beiträge zum Exportieren.",
+      });
+      return;
+    }
+    
+    exportBlogPostsToExcel(posts);
+    toast({
+      title: "Export erfolgreich",
+      description: "Die Beiträge wurden als CSV exportiert.",
+    });
   };
 
   const handleDelete = async (id: string) => {
@@ -120,10 +142,16 @@ const Dashboard = () => {
               Verwalten Sie Ihre Blog-Beiträge
             </p>
           </div>
-          <Button onClick={() => navigate("/admin/editor")}>
-            <Plus className="h-4 w-4 mr-2" />
-            Neuer Beitrag
-          </Button>
+          <div className="flex gap-3">
+            <Button variant="outline" onClick={handleExport}>
+              <Download className="h-4 w-4 mr-2" />
+              Excel Export
+            </Button>
+            <Button onClick={() => navigate("/admin/editor")}>
+              <Plus className="h-4 w-4 mr-2" />
+              Neuer Beitrag
+            </Button>
+          </div>
         </div>
 
         <div className="grid gap-4">
