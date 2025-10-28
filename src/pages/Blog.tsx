@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Calendar, Eye } from "lucide-react";
+import { Calendar, Eye, Clock } from "lucide-react";
 import { Helmet } from "react-helmet";
 
 interface BlogPost {
@@ -17,6 +17,8 @@ interface BlogPost {
   view_count: number;
   read_time_minutes: number | null;
   tags: string[] | null;
+  featured_image_url: string | null;
+  featured_image_alt: string | null;
 }
 
 const Blog = () => {
@@ -30,7 +32,7 @@ const Blog = () => {
   const loadPosts = async () => {
     const { data, error } = await supabase
       .from("blog_posts")
-      .select("id, title, slug, excerpt, published_at, view_count, read_time_minutes, tags")
+      .select("id, title, slug, excerpt, published_at, view_count, read_time_minutes, tags, featured_image_url, featured_image_alt")
       .eq("status", "published")
       .order("published_at", { ascending: false });
 
@@ -60,21 +62,23 @@ const Blog = () => {
         <link rel="canonical" href={`${window.location.origin}/blog`} />
       </Helmet>
 
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col bg-blog-background">
         <Header />
         
         <main className="flex-1">
-          <section className="py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
+          {/* Hero Section */}
+          <section className="py-20 bg-gradient-to-br from-blog-accent/5 to-blog-accent/10">
             <div className="container mx-auto px-4">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 text-center">
+              <h1 className="text-5xl md:text-6xl font-heading font-bold mb-6 text-center text-blog-text">
                 Unser Blog
               </h1>
-              <p className="text-xl text-muted-foreground text-center max-w-2xl mx-auto">
+              <p className="text-xl text-muted-foreground text-center max-w-3xl mx-auto font-roboto">
                 Aktuelle Insights, Tipps und Neuigkeiten aus der Automobilbranche
               </p>
             </div>
           </section>
 
+          {/* Blog Posts Grid */}
           <section className="py-16">
             <div className="container mx-auto px-4">
               {loading ? (
@@ -88,15 +92,30 @@ const Blog = () => {
                   </p>
                 </div>
               ) : (
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {posts.map((post) => (
-                    <Link key={post.id} to={`/blog/${post.slug}`}>
-                      <Card className="h-full hover:shadow-lg transition-shadow">
+                    <Link 
+                      key={post.id} 
+                      to={`/blog/${post.slug}`}
+                      className="group"
+                    >
+                      <Card className="h-full overflow-hidden transition-all duration-300 hover:shadow-blog-hover border-blog-border bg-blog-card-bg">
+                        {/* Featured Image */}
+                        {post.featured_image_url && (
+                          <div className="overflow-hidden aspect-video">
+                            <img 
+                              src={post.featured_image_url} 
+                              alt={post.featured_image_alt || post.title}
+                              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                            />
+                          </div>
+                        )}
+                        
                         <CardHeader>
-                          <CardTitle className="line-clamp-2 mb-2">
+                          <CardTitle className="line-clamp-2 mb-2 font-heading text-2xl group-hover:text-blog-accent transition-colors">
                             {post.title}
                           </CardTitle>
-                          <CardDescription className="flex flex-wrap items-center gap-3 text-xs">
+                          <CardDescription className="flex flex-wrap items-center gap-3 text-xs font-roboto">
                             <span className="flex items-center gap-1">
                               <Calendar className="h-3 w-3" />
                               {formatDate(post.published_at)}
@@ -106,20 +125,28 @@ const Blog = () => {
                               {post.view_count}
                             </span>
                             {post.read_time_minutes && (
-                              <span>{post.read_time_minutes} Min. Lesezeit</span>
+                              <span className="flex items-center gap-1">
+                                <Clock className="h-3 w-3" />
+                                {post.read_time_minutes} Min.
+                              </span>
                             )}
                           </CardDescription>
                         </CardHeader>
+                        
                         <CardContent>
                           {post.excerpt && (
-                            <p className="text-sm text-muted-foreground line-clamp-3 mb-4">
+                            <p className="text-sm text-muted-foreground line-clamp-3 mb-4 font-roboto leading-relaxed">
                               {post.excerpt}
                             </p>
                           )}
                           {post.tags && post.tags.length > 0 && (
                             <div className="flex flex-wrap gap-2">
                               {post.tags.slice(0, 3).map((tag, idx) => (
-                                <Badge key={idx} variant="secondary">
+                                <Badge 
+                                  key={idx} 
+                                  variant="secondary"
+                                  className="font-roboto text-xs"
+                                >
                                   {tag}
                                 </Badge>
                               ))}

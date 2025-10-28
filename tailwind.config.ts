@@ -20,7 +20,11 @@ export default {
     },
     extend: {
       fontFamily: {
-        'garamond': ['EB Garamond', 'serif'],
+        'garamond': ['"EB Garamond"', 'serif'],
+        'poppins': ['Poppins', 'sans-serif'],
+        'roboto': ['Roboto', 'sans-serif'],
+        'sans': ['Roboto', 'sans-serif'],
+        'heading': ['Poppins', 'sans-serif'],
       },
       colors: {
         border: 'hsl(var(--border))',
@@ -66,6 +70,14 @@ export default {
           black: 'hsl(var(--corporate-black))',
           white: 'hsl(var(--corporate-white))'
         },
+        blog: {
+          text: 'hsl(var(--blog-text))',
+          background: 'hsl(var(--blog-background))',
+          accent: 'hsl(var(--blog-accent))',
+          'accent-hover': 'hsl(var(--blog-accent-hover))',
+          'card-bg': 'hsl(var(--blog-card-bg))',
+          border: 'hsl(var(--blog-border))'
+        },
         sidebar: {
           DEFAULT: 'hsl(var(--sidebar-background))',
           foreground: 'hsl(var(--sidebar-foreground))',
@@ -81,6 +93,12 @@ export default {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)'
+      },
+      boxShadow: {
+        'blog': 'var(--shadow-blog)',
+        'blog-hover': 'var(--shadow-blog-hover)',
+        'card': 'var(--shadow-card)',
+        'corporate': 'var(--shadow-corporate)'
       },
       keyframes: {
         'accordion-down': {

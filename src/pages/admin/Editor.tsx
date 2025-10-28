@@ -1,41 +1,68 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { useAuth } from "@/hooks/useAuth";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
-import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/useAuth";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useToast } from "@/hooks/use-toast";
-import { ArrowLeft, Save, Eye } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { toast } from "sonner";
+import { ArrowLeft, Upload, Save } from "lucide-react";
+import { NotificationBanner } from "@/components/admin/NotificationBanner";
+
+interface EditorState {
+  title: string;
+  slug: string;
+  content: string;
+  excerpt: string;
+  metaDescription: string;
+  seoKeywords: string;
+  tags: string;
+  status: string;
+  featuredImageUrl: string;
+  featuredImageAlt: string;
+  readTimeMinutes: string;
+}
 
 const Editor = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { user, isAdmin, loading } = useAuth();
-  const { toast } = useToast();
+  const { user, isAdmin } = useAuth();
+  const [saving, setSaving] = useState(false);
+  const [notification, setNotification] = useState<{ type: "info" | "warning" | "success"; message: string } | null>(null);
   
-  const [title, setTitle] = useState("");
-  const [slug, setSlug] = useState("");
-  const [content, setContent] = useState("");
-  const [excerpt, setExcerpt] = useState("");
-  const [metaDescription, setMetaDescription] = useState("");
-  const [status, setStatus] = useState<"draft" | "published">("draft");
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState<EditorState>({
+    title: "",
+    slug: "",
+    content: "",
+    excerpt: "",
+    metaDescription: "",
+    seoKeywords: "",
+    tags: "",
+    status: "draft",
+    featuredImageUrl: "",
+    featuredImageAlt: "",
+    readTimeMinutes: ""
+  });
 
   useEffect(() => {
-    if (!loading && (!user || !isAdmin)) {
+    if (!user) {
       navigate("/admin/login");
+      return;
     }
-  }, [user, isAdmin, loading, navigate]);
 
-  useEffect(() => {
-    if (id && user && isAdmin) {
+    if (!isAdmin) {
+      toast.error("Keine Berechtigung");
+      navigate("/");
+      return;
+    }
+
+    if (id) {
       loadPost();
     }
-  }, [id, user, isAdmin]);
+  }, [user, isAdmin, id, navigate]);
 
   const loadPost = async () => {
     if (!id) return;
@@ -44,188 +71,248 @@ const Editor = () => {
       .from("blog_posts")
       .select("*")
       .eq("id", id)
-      .maybeSingle();
+      .single();
 
     if (error) {
-      toast({
-        variant: "destructive",
-        title: "Fehler beim Laden",
-        description: error.message,
-      });
-      navigate("/admin/dashboard");
-    } else if (data) {
-      setTitle(data.title);
-      setSlug(data.slug);
-      setContent(data.content);
-      setExcerpt(data.excerpt || "");
-      setMetaDescription(data.meta_description || "");
-      setStatus(data.status as "draft" | "published");
-    }
-  };
-
-  const generateSlug = (text: string) => {
-    return text
-      .toLowerCase()
-      .replace(/ä/g, "ae")
-      .replace(/ö/g, "oe")
-      .replace(/ü/g, "ue")
-      .replace(/ß/g, "ss")
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "");
-  };
-
-  const handleTitleChange = (value: string) => {
-    setTitle(value);
-    if (!id) {
-      setSlug(generateSlug(value));
-    }
-  };
-
-  const handleSave = async () => {
-    if (!title || !slug || !content) {
-      toast({
-        variant: "destructive",
-        title: "Fehlende Felder",
-        description: "Bitte füllen Sie alle Pflichtfelder aus.",
-      });
+      toast.error("Fehler beim Laden des Beitrags");
       return;
     }
 
-    setIsSubmitting(true);
-
-    const postData = {
-      title,
-      slug,
-      content,
-      excerpt,
-      meta_description: metaDescription,
-      status,
-      author_id: user!.id,
-      published_at: status === "published" ? new Date().toISOString() : null,
-    };
-
-    let error;
-    if (id) {
-      ({ error } = await supabase
-        .from("blog_posts")
-        .update(postData)
-        .eq("id", id));
-    } else {
-      ({ error } = await supabase.from("blog_posts").insert(postData));
-    }
-
-    if (error) {
-      toast({
-        variant: "destructive",
-        title: "Fehler beim Speichern",
-        description: error.message,
+    if (data) {
+      setFormData({
+        title: data.title || "",
+        slug: data.slug || "",
+        content: data.content || "",
+        excerpt: data.excerpt || "",
+        metaDescription: data.meta_description || "",
+        seoKeywords: data.seo_keywords?.join(", ") || "",
+        tags: data.tags?.join(", ") || "",
+        status: data.status || "draft",
+        featuredImageUrl: data.featured_image_url || "",
+        featuredImageAlt: data.featured_image_alt || "",
+        readTimeMinutes: data.read_time_minutes?.toString() || ""
       });
-    } else {
-      toast({
-        title: "Gespeichert",
-        description: "Der Beitrag wurde erfolgreich gespeichert.",
-      });
-      navigate("/admin/dashboard");
     }
-
-    setIsSubmitting(false);
   };
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-lg">Laden...</div>
-      </div>
-    );
-  }
+  const generateSlug = (title: string) => {
+    return title
+      .toLowerCase()
+      .replace(/ä/g, 'ae')
+      .replace(/ö/g, 'oe')
+      .replace(/ü/g, 'ue')
+      .replace(/ß/g, 'ss')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  };
+
+  const handleTitleChange = (value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      title: value,
+      slug: id ? prev.slug : generateSlug(value)
+    }));
+    
+    if (!id) {
+      showNotification("info", "Slug automatisch generiert");
+    }
+  };
+
+  const showNotification = (type: "info" | "warning" | "success", message: string) => {
+    setNotification({ type, message });
+    setTimeout(() => setNotification(null), 3000);
+  };
+
+  const handleSave = async () => {
+    if (!formData.title || !formData.slug || !formData.content) {
+      toast.error("Bitte füllen Sie alle Pflichtfelder aus");
+      return;
+    }
+
+    setSaving(true);
+
+    const postData = {
+      title: formData.title,
+      slug: formData.slug,
+      content: formData.content,
+      excerpt: formData.excerpt || null,
+      meta_description: formData.metaDescription || null,
+      seo_keywords: formData.seoKeywords ? formData.seoKeywords.split(',').map(k => k.trim()) : null,
+      tags: formData.tags ? formData.tags.split(',').map(t => t.trim()) : null,
+      status: formData.status,
+      featured_image_url: formData.featuredImageUrl || null,
+      featured_image_alt: formData.featuredImageAlt || null,
+      read_time_minutes: formData.readTimeMinutes ? parseInt(formData.readTimeMinutes) : null,
+      author_id: user?.id,
+      published_at: formData.status === "published" ? new Date().toISOString() : null
+    };
+
+    if (id) {
+      const { error } = await supabase
+        .from("blog_posts")
+        .update(postData)
+        .eq("id", id);
+
+      if (error) {
+        toast.error("Fehler beim Aktualisieren");
+        setSaving(false);
+        return;
+      }
+
+      showNotification("success", "Artikel aktualisiert");
+      toast.success("Artikel aktualisiert");
+    } else {
+      const { error } = await supabase
+        .from("blog_posts")
+        .insert([postData]);
+
+      if (error) {
+        toast.error("Fehler beim Erstellen");
+        setSaving(false);
+        return;
+      }
+
+      showNotification("success", "Artikel erstellt");
+      toast.success("Artikel erstellt");
+    }
+
+    setSaving(false);
+    setTimeout(() => navigate("/admin/dashboard"), 1000);
+  };
 
   if (!user || !isAdmin) {
     return null;
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <header className="border-b">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Button variant="ghost" onClick={() => navigate("/admin/dashboard")}>
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Zurück
-          </Button>
-          <div className="flex gap-2">
-            <Button variant="outline" onClick={handleSave} disabled={isSubmitting}>
-              <Save className="h-4 w-4 mr-2" />
-              Speichern
+    <div className="min-h-screen bg-blog-background p-6">
+      <div className="max-w-5xl mx-auto">
+        <div className="mb-6 flex items-center gap-4">
+          <Link to="/admin/dashboard">
+            <Button variant="outline" size="sm">
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Zurück
             </Button>
-          </div>
+          </Link>
+          <h1 className="text-3xl font-heading font-bold">
+            {id ? "Artikel bearbeiten" : "Neuer Artikel"}
+          </h1>
         </div>
-      </header>
 
-      <main className="container mx-auto px-4 py-8 max-w-4xl">
+        {notification && (
+          <NotificationBanner
+            type={notification.type}
+            message={notification.message}
+            className="mb-6"
+          />
+        )}
+
         <Card>
           <CardHeader>
-            <CardTitle>{id ? "Beitrag bearbeiten" : "Neuer Beitrag"}</CardTitle>
+            <CardTitle className="font-heading">Artikeldetails</CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="space-y-2">
+            <div>
               <Label htmlFor="title">Titel *</Label>
               <Input
                 id="title"
-                value={title}
+                value={formData.title}
                 onChange={(e) => handleTitleChange(e.target.value)}
-                placeholder="Blog-Titel eingeben"
+                placeholder="Artikeltitel"
               />
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="slug">URL-Slug *</Label>
+            <div>
+              <Label htmlFor="slug">Slug *</Label>
               <Input
                 id="slug"
-                value={slug}
-                onChange={(e) => setSlug(e.target.value)}
-                placeholder="url-slug"
+                value={formData.slug}
+                onChange={(e) => setFormData(prev => ({ ...prev, slug: e.target.value }))}
+                placeholder="artikel-slug"
               />
             </div>
 
-            <div className="space-y-2">
+            <div>
+              <Label htmlFor="featuredImage">Cover-Bild URL</Label>
+              <Input
+                id="featuredImage"
+                value={formData.featuredImageUrl}
+                onChange={(e) => setFormData(prev => ({ ...prev, featuredImageUrl: e.target.value }))}
+                placeholder="https://..."
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="imageAlt">Bild Alt-Text</Label>
+              <Input
+                id="imageAlt"
+                value={formData.featuredImageAlt}
+                onChange={(e) => setFormData(prev => ({ ...prev, featuredImageAlt: e.target.value }))}
+              />
+            </div>
+
+            <div>
               <Label htmlFor="excerpt">Kurzbeschreibung</Label>
               <Textarea
                 id="excerpt"
-                value={excerpt}
-                onChange={(e) => setExcerpt(e.target.value)}
-                placeholder="Kurze Zusammenfassung des Beitrags"
+                value={formData.excerpt}
+                onChange={(e) => setFormData(prev => ({ ...prev, excerpt: e.target.value }))}
                 rows={3}
               />
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="content">Inhalt *</Label>
+            <div>
+              <Label htmlFor="content">Inhalt (HTML) *</Label>
               <Textarea
                 id="content"
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-                placeholder="Blog-Inhalt hier eingeben..."
+                value={formData.content}
+                onChange={(e) => setFormData(prev => ({ ...prev, content: e.target.value }))}
                 rows={15}
+                className="font-mono text-sm"
               />
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="meta">Meta-Beschreibung (SEO)</Label>
+            <div>
+              <Label htmlFor="tags">Tags (Komma-getrennt)</Label>
+              <Input
+                id="tags"
+                value={formData.tags}
+                onChange={(e) => setFormData(prev => ({ ...prev, tags: e.target.value }))}
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="readTime">Lesezeit (Min.)</Label>
+              <Input
+                id="readTime"
+                type="number"
+                value={formData.readTimeMinutes}
+                onChange={(e) => setFormData(prev => ({ ...prev, readTimeMinutes: e.target.value }))}
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="metaDesc">Meta Description</Label>
               <Textarea
-                id="meta"
-                value={metaDescription}
-                onChange={(e) => setMetaDescription(e.target.value)}
-                placeholder="SEO-Beschreibung (max. 160 Zeichen)"
+                id="metaDesc"
+                value={formData.metaDescription}
+                onChange={(e) => setFormData(prev => ({ ...prev, metaDescription: e.target.value }))}
                 rows={2}
-                maxLength={160}
               />
-              <p className="text-xs text-muted-foreground">
-                {metaDescription.length}/160 Zeichen
-              </p>
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="status">Status</Label>
-              <Select value={status} onValueChange={(value: any) => setStatus(value)}>
+            <div>
+              <Label htmlFor="keywords">SEO Keywords</Label>
+              <Input
+                id="keywords"
+                value={formData.seoKeywords}
+                onChange={(e) => setFormData(prev => ({ ...prev, seoKeywords: e.target.value }))}
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="status">Status *</Label>
+              <Select value={formData.status} onValueChange={(value) => setFormData(prev => ({ ...prev, status: value }))}>
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
@@ -235,9 +322,14 @@ const Editor = () => {
                 </SelectContent>
               </Select>
             </div>
+
+            <Button onClick={handleSave} disabled={saving} className="w-full">
+              <Save className="h-4 w-4 mr-2" />
+              {saving ? "Speichert..." : "Speichern"}
+            </Button>
           </CardContent>
         </Card>
-      </main>
+      </div>
     </div>
   );
 };
