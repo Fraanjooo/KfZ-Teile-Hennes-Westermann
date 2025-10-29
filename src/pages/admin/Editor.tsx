@@ -171,7 +171,7 @@ const Editor = () => {
   }, [user, id, formData.author]);
 
   const handleAutoSave = async () => {
-    if (!id || autoSaving) return;
+    if (!id || autoSaving || !user?.id) return;
     
     setAutoSaving(true);
     const postData = {
@@ -189,7 +189,7 @@ const Editor = () => {
       author: formData.author || null,
       seo_title: formData.seoTitle || null,
       seo_image_tag: formData.seoImageTag || null,
-      author_id: user?.id,
+      author_id: user.id,
     };
 
     const { error } = await supabase
@@ -206,6 +206,11 @@ const Editor = () => {
   const handleSave = async () => {
     if (!formData.title || !formData.slug || !formData.content) {
       toast.error("Bitte füllen Sie alle Pflichtfelder aus");
+      return;
+    }
+
+    if (!user?.id) {
+      toast.error("Sie müssen angemeldet sein um einen Beitrag zu erstellen");
       return;
     }
 
@@ -226,7 +231,7 @@ const Editor = () => {
       author: formData.author || null,
       seo_title: formData.seoTitle || null,
       seo_image_tag: formData.seoImageTag || null,
-      author_id: user?.id,
+      author_id: user.id,
       published_at: formData.status === "published" ? new Date().toISOString() : null
     };
 
@@ -273,12 +278,16 @@ const Editor = () => {
         <div className="mb-6 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Link to="/admin/dashboard">
-              <Button variant="outline" size="sm">
+              <Button 
+                variant="outline" 
+                size="sm"
+                className="border-blog-accent text-blog-accent hover:bg-blog-accent hover:text-white"
+              >
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Zurück
               </Button>
             </Link>
-            <h1 className="text-3xl font-heading font-bold">
+            <h1 className="text-3xl font-heading font-bold text-blog-accent">
               {id ? "Artikel bearbeiten" : "Neuer Artikel"}
             </h1>
           </div>
@@ -309,12 +318,18 @@ const Editor = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2">
             <Tabs value={activeTab} onValueChange={setActiveTab}>
-              <TabsList className="grid w-full grid-cols-2 mb-4">
-                <TabsTrigger value="edit" className="flex items-center gap-2">
+              <TabsList className="grid w-full grid-cols-2 mb-4 bg-blog-badge-bg">
+                <TabsTrigger 
+                  value="edit" 
+                  className="flex items-center gap-2 data-[state=active]:bg-blog-accent data-[state=active]:text-white"
+                >
                   <Edit className="h-4 w-4" />
                   Bearbeiten
                 </TabsTrigger>
-                <TabsTrigger value="preview" className="flex items-center gap-2">
+                <TabsTrigger 
+                  value="preview" 
+                  className="flex items-center gap-2 data-[state=active]:bg-blog-accent data-[state=active]:text-white"
+                >
                   <Eye className="h-4 w-4" />
                   Vorschau
                 </TabsTrigger>
@@ -504,16 +519,24 @@ const Editor = () => {
                   </Select>
                 </div>
 
-                <Button onClick={handleSave} disabled={saving} className="w-full">
+                <Button 
+                  onClick={handleSave} 
+                  disabled={saving} 
+                  className="w-full bg-blog-accent hover:bg-blog-accent-hover text-white"
+                >
                   <Save className="h-4 w-4 mr-2" />
                   {saving ? "Speichert..." : id ? "Aktualisieren" : "Veröffentlichen"}
                 </Button>
 
                 {id && (
-                  <Button variant="outline" className="w-full" onClick={() => {
-                    const previewUrl = `/blog/${formData.slug}`;
-                    window.open(previewUrl, "_blank");
-                  }}>
+                  <Button 
+                    variant="outline" 
+                    className="w-full border-blog-accent text-blog-accent hover:bg-blog-accent hover:text-white" 
+                    onClick={() => {
+                      const previewUrl = `/blog/${formData.slug}`;
+                      window.open(previewUrl, "_blank");
+                    }}
+                  >
                     <Share2 className="h-4 w-4 mr-2" />
                     Vorschau teilen
                   </Button>

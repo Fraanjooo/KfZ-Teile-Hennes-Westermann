@@ -55,11 +55,11 @@ const Login = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background to-muted p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader>
-          <CardTitle>Admin Bereich</CardTitle>
-          <CardDescription>Melden Sie sich an oder erstellen Sie ein Konto</CardDescription>
+    <div className="min-h-screen flex items-center justify-center bg-blog-background p-4">
+      <Card className="w-full max-w-md shadow-blog-hover">
+        <CardHeader className="bg-blog-accent text-white rounded-t-lg">
+          <CardTitle className="text-2xl">Admin Bereich</CardTitle>
+          <CardDescription className="text-white/90">Melden Sie sich an oder erstellen Sie ein Konto</CardDescription>
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="login" className="w-full">
@@ -91,7 +91,11 @@ const Login = () => {
                     required
                   />
                 </div>
-                <Button type="submit" className="w-full" disabled={isSubmitting}>
+                <Button 
+                  type="submit" 
+                  className="w-full bg-blog-accent hover:bg-blog-accent-hover text-white" 
+                  disabled={isSubmitting}
+                >
                   {isSubmitting ? "Wird angemeldet..." : "Anmelden"}
                 </Button>
               </form>
@@ -132,7 +136,11 @@ const Login = () => {
                     minLength={6}
                   />
                 </div>
-                <Button type="submit" className="w-full" disabled={isSubmitting}>
+                <Button 
+                  type="submit" 
+                  className="w-full bg-blog-accent hover:bg-blog-accent-hover text-white" 
+                  disabled={isSubmitting}
+                >
                   {isSubmitting ? "Wird registriert..." : "Registrieren"}
                 </Button>
               </form>

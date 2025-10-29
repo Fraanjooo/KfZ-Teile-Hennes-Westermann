@@ -120,13 +120,18 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <header className="border-b">
+    <div className="min-h-screen bg-blog-background">
+      <header className="border-b bg-white shadow-blog">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold">Blog Dashboard</h1>
+          <h1 className="text-2xl font-bold text-blog-accent">Blog Dashboard</h1>
           <div className="flex items-center gap-4">
             <span className="text-sm text-muted-foreground">{user.email}</span>
-            <Button variant="outline" size="sm" onClick={signOut}>
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={signOut}
+              className="border-blog-accent text-blog-accent hover:bg-blog-accent hover:text-white"
+            >
               <LogOut className="h-4 w-4 mr-2" />
               Abmelden
             </Button>
@@ -143,11 +148,18 @@ const Dashboard = () => {
             </p>
           </div>
           <div className="flex gap-3">
-            <Button variant="outline" onClick={handleExport}>
+            <Button 
+              variant="outline" 
+              onClick={handleExport}
+              className="border-blog-accent text-blog-accent hover:bg-blog-accent hover:text-white"
+            >
               <Download className="h-4 w-4 mr-2" />
               Excel Export
             </Button>
-            <Button onClick={() => navigate("/admin/editor")}>
+            <Button 
+              onClick={() => navigate("/admin/editor")}
+              className="bg-blog-accent hover:bg-blog-accent-hover text-white"
+            >
               <Plus className="h-4 w-4 mr-2" />
               Neuer Beitrag
             </Button>
@@ -175,6 +187,11 @@ const Dashboard = () => {
                               ? "default"
                               : "secondary"
                           }
+                          className={
+                            post.status === "published"
+                              ? "bg-blog-accent text-white"
+                              : "bg-blog-badge-bg text-blog-accent"
+                          }
                         >
                           {post.status === "published"
                             ? "Veröffentlicht"
@@ -190,6 +207,7 @@ const Dashboard = () => {
                         variant="outline"
                         size="sm"
                         onClick={() => navigate(`/admin/editor/${post.id}`)}
+                        className="border-blog-accent text-blog-accent hover:bg-blog-accent hover:text-white"
                       >
                         <Edit className="h-4 w-4" />
                       </Button>
@@ -197,6 +215,7 @@ const Dashboard = () => {
                         variant="outline"
                         size="sm"
                         onClick={() => setDeleteId(post.id)}
+                        className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
                       >
                         <Trash2 className="h-4 w-4" />
                       </Button>
