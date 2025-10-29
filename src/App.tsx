@@ -11,6 +11,7 @@ import Impressum from "./pages/Impressum";
 import Login from "./pages/admin/Login";
 import Dashboard from "./pages/admin/Dashboard";
 import Editor from "./pages/admin/Editor";
+import UserManagement from "./pages/admin/UserManagement";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 
@@ -66,6 +67,7 @@ const App = () => (
           <Route path="/admin/dashboard" element={<Dashboard />} />
           <Route path="/admin/editor" element={<Editor />} />
           <Route path="/admin/editor/:id" element={<Editor />} />
+          <Route path="/admin/users" element={<UserManagement />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

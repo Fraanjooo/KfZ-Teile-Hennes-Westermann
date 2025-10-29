@@ -5,7 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Edit, Trash2, Eye, LogOut, Download } from "lucide-react";
+import { Plus, Edit, Trash2, Eye, LogOut, Download, Users } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import {
   AlertDialog,
@@ -129,6 +129,15 @@ const Dashboard = () => {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <h1 className="text-2xl font-bold text-blog-accent">Blog Dashboard</h1>
           <div className="flex items-center gap-4">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => navigate("/admin/users")}
+              className="border-blog-accent text-blog-accent hover:bg-blog-accent hover:text-white"
+            >
+              <Users className="h-4 w-4 mr-2" />
+              Benutzerverwaltung
+            </Button>
             <span className="text-sm text-muted-foreground">{user.email}</span>
             <Button 
               variant="outline" 
