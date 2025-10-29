@@ -170,7 +170,7 @@ const Dashboard = () => {
               Excel Export
             </Button>
             <Button 
-              onClick={() => navigate("/admin/editor")}
+              onClick={() => navigate("/admin/blog/editor")}
               className="bg-blog-accent hover:bg-blog-accent-hover text-white"
             >
               <Plus className="h-4 w-4 mr-2" />
@@ -219,7 +219,7 @@ const Dashboard = () => {
                       <Button
                         variant="outline"
                         size="sm"
-                        onClick={() => navigate(`/admin/editor/${post.id}`)}
+                        onClick={() => navigate(`/admin/blog/editor/${post.id}`)}
                         className="border-blog-accent text-blog-accent hover:bg-blog-accent hover:text-white"
                       >
                         <Edit className="h-4 w-4" />

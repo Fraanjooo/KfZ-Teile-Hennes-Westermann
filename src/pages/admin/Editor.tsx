@@ -284,7 +284,7 @@ const Editor = () => {
       <div className="max-w-7xl mx-auto">
         <div className="mb-6 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <Link to="/admin/dashboard">
+            <Link to="/admin/blog">
               <Button 
                 variant="outline" 
                 size="sm"
