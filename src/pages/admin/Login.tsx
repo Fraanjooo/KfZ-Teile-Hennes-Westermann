@@ -28,7 +28,10 @@ const Login = () => {
     const { error } = await signIn(loginEmail, loginPassword);
     
     if (!error) {
-      // Don't navigate here - let the useEffect handle it after admin check
+      // Give time for admin role to be checked, then navigate
+      setTimeout(() => {
+        navigate("/admin/dashboard", { replace: true });
+      }, 500);
     }
     setIsSubmitting(false);
   };

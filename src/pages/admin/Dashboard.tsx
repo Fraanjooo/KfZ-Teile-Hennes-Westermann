@@ -45,7 +45,7 @@ const Dashboard = () => {
     if (!loading) {
       setIsCheckingAuth(false);
       if (!user || !isAdmin) {
-        navigate("/admin/login");
+        navigate("/admin/login", { replace: true });
       }
     }
   }, [user, isAdmin, loading, navigate]);
