@@ -41,8 +41,10 @@ const Dashboard = () => {
   const [deleteId, setDeleteId] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!loading && (!user || !isAdmin)) {
-      navigate("/admin/login");
+    if (!loading) {
+      if (!user || !isAdmin) {
+        navigate("/admin/login");
+      }
     }
   }, [user, isAdmin, loading, navigate]);
 
