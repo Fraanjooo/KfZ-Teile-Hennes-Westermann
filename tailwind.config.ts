@@ -20,13 +20,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        'garamond': ['"EB Garamond"', 'serif'],
-        'poppins': ['Poppins', 'sans-serif'],
-        'roboto': ['Roboto', 'sans-serif'],
-        'inter': ['Inter', 'sans-serif'],
-        'serif': ['"Playfair Display"', 'serif'],
         'sans': ['Inter', 'sans-serif'],
-        'heading': ['Poppins', 'sans-serif'],
+        'serif': ['"DM Serif Display"', 'serif'],
+        'heading': ['Inter', 'sans-serif'],
       },
       colors: {
         border: 'hsl(var(--border))',
@@ -78,7 +74,8 @@ export default {
           accent: 'hsl(var(--blog-accent))',
           'accent-hover': 'hsl(var(--blog-accent-hover))',
           'card-bg': 'hsl(var(--blog-card-bg))',
-          border: 'hsl(var(--blog-border))'
+          border: 'hsl(var(--blog-border))',
+          'badge-bg': 'hsl(var(--blog-badge-bg))'
         },
         sidebar: {
           DEFAULT: 'hsl(var(--sidebar-background))',

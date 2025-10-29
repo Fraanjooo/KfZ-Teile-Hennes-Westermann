@@ -36,13 +36,14 @@ All colors MUST be HSL.
     --input: 0 0% 90%;
     --ring: 20 100% 50%;
 
-    /* Blog Design System - Noovo.dev Style */
-    --blog-text: 0 0% 10%;
-    --blog-background: 0 0% 96%;
-    --blog-accent: 20 100% 50%;
-    --blog-accent-hover: 20 100% 57%;
+    /* Blog Design System - KfZ Hennes Westermann */
+    --blog-text: 0 0% 12%;
+    --blog-background: 0 0% 97%;
+    --blog-accent: 220 100% 30%;
+    --blog-accent-hover: 220 100% 35%;
     --blog-card-bg: 0 0% 100%;
     --blog-border: 0 0% 90%;
+    --blog-badge-bg: 217 100% 96%;
     
     /* Corporate Color Palette (Legacy) */
     --corporate-primary: 209 75% 21%;
@@ -59,8 +60,8 @@ All colors MUST be HSL.
     --gradient-card: linear-gradient(180deg, hsl(var(--blog-card-bg)) 0%, hsl(var(--blog-background)) 100%);
     
     /* Custom Shadows */
-    --shadow-blog: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
-    --shadow-blog-hover: 0 20px 40px -15px rgba(255, 107, 0, 0.15);
+    --shadow-blog: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+    --shadow-blog-hover: 0 20px 40px -15px rgba(0, 51, 153, 0.12);
     --shadow-card: 0 2px 10px rgba(0, 0, 0, 0.05);
     --shadow-corporate: 0 10px 30px -10px hsl(var(--corporate-primary) / 0.25);
 

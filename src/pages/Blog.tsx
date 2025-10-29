@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Calendar, Clock, Search } from "lucide-react";
+import { Calendar, Eye, Search } from "lucide-react";
 import { Helmet } from "react-helmet";
+import { motion } from "framer-motion";
 
 interface BlogPost {
   id: string;
@@ -55,10 +56,8 @@ const Blog = () => {
     }).format(date);
   };
 
-  // Get all unique categories from tags
   const categories = ["all", ...Array.from(new Set(posts.flatMap(post => post.tags || [])))];
   
-  // Filter posts based on search and category
   const filteredPosts = posts.filter(post => {
     const matchesSearch = 
       post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -72,10 +71,10 @@ const Blog = () => {
   return (
     <>
       <Helmet>
-        <title>Blog - Automotive Expertise & Insights</title>
+        <title>Blog & Insights - KfZ-Teile Hennes Westermann</title>
         <meta
           name="description"
-          content="Entdecken Sie Fachartikel und Insights aus der Automobilbranche. Tipps für B2B und B2C Kunden."
+          content="Entdecken Sie unsere neuesten Projekte, Einblicke und Fachwissen aus der Welt der KfZ-Technik und Werkstattentwicklung."
         />
         <link rel="canonical" href={`${window.location.origin}/blog`} />
       </Helmet>
@@ -85,25 +84,37 @@ const Blog = () => {
         
         <main className="flex-1">
           {/* Hero Section */}
-          <section className="py-20 bg-gradient-to-br from-blog-accent/5 to-blog-accent/10">
-            <div className="container mx-auto px-4 max-w-6xl">
-              <h1 className="text-5xl md:text-6xl font-heading font-bold mb-6 text-center text-blog-text">
-                Unser Blog
-              </h1>
-              <p className="text-xl text-muted-foreground text-center mb-8 font-roboto">
-                Aktuelle Insights, Tipps und Neuigkeiten aus der Automobilbranche
-              </p>
+          <section className="py-20 md:py-32">
+            <div className="container mx-auto px-4 max-w-7xl">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="text-center mb-16"
+              >
+                <h1 className="text-5xl md:text-7xl font-serif font-normal mb-6 text-blog-text">
+                  Blog & Insights
+                </h1>
+                <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                  Entdecken Sie unsere neuesten Projekte, Einblicke und Fachwissen aus der Welt der KfZ-Technik und Werkstattentwicklung.
+                </p>
+              </motion.div>
               
               {/* Search and Filter */}
-              <div className="flex flex-col md:flex-row gap-4 max-w-4xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="flex flex-col md:flex-row gap-4 max-w-4xl mx-auto mb-20"
+              >
                 <div className="relative flex-1">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
+                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
                   <Input
                     type="text"
-                    placeholder="Artikel durchsuchen..."
+                    placeholder="Beiträge durchsuchen..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-10 h-12"
+                    className="pl-12 h-14 text-base border-blog-border focus:border-blog-accent transition-colors"
                   />
                 </div>
                 <div className="flex gap-2 overflow-x-auto pb-2">
@@ -111,111 +122,124 @@ const Blog = () => {
                     <Button
                       key={cat}
                       variant={selectedCategory === cat ? "default" : "outline"}
-                      size="sm"
+                      size="lg"
                       onClick={() => setSelectedCategory(cat)}
-                      className="whitespace-nowrap h-12"
+                      className={`whitespace-nowrap h-14 px-6 transition-all ${
+                        selectedCategory === cat 
+                          ? 'bg-blog-accent hover:bg-blog-accent-hover text-white' 
+                          : 'border-blog-border hover:border-blog-accent'
+                      }`}
                     >
-                      {cat === "all" ? "Alle" : cat}
+                      {cat === "all" ? "Alle Kategorien" : cat}
                     </Button>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             </div>
           </section>
 
           {/* Blog Posts Grid */}
-          <section className="py-16">
-            <div className="container mx-auto px-4 max-w-6xl">
+          <section className="pb-32">
+            <div className="container mx-auto px-4 max-w-7xl">
               {loading ? (
-                <div className="text-center py-12">
-                  <p className="text-muted-foreground">Beiträge werden geladen...</p>
+                <div className="text-center py-20">
+                  <p className="text-muted-foreground text-lg">Beiträge werden geladen...</p>
                 </div>
               ) : filteredPosts.length === 0 ? (
-                <div className="text-center py-12">
-                  <p className="text-muted-foreground">
+                <div className="text-center py-20">
+                  <p className="text-muted-foreground text-lg">
                     Keine Artikel gefunden.
                   </p>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {filteredPosts.map((post) => (
-                    <Link 
-                      key={post.id} 
-                      to={`/blog/${post.slug}`}
-                      className="group"
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                >
+                  {filteredPosts.map((post, index) => (
+                    <motion.div
+                      key={post.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
                     >
-                      <Card className="h-full overflow-hidden transition-all duration-300 hover:shadow-xl border-0 shadow-md bg-blog-card-bg">
-                        {/* Featured Image */}
-                        {post.featured_image_url && (
-                          <div className="overflow-hidden aspect-[16/10] relative">
-                            <img 
-                              src={post.featured_image_url} 
-                              alt={post.featured_image_alt || post.title}
-                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                          </div>
-                        )}
-                        
-                        <CardHeader className="space-y-3">
-                          {post.tags && post.tags.length > 0 && (
-                            <div className="flex flex-wrap gap-2">
-                              {post.tags.slice(0, 2).map((tag, idx) => (
-                                <Badge 
-                                  key={idx} 
-                                  variant="secondary"
-                                  className="font-roboto font-medium"
-                                >
-                                  {tag}
-                                </Badge>
-                              ))}
+                      <Link 
+                        to={`/blog/${post.slug}`}
+                        className="group block h-full"
+                      >
+                        <Card className="h-full overflow-hidden transition-all duration-300 hover:shadow-blog-hover border-0 shadow-blog bg-blog-card-bg rounded-[20px] hover:-translate-y-2">
+                          {/* Featured Image */}
+                          {post.featured_image_url && (
+                            <div className="overflow-hidden aspect-[16/10] relative">
+                              <img 
+                                src={post.featured_image_url} 
+                                alt={post.featured_image_alt || post.title}
+                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                              />
                             </div>
                           )}
                           
-                          <CardTitle className="line-clamp-2 font-heading text-2xl group-hover:text-blog-accent transition-colors">
-                            {post.title}
-                          </CardTitle>
-                          
-                          {post.excerpt && (
-                            <CardDescription className="line-clamp-3 text-base leading-relaxed font-roboto">
-                              {post.excerpt}
-                            </CardDescription>
-                          )}
-                        </CardHeader>
-                        
-                        <CardContent>
-                          <div className="flex items-center justify-between text-sm text-muted-foreground font-roboto">
-                            <div className="flex items-center gap-1">
-                              <Calendar className="h-4 w-4" />
-                              <span>{formatDate(post.published_at)}</span>
-                            </div>
-                            {post.read_time_minutes && (
-                              <div className="flex items-center gap-1">
-                                <Clock className="h-4 w-4" />
-                                <span>{post.read_time_minutes} Min.</span>
-                              </div>
+                          <CardContent className="p-6 md:p-8">
+                            {/* Category Badge */}
+                            {post.tags && post.tags.length > 0 && (
+                              <Badge 
+                                variant="secondary"
+                                className="mb-4 bg-blog-badge-bg text-blog-accent font-medium border-0 px-4 py-1"
+                              >
+                                {post.tags[0]}
+                              </Badge>
                             )}
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </Link>
+                            
+                            {/* Title */}
+                            <h2 className="text-2xl md:text-3xl font-serif mb-4 text-blog-text group-hover:text-blog-accent transition-colors line-clamp-2">
+                              {post.title}
+                            </h2>
+                            
+                            {/* Excerpt */}
+                            {post.excerpt && (
+                              <p className="text-base text-muted-foreground leading-relaxed mb-6 line-clamp-3">
+                                {post.excerpt}
+                              </p>
+                            )}
+                            
+                            {/* Meta */}
+                            <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                              <div className="flex items-center gap-1.5">
+                                <Calendar className="h-4 w-4" />
+                                <span>{formatDate(post.published_at)}</span>
+                              </div>
+                              <div className="flex items-center gap-1.5">
+                                <Eye className="h-4 w-4" />
+                                <span>{post.view_count}</span>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </Link>
+                    </motion.div>
                   ))}
-                </div>
+                </motion.div>
               )}
             </div>
           </section>
 
           {/* Sticky CTA */}
-          <section className="py-16 bg-gradient-to-br from-blog-accent/5 to-blog-accent/10">
+          <section className="py-20 bg-blog-accent">
             <div className="container mx-auto px-4 text-center max-w-4xl">
-              <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
+              <h2 className="text-4xl md:text-5xl font-serif mb-6 text-white">
                 Bereit für Ihr nächstes Projekt?
               </h2>
-              <p className="text-xl text-muted-foreground mb-8 font-roboto">
+              <p className="text-xl text-white/90 mb-10 leading-relaxed">
                 Lassen Sie uns gemeinsam Ihre Vision verwirklichen
               </p>
               <Link to="/#contact">
-                <Button size="lg" className="bg-blog-accent hover:bg-blog-accent/90 text-white h-14 px-8 text-lg">
+                <Button 
+                  size="lg" 
+                  variant="outline"
+                  className="bg-white hover:bg-white/90 text-blog-accent border-0 h-14 px-10 text-lg font-medium"
+                >
                   Projekt anfragen
                 </Button>
               </Link>
