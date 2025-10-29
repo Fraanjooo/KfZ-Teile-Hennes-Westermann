@@ -85,10 +85,17 @@ const Editor = () => {
       .from("blog_posts")
       .select("*")
       .eq("id", id)
-      .single();
+      .maybeSingle();
 
     if (error) {
       toast.error("Fehler beim Laden des Beitrags");
+      console.error("Load post error:", error);
+      return;
+    }
+
+    if (!data) {
+      toast.error("Beitrag nicht gefunden");
+      navigate("/admin/dashboard");
       return;
     }
 
