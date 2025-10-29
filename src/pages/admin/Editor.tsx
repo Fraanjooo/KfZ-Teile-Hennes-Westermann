@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
@@ -8,9 +8,14 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
-import { ArrowLeft, Upload, Save } from "lucide-react";
+import { ArrowLeft, Save, Eye, Edit, Share2, Clock } from "lucide-react";
 import { NotificationBanner } from "@/components/admin/NotificationBanner";
+import { RichTextEditor } from "@/components/admin/RichTextEditor";
+import { ArticlePreview } from "@/components/admin/ArticlePreview";
+import { SeoChecker } from "@/components/admin/SeoChecker";
+import { ImageUploader } from "@/components/admin/ImageUploader";
 
 interface EditorState {
   title: string;
@@ -24,6 +29,9 @@ interface EditorState {
   featuredImageUrl: string;
   featuredImageAlt: string;
   readTimeMinutes: string;
+  author: string;
+  seoTitle: string;
+  seoImageTag: string;
 }
 
 const Editor = () => {
@@ -31,6 +39,9 @@ const Editor = () => {
   const navigate = useNavigate();
   const { user, isAdmin } = useAuth();
   const [saving, setSaving] = useState(false);
+  const [autoSaving, setAutoSaving] = useState(false);
+  const [lastSaved, setLastSaved] = useState<Date | null>(null);
+  const [activeTab, setActiveTab] = useState<string>("edit");
   const [notification, setNotification] = useState<{ type: "info" | "warning" | "success"; message: string } | null>(null);
   
   const [formData, setFormData] = useState<EditorState>({
@@ -44,7 +55,10 @@ const Editor = () => {
     status: "draft",
     featuredImageUrl: "",
     featuredImageAlt: "",
-    readTimeMinutes: ""
+    readTimeMinutes: "",
+    author: "",
+    seoTitle: "",
+    seoImageTag: ""
   });
 
   useEffect(() => {
@@ -90,7 +104,10 @@ const Editor = () => {
         status: data.status || "draft",
         featuredImageUrl: data.featured_image_url || "",
         featuredImageAlt: data.featured_image_alt || "",
-        readTimeMinutes: data.read_time_minutes?.toString() || ""
+        readTimeMinutes: data.read_time_minutes?.toString() || "",
+        author: data.author || "",
+        seoTitle: data.seo_title || "",
+        seoImageTag: data.seo_image_tag || ""
       });
     }
   };
@@ -123,6 +140,69 @@ const Editor = () => {
     setTimeout(() => setNotification(null), 3000);
   };
 
+  // Auto-save functionality
+  useEffect(() => {
+    if (!id || !formData.title || !user) return;
+    
+    const autoSaveTimer = setTimeout(() => {
+      handleAutoSave();
+    }, 5000); // Auto-save after 5 seconds of inactivity
+
+    return () => clearTimeout(autoSaveTimer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formData, id]);
+
+  // Set author from user profile on mount
+  useEffect(() => {
+    if (user && !id && !formData.author) {
+      const fetchProfile = async () => {
+        const { data } = await supabase
+          .from("profiles")
+          .select("full_name")
+          .eq("id", user.id)
+          .single();
+        
+        if (data?.full_name) {
+          setFormData(prev => ({ ...prev, author: data.full_name }));
+        }
+      };
+      fetchProfile();
+    }
+  }, [user, id, formData.author]);
+
+  const handleAutoSave = async () => {
+    if (!id || autoSaving) return;
+    
+    setAutoSaving(true);
+    const postData = {
+      title: formData.title,
+      slug: formData.slug,
+      content: formData.content,
+      excerpt: formData.excerpt || null,
+      meta_description: formData.metaDescription || null,
+      seo_keywords: formData.seoKeywords ? formData.seoKeywords.split(',').map(k => k.trim()) : null,
+      tags: formData.tags ? formData.tags.split(',').map(t => t.trim()) : null,
+      status: formData.status,
+      featured_image_url: formData.featuredImageUrl || null,
+      featured_image_alt: formData.featuredImageAlt || null,
+      read_time_minutes: formData.readTimeMinutes ? parseInt(formData.readTimeMinutes) : null,
+      author: formData.author || null,
+      seo_title: formData.seoTitle || null,
+      seo_image_tag: formData.seoImageTag || null,
+      author_id: user?.id,
+    };
+
+    const { error } = await supabase
+      .from("blog_posts")
+      .update(postData)
+      .eq("id", id);
+
+    if (!error) {
+      setLastSaved(new Date());
+    }
+    setAutoSaving(false);
+  };
+
   const handleSave = async () => {
     if (!formData.title || !formData.slug || !formData.content) {
       toast.error("Bitte füllen Sie alle Pflichtfelder aus");
@@ -143,6 +223,9 @@ const Editor = () => {
       featured_image_url: formData.featuredImageUrl || null,
       featured_image_alt: formData.featuredImageAlt || null,
       read_time_minutes: formData.readTimeMinutes ? parseInt(formData.readTimeMinutes) : null,
+      author: formData.author || null,
+      seo_title: formData.seoTitle || null,
+      seo_image_tag: formData.seoImageTag || null,
       author_id: user?.id,
       published_at: formData.status === "published" ? new Date().toISOString() : null
     };
@@ -186,17 +269,33 @@ const Editor = () => {
 
   return (
     <div className="min-h-screen bg-blog-background p-6">
-      <div className="max-w-5xl mx-auto">
-        <div className="mb-6 flex items-center gap-4">
-          <Link to="/admin/dashboard">
-            <Button variant="outline" size="sm">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Zurück
-            </Button>
-          </Link>
-          <h1 className="text-3xl font-heading font-bold">
-            {id ? "Artikel bearbeiten" : "Neuer Artikel"}
-          </h1>
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-6 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <Link to="/admin/dashboard">
+              <Button variant="outline" size="sm">
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Zurück
+              </Button>
+            </Link>
+            <h1 className="text-3xl font-heading font-bold">
+              {id ? "Artikel bearbeiten" : "Neuer Artikel"}
+            </h1>
+          </div>
+          
+          <div className="flex items-center gap-4">
+            {lastSaved && (
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Clock className="h-4 w-4" />
+                <span>
+                  Zuletzt gespeichert: {lastSaved.toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" })}
+                </span>
+              </div>
+            )}
+            {autoSaving && (
+              <span className="text-sm text-muted-foreground">Speichert...</span>
+            )}
+          </div>
         </div>
 
         {notification && (
@@ -207,128 +306,232 @@ const Editor = () => {
           />
         )}
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="font-heading">Artikeldetails</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <div>
-              <Label htmlFor="title">Titel *</Label>
-              <Input
-                id="title"
-                value={formData.title}
-                onChange={(e) => handleTitleChange(e.target.value)}
-                placeholder="Artikeltitel"
-              />
-            </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2">
+            <Tabs value={activeTab} onValueChange={setActiveTab}>
+              <TabsList className="grid w-full grid-cols-2 mb-4">
+                <TabsTrigger value="edit" className="flex items-center gap-2">
+                  <Edit className="h-4 w-4" />
+                  Bearbeiten
+                </TabsTrigger>
+                <TabsTrigger value="preview" className="flex items-center gap-2">
+                  <Eye className="h-4 w-4" />
+                  Vorschau
+                </TabsTrigger>
+              </TabsList>
 
-            <div>
-              <Label htmlFor="slug">Slug *</Label>
-              <Input
-                id="slug"
-                value={formData.slug}
-                onChange={(e) => setFormData(prev => ({ ...prev, slug: e.target.value }))}
-                placeholder="artikel-slug"
-              />
-            </div>
+              <TabsContent value="edit" className="space-y-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="font-heading">Artikeldetails</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div>
+                      <Label htmlFor="title">Titel *</Label>
+                      <Input
+                        id="title"
+                        value={formData.title}
+                        onChange={(e) => handleTitleChange(e.target.value)}
+                        placeholder="Artikeltitel"
+                      />
+                    </div>
 
-            <div>
-              <Label htmlFor="featuredImage">Cover-Bild URL</Label>
-              <Input
-                id="featuredImage"
-                value={formData.featuredImageUrl}
-                onChange={(e) => setFormData(prev => ({ ...prev, featuredImageUrl: e.target.value }))}
-                placeholder="https://..."
-              />
-            </div>
+                    <div>
+                      <Label htmlFor="slug">URL-Slug *</Label>
+                      <Input
+                        id="slug"
+                        value={formData.slug}
+                        onChange={(e) => setFormData(prev => ({ ...prev, slug: e.target.value }))}
+                        placeholder="artikel-slug"
+                      />
+                    </div>
 
-            <div>
-              <Label htmlFor="imageAlt">Bild Alt-Text</Label>
-              <Input
-                id="imageAlt"
-                value={formData.featuredImageAlt}
-                onChange={(e) => setFormData(prev => ({ ...prev, featuredImageAlt: e.target.value }))}
-              />
-            </div>
+                    <div>
+                      <Label htmlFor="author">Autor *</Label>
+                      <Input
+                        id="author"
+                        value={formData.author}
+                        onChange={(e) => setFormData(prev => ({ ...prev, author: e.target.value }))}
+                        placeholder="Autorname"
+                      />
+                      {!formData.author && (
+                        <p className="text-xs text-yellow-600 mt-1">⚠️ Bitte ergänzen</p>
+                      )}
+                    </div>
 
-            <div>
-              <Label htmlFor="excerpt">Kurzbeschreibung</Label>
-              <Textarea
-                id="excerpt"
-                value={formData.excerpt}
-                onChange={(e) => setFormData(prev => ({ ...prev, excerpt: e.target.value }))}
-                rows={3}
-              />
-            </div>
+                    <ImageUploader
+                      imageUrl={formData.featuredImageUrl}
+                      imageAlt={formData.featuredImageAlt}
+                      seoImageTag={formData.seoImageTag}
+                      onImageUrlChange={(url) => setFormData(prev => ({ ...prev, featuredImageUrl: url }))}
+                      onImageAltChange={(alt) => setFormData(prev => ({ ...prev, featuredImageAlt: alt }))}
+                      onSeoImageTagChange={(tag) => setFormData(prev => ({ ...prev, seoImageTag: tag }))}
+                    />
 
-            <div>
-              <Label htmlFor="content">Inhalt (HTML) *</Label>
-              <Textarea
-                id="content"
-                value={formData.content}
-                onChange={(e) => setFormData(prev => ({ ...prev, content: e.target.value }))}
-                rows={15}
-                className="font-mono text-sm"
-              />
-            </div>
+                    <div>
+                      <Label htmlFor="excerpt">Kurzbeschreibung</Label>
+                      <Textarea
+                        id="excerpt"
+                        value={formData.excerpt}
+                        onChange={(e) => setFormData(prev => ({ ...prev, excerpt: e.target.value }))}
+                        rows={3}
+                        placeholder="Kurze Zusammenfassung für die Übersicht"
+                      />
+                    </div>
 
-            <div>
-              <Label htmlFor="tags">Tags (Komma-getrennt)</Label>
-              <Input
-                id="tags"
-                value={formData.tags}
-                onChange={(e) => setFormData(prev => ({ ...prev, tags: e.target.value }))}
-              />
-            </div>
+                    <div>
+                      <Label>Inhalt *</Label>
+                      <RichTextEditor
+                        value={formData.content}
+                        onChange={(value) => setFormData(prev => ({ ...prev, content: value }))}
+                      />
+                    </div>
 
-            <div>
-              <Label htmlFor="readTime">Lesezeit (Min.)</Label>
-              <Input
-                id="readTime"
-                type="number"
-                value={formData.readTimeMinutes}
-                onChange={(e) => setFormData(prev => ({ ...prev, readTimeMinutes: e.target.value }))}
-              />
-            </div>
+                    <div>
+                      <Label htmlFor="tags">Tags (Komma-getrennt)</Label>
+                      <Input
+                        id="tags"
+                        value={formData.tags}
+                        onChange={(e) => setFormData(prev => ({ ...prev, tags: e.target.value }))}
+                        placeholder="oldtimer, porsche, kaufberatung"
+                      />
+                    </div>
 
-            <div>
-              <Label htmlFor="metaDesc">Meta Description</Label>
-              <Textarea
-                id="metaDesc"
-                value={formData.metaDescription}
-                onChange={(e) => setFormData(prev => ({ ...prev, metaDescription: e.target.value }))}
-                rows={2}
-              />
-            </div>
+                    <div>
+                      <Label htmlFor="readTime">Lesezeit (Min.)</Label>
+                      <Input
+                        id="readTime"
+                        type="number"
+                        value={formData.readTimeMinutes}
+                        onChange={(e) => setFormData(prev => ({ ...prev, readTimeMinutes: e.target.value }))}
+                        placeholder="5"
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
 
-            <div>
-              <Label htmlFor="keywords">SEO Keywords</Label>
-              <Input
-                id="keywords"
-                value={formData.seoKeywords}
-                onChange={(e) => setFormData(prev => ({ ...prev, seoKeywords: e.target.value }))}
-              />
-            </div>
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="font-heading">SEO-Optimierung</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div>
+                      <Label htmlFor="seoTitle">SEO-Titel (max. 60 Zeichen) *</Label>
+                      <Input
+                        id="seoTitle"
+                        value={formData.seoTitle}
+                        onChange={(e) => setFormData(prev => ({ ...prev, seoTitle: e.target.value }))}
+                        placeholder="Optimierter Titel für Suchmaschinen"
+                        maxLength={60}
+                      />
+                      <p className="text-xs text-muted-foreground mt-1">
+                        {formData.seoTitle.length}/60 Zeichen
+                      </p>
+                      {!formData.seoTitle && (
+                        <p className="text-xs text-yellow-600 mt-1">⚠️ Bitte ergänzen</p>
+                      )}
+                    </div>
 
-            <div>
-              <Label htmlFor="status">Status *</Label>
-              <Select value={formData.status} onValueChange={(value) => setFormData(prev => ({ ...prev, status: value }))}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="draft">Entwurf</SelectItem>
-                  <SelectItem value="published">Veröffentlicht</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+                    <div>
+                      <Label htmlFor="metaDesc">Meta Description (120-160 Zeichen)</Label>
+                      <Textarea
+                        id="metaDesc"
+                        value={formData.metaDescription}
+                        onChange={(e) => setFormData(prev => ({ ...prev, metaDescription: e.target.value }))}
+                        rows={3}
+                        placeholder="Beschreibung für Suchergebnisse"
+                        maxLength={160}
+                      />
+                      <p className="text-xs text-muted-foreground mt-1">
+                        {formData.metaDescription.length}/160 Zeichen
+                      </p>
+                      {!formData.metaDescription && (
+                        <p className="text-xs text-yellow-600 mt-1">⚠️ Bitte ergänzen</p>
+                      )}
+                    </div>
 
-            <Button onClick={handleSave} disabled={saving} className="w-full">
-              <Save className="h-4 w-4 mr-2" />
-              {saving ? "Speichert..." : "Speichern"}
-            </Button>
-          </CardContent>
-        </Card>
+                    <div>
+                      <Label htmlFor="keywords">SEO Keywords (mind. 3)</Label>
+                      <Input
+                        id="keywords"
+                        value={formData.seoKeywords}
+                        onChange={(e) => setFormData(prev => ({ ...prev, seoKeywords: e.target.value }))}
+                        placeholder="porsche 964, kaufberatung, oldtimer"
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+
+              <TabsContent value="preview">
+                <Card>
+                  <CardContent className="p-0">
+                    <ArticlePreview
+                      title={formData.title}
+                      author={formData.author}
+                      content={formData.content}
+                      featuredImageUrl={formData.featuredImageUrl}
+                      featuredImageAlt={formData.featuredImageAlt}
+                    />
+                  </CardContent>
+                </Card>
+              </TabsContent>
+            </Tabs>
+          </div>
+
+          <div className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="font-heading">Veröffentlichung</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <Label htmlFor="status">Status *</Label>
+                  <Select 
+                    value={formData.status} 
+                    onValueChange={(value) => {
+                      setFormData(prev => ({ ...prev, status: value }));
+                      showNotification("info", `Status geändert zu "${value === "published" ? "Veröffentlicht" : "Entwurf"}"`);
+                    }}
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="draft">Entwurf</SelectItem>
+                      <SelectItem value="published">Veröffentlicht</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <Button onClick={handleSave} disabled={saving} className="w-full">
+                  <Save className="h-4 w-4 mr-2" />
+                  {saving ? "Speichert..." : id ? "Aktualisieren" : "Veröffentlichen"}
+                </Button>
+
+                {id && (
+                  <Button variant="outline" className="w-full" onClick={() => {
+                    const previewUrl = `/blog/${formData.slug}`;
+                    window.open(previewUrl, "_blank");
+                  }}>
+                    <Share2 className="h-4 w-4 mr-2" />
+                    Vorschau teilen
+                  </Button>
+                )}
+              </CardContent>
+            </Card>
+
+            <SeoChecker
+              title={formData.title}
+              seoTitle={formData.seoTitle}
+              metaDescription={formData.metaDescription}
+              keywords={formData.seoKeywords}
+              content={formData.content}
+              slug={formData.slug}
+              featuredImageAlt={formData.featuredImageAlt}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

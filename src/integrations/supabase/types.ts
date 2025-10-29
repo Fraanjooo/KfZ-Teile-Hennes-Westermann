@@ -40,6 +40,7 @@ export type Database = {
       }
       blog_posts: {
         Row: {
+          author: string | null
           author_id: string
           canonical_url: string | null
           category_id: string | null
@@ -47,12 +48,15 @@ export type Database = {
           created_at: string
           excerpt: string | null
           featured_image_alt: string | null
+          featured_image_caption: string | null
           featured_image_url: string | null
           id: string
           meta_description: string | null
           published_at: string | null
           read_time_minutes: number | null
+          seo_image_tag: string | null
           seo_keywords: string[] | null
+          seo_title: string | null
           slug: string
           status: string
           tags: string[] | null
@@ -61,6 +65,7 @@ export type Database = {
           view_count: number
         }
         Insert: {
+          author?: string | null
           author_id: string
           canonical_url?: string | null
           category_id?: string | null
@@ -68,12 +73,15 @@ export type Database = {
           created_at?: string
           excerpt?: string | null
           featured_image_alt?: string | null
+          featured_image_caption?: string | null
           featured_image_url?: string | null
           id?: string
           meta_description?: string | null
           published_at?: string | null
           read_time_minutes?: number | null
+          seo_image_tag?: string | null
           seo_keywords?: string[] | null
+          seo_title?: string | null
           slug: string
           status?: string
           tags?: string[] | null
@@ -82,6 +90,7 @@ export type Database = {
           view_count?: number
         }
         Update: {
+          author?: string | null
           author_id?: string
           canonical_url?: string | null
           category_id?: string | null
@@ -89,12 +98,15 @@ export type Database = {
           created_at?: string
           excerpt?: string | null
           featured_image_alt?: string | null
+          featured_image_caption?: string | null
           featured_image_url?: string | null
           id?: string
           meta_description?: string | null
           published_at?: string | null
           read_time_minutes?: number | null
+          seo_image_tag?: string | null
           seo_keywords?: string[] | null
+          seo_title?: string | null
           slug?: string
           status?: string
           tags?: string[] | null

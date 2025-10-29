@@ -127,8 +127,9 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
-body {
-  @apply bg-background text-foreground;
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 
 /* Blog Content Styles */
@@ -155,4 +156,26 @@ body {
   color: hsl(var(--muted-foreground));
   margin: 1.5rem 0;
 }
+
+/* Rich Text Editor Styles */
+.rich-text-editor .ql-container {
+  min-height: 400px;
+  font-size: 1rem;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.rich-text-editor .ql-toolbar {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  background-color: hsl(var(--muted));
+}
+
+.rich-text-editor .ql-editor {
+  min-height: 400px;
+}
+
+.rich-text-editor .ql-editor.ql-blank::before {
+  font-style: italic;
+  color: hsl(var(--muted-foreground));
 }
