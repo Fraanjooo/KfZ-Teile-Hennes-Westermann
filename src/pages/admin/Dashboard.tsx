@@ -39,9 +39,11 @@ const Dashboard = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [postsLoading, setPostsLoading] = useState(true);
   const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
 
   useEffect(() => {
     if (!loading) {
+      setIsCheckingAuth(false);
       if (!user || !isAdmin) {
         navigate("/admin/login");
       }
@@ -109,10 +111,10 @@ const Dashboard = () => {
     setDeleteId(null);
   };
 
-  if (loading || postsLoading) {
+  if (loading || postsLoading || isCheckingAuth) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-lg">Laden...</div>
+      <div className="min-h-screen flex items-center justify-center bg-blog-background">
+        <div className="text-lg text-blog-accent">Laden...</div>
       </div>
     );
   }

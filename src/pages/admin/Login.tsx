@@ -28,20 +28,22 @@ const Login = () => {
     const { error } = await signIn(loginEmail, loginPassword);
     
     if (!error) {
-      // Wait for admin check to complete before navigating
-      setTimeout(() => {
-        navigate("/admin/dashboard");
-      }, 300);
+      // Don't navigate here - let the useEffect handle it after admin check
     }
     setIsSubmitting(false);
   };
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-lg">Laden...</div>
+      <div className="min-h-screen flex items-center justify-center bg-blog-background">
+        <div className="text-lg text-blog-accent">Laden...</div>
       </div>
     );
+  }
+
+  // If user is logged in and is admin, redirect to dashboard
+  if (user && isAdmin) {
+    return null; // The useEffect will handle the navigation
   }
 
   return (
