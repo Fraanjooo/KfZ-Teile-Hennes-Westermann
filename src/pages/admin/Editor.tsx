@@ -37,7 +37,7 @@ interface EditorState {
 const Editor = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { user, isAdmin } = useAuth();
+  const { user } = useAuth();
   const [saving, setSaving] = useState(false);
   const [autoSaving, setAutoSaving] = useState(false);
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
@@ -67,16 +67,10 @@ const Editor = () => {
       return;
     }
 
-    if (!isAdmin) {
-      toast.error("Keine Berechtigung");
-      navigate("/");
-      return;
-    }
-
     if (id) {
       loadPost();
     }
-  }, [user, isAdmin, id, navigate]);
+  }, [user, id, navigate]);
 
   const loadPost = async () => {
     if (!id) return;
@@ -275,7 +269,7 @@ const Editor = () => {
     setTimeout(() => navigate("/admin/dashboard"), 1000);
   };
 
-  if (!user || !isAdmin) {
+  if (!user) {
     return null;
   }
 
