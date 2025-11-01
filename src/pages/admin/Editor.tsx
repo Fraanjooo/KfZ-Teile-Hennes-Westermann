@@ -37,7 +37,7 @@ interface EditorState {
 const Editor = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const [saving, setSaving] = useState(false);
   const [autoSaving, setAutoSaving] = useState(false);
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
@@ -62,15 +62,15 @@ const Editor = () => {
   });
 
   useEffect(() => {
-    if (!user) {
+    if (!loading && !user) {
       navigate("/admin/login");
       return;
     }
 
-    if (id) {
+    if (user && id) {
       loadPost();
     }
-  }, [user, id, navigate]);
+  }, [user, loading, id, navigate]);
 
   const loadPost = async () => {
     if (!id) return;
@@ -268,6 +268,14 @@ const Editor = () => {
     setSaving(false);
     setTimeout(() => navigate("/admin/dashboard"), 1000);
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-blog-background">
+        <div className="text-lg text-blog-accent">Laden...</div>
+      </div>
+    );
+  }
 
   if (!user) {
     return null;
