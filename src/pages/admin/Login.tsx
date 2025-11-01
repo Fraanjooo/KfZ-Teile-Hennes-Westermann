@@ -8,17 +8,17 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 
 const Login = () => {
   const navigate = useNavigate();
-  const { user, isAdmin, signIn, loading } = useAuth();
+  const { user, signIn, loading } = useAuth();
   
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    if (!loading && user && isAdmin) {
+    if (!loading && user) {
       navigate("/admin/dashboard");
     }
-  }, [user, isAdmin, loading, navigate]);
+  }, [user, loading, navigate]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,8 +44,8 @@ const Login = () => {
     );
   }
 
-  // If user is logged in and is admin, redirect to dashboard
-  if (user && isAdmin) {
+  // If user is logged in, redirect to dashboard
+  if (user) {
     return null; // The useEffect will handle the navigation
   }
 

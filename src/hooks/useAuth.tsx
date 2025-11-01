@@ -7,7 +7,6 @@ import { useToast } from "@/hooks/use-toast";
 export const useAuth = () => {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
-  const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -15,36 +14,13 @@ export const useAuth = () => {
   useEffect(() => {
     let mounted = true;
 
-    const checkAdminRole = async (userId: string) => {
-      const { data } = await supabase
-        .from("user_roles")
-        .select("role")
-        .eq("user_id", userId)
-        .eq("role", "admin")
-        .maybeSingle();
-      
-      if (mounted) {
-        setIsAdmin(!!data);
-        setLoading(false);
-      }
-    };
-
     // Set up auth state listener FIRST
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
         if (mounted) {
           setSession(session);
           setUser(session?.user ?? null);
-          
-          if (session?.user) {
-            setLoading(true);
-            setTimeout(() => {
-              checkAdminRole(session.user.id);
-            }, 0);
-          } else {
-            setIsAdmin(false);
-            setLoading(false);
-          }
+          setLoading(false);
         }
       }
     );
@@ -54,14 +30,7 @@ export const useAuth = () => {
       if (mounted) {
         setSession(session);
         setUser(session?.user ?? null);
-        
-        if (session?.user) {
-          setTimeout(() => {
-            checkAdminRole(session.user.id);
-          }, 0);
-        } else {
-          setLoading(false);
-        }
+        setLoading(false);
       }
     });
 
@@ -134,7 +103,6 @@ export const useAuth = () => {
 
       setUser(null);
       setSession(null);
-      setIsAdmin(false);
       navigate("/");
 
       toast({
@@ -152,7 +120,6 @@ export const useAuth = () => {
   return {
     user,
     session,
-    isAdmin,
     loading,
     signUp,
     signIn,
