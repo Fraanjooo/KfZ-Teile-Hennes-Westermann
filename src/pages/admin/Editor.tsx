@@ -405,12 +405,10 @@ const Editor = () => {
 
                     <div>
                       <Label>Inhalt *</Label>
-                      {activeTab === "edit" && (
-                        <RichTextEditor
-                          value={formData.content}
-                          onChange={(value) => setFormData(prev => ({ ...prev, content: value }))}
-                        />
-                      )}
+                      <RichTextEditor
+                        value={formData.content}
+                        onChange={(value) => setFormData(prev => ({ ...prev, content: value }))}
+                      />
                     </div>
 
                     <div>
