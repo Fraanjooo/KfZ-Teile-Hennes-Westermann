@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
@@ -17,32 +17,32 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
   const [imageUrl, setImageUrl] = useState("");
   const [imageAlt, setImageAlt] = useState("");
 
-  const imageHandler = () => {
+  const imageHandler = useCallback(() => {
     setImageUrl("");
     setImageAlt("");
     setShowImageDialog(true);
-  };
+  }, []);
 
-  const insertImage = () => {
+  const insertImage = useCallback(() => {
     const quill = quillRef.current?.getEditor();
     if (quill && imageUrl) {
-      const range = quill.getSelection(true);
+      const range = quill.getSelection(true) || { index: quill.getLength(), length: 0 };
       quill.insertEmbed(range.index, 'image', imageUrl);
-      
+
       // Set alt text on the inserted image
       const img = quill.root.querySelector(`img[src="${imageUrl}"]`);
       if (img && imageAlt) {
         img.setAttribute('alt', imageAlt);
       }
-      
-      quill.setSelection(range.index + 1, 0);
+
+      quill.setSelection((range.index ?? 0) + 1, 0);
     }
     setShowImageDialog(false);
     setImageUrl("");
     setImageAlt("");
-  };
+  }, [imageUrl, imageAlt]);
 
-  const modules = {
+  const modules = useMemo(() => ({
     toolbar: {
       container: [
         [{ header: [1, 2, 3, false] }],
@@ -58,9 +58,9 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
         image: imageHandler,
       },
     },
-  };
+  }), [imageHandler]);
 
-  const formats = [
+  const formats = useMemo(() => [
     "header",
     "bold",
     "italic",
@@ -75,7 +75,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
     "image",
     "color",
     "background",
-  ];
+  ], []);
 
   return (
     <>
@@ -83,7 +83,7 @@ export const RichTextEditor = ({ value, onChange }: RichTextEditorProps) => {
         <ReactQuill
           ref={quillRef}
           theme="snow"
-          value={value}
+          value={value ?? ""}
           onChange={onChange}
           modules={modules}
           formats={formats}
