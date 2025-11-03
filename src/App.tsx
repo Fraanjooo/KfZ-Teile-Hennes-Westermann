@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Datenschutz from "./pages/Datenschutz";
@@ -51,27 +51,25 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      
+      {/* Scroll-Handler wird global eingebunden */}
+      <ScrollHandler />
 
-      <BrowserRouter>
-        {/* Scroll-Handler wird global eingebunden */}
-        <ScrollHandler />
-
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:slug" element={<BlogPost />} />
-          <Route path="/datenschutz" element={<Datenschutz />} />
-          <Route path="/impressum" element={<Impressum />} />
-          <Route path="/admin/login" element={<Login />} />
-          <Route path="/admin/dashboard" element={<Dashboard />} />
-          <Route path="/admin/blog" element={<Dashboard />} />
-          <Route path="/admin/blog/editor" element={<Editor />} />
-          <Route path="/admin/blog/editor/:id" element={<Editor />} />
-          <Route path="/admin/editor" element={<Editor />} />
-          <Route path="/admin/editor/:id" element={<Editor />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/datenschutz" element={<Datenschutz />} />
+        <Route path="/impressum" element={<Impressum />} />
+        <Route path="/admin/login" element={<Login />} />
+        <Route path="/admin/dashboard" element={<Dashboard />} />
+        <Route path="/admin/blog" element={<Dashboard />} />
+        <Route path="/admin/blog/editor" element={<Editor />} />
+        <Route path="/admin/blog/editor/:id" element={<Editor />} />
+        <Route path="/admin/editor" element={<Editor />} />
+        <Route path="/admin/editor/:id" element={<Editor />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </TooltipProvider>
   </QueryClientProvider>
 );

@@ -13,6 +13,7 @@
  * und responsive Layout für alle Endgeräte.
  */
 
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -22,7 +23,18 @@ import Footer from "@/components/Footer";
  */
 const Datenschutz = () => {
   return (
-    <div className="min-h-screen">
+    <>
+      <Helmet>
+        <title>Datenschutzerklärung - KfZ-Teile Hennes Westermann</title>
+        <meta 
+          name="description" 
+          content="Datenschutzerklärung von KfZ-Teile Hennes Westermann. Informationen zur Erhebung und Verarbeitung personenbezogener Daten." 
+        />
+        <meta name="robots" content="noindex, follow" />
+        <link rel="canonical" href={`${window.location.origin}/datenschutz`} />
+      </Helmet>
+      
+      <div className="min-h-screen">
       <Header />
       
       {/* Hauptinhalt der Datenschutzerklärung */}
@@ -346,7 +358,8 @@ const Datenschutz = () => {
       </main>
       
       <Footer />
-    </div>
+      </div>
+    </>
   );
 };
 

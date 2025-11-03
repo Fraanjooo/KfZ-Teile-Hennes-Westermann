@@ -9,6 +9,7 @@
  * mit Header- und Footer-Navigation.
  */
 
+import { Helmet } from "react-helmet-async";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
@@ -19,6 +20,16 @@ import Footer from "../components/Footer";
 const Impressum = () => {
   return (
     <>
+      <Helmet>
+        <title>Impressum - KfZ-Teile Hennes Westermann</title>
+        <meta 
+          name="description" 
+          content="Impressum und rechtliche Angaben von KfZ-Teile Hennes Westermann gemäß § 5 TMG." 
+        />
+        <meta name="robots" content="noindex, follow" />
+        <link rel="canonical" href={`${window.location.origin}/impressum`} />
+      </Helmet>
+
       <Header />
       <main className="bg-corporate-light-gray min-h-screen">
         <div className="container mx-auto px-6 py-12">

@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Calendar, Eye, Search } from "lucide-react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 
 interface BlogPost {
@@ -76,6 +76,10 @@ const Blog = () => {
           name="description"
           content="Entdecken Sie unsere neuesten Projekte, Einblicke und Fachwissen aus der Welt der KfZ-Technik und Werkstattentwicklung."
         />
+        <meta property="og:title" content="Blog & Insights - KfZ-Teile Hennes Westermann" />
+        <meta property="og:description" content="Aktuelle Einblicke in KfZ-Technik und Werkstattentwicklung" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${window.location.origin}/blog`} />
         <link rel="canonical" href={`${window.location.origin}/blog`} />
       </Helmet>
 
