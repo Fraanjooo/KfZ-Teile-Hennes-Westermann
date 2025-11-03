@@ -139,7 +139,9 @@ All colors MUST be HSL.
   line-height: 1.8;
 }
 
-.blog-content p:first-of-type::first-letter {
+.blog-content h1 + p::first-letter,
+.blog-content h2 + p::first-letter,
+.blog-content h3 + p::first-letter {
   float: left;
   font-size: 3.5rem;
   line-height: 0.9;
