@@ -54,9 +54,9 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-8">
           {/* Erste Spalte: Firmenbranding und Beschreibung */}
           <div>
-            <h3 className="text-xl mb-4 font-garamond">Kfz-Teile Hennes Westermann</h3>
+            <h3 className="text-xl mb-4 font-garamond">KFZ-Teile Hennes Westermann</h3>
             <p className="text-corporate-medium-gray leading-relaxed">
-              Ihr vertrauensvoller Partner für hochwertige Kfz-Teile. Wir beliefern Geschäftskunden und Privatpersonen.
+              Ihr zuverlässiger Partner für hochwertige Ersatzteile und Autoteile in Altenberge und dem Münsterland. Seit 2025 beliefern wir Werkstätten, Autohäuser und Privatkunden mit Qualität, Fachkompetenz und fairen Preisen.
             </p>
           </div>
           

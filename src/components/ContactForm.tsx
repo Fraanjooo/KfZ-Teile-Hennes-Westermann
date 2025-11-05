@@ -81,10 +81,10 @@ const ContactForm = () => {
         {/* Sektion-Header mit Titel und Beschreibung */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-corporate-dark-gray mb-4">
-            Angebot anfordern
+            Ersatzteile Angebot anfordern
           </h2>
           <p className="text-xl text-corporate-medium-gray max-w-2xl mx-auto">
-            Teilen Sie uns mit, was Sie benötigen und wir erstellen Ihnen ein unverbindliches Angebot von verschiedenen Herstellern.
+            Sie suchen günstige Autoteile in Altenberge oder dem Münsterland? Teilen Sie uns mit, welches Ersatzteil Sie benötigen, und wir erstellen Ihnen ein unverbindliches Angebot von verschiedenen Herstellern – schnell, transparent und zu fairen Preisen.
           </p>
         </div>
 

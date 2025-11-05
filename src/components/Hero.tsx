@@ -36,7 +36,7 @@ const Hero = () => {
       <div className="absolute inset-0 opacity-20">
         <img 
           src={heroAutomotiveBg} 
-          alt="Automotive drivetrain illustration" 
+          alt="KFZ-Ersatzteile und Autoteile – Mechaniker prüft Antriebsstrang in Altenberger Werkstatt – KFZ-Teile Hennes Westermann" 
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-background/80"></div>
@@ -48,14 +48,14 @@ const Hero = () => {
           
           {/* Hauptschlagzeile mit zwei Zeilen für visuelle Hierarchie */}
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            Kfz-Teile
-            <span className="block text-corporate-highlight">für jedes Fahrzeug</span>
+            KFZ-Teile Altenberge
+            <span className="block text-corporate-highlight">Ersatzteile für jedes Fahrzeug</span>
           </h1>
           
           {/* Untertitel mit Wertversprechen */}
           <p className="text-xl md:text-2xl mb-8 text-corporate-highlight/80 max-w-2xl mx-auto leading-relaxed">
-            Hochwertige Fahrzeugteile für Geschäftskunden und Privatpersonen. 
-            Schnelle Lieferung, unverbindliche Preise, kompetente Beratung.
+            Hochwertige Ersatzteile & Autoteile für Privatkunden und Werkstätten im Münsterland. 
+            Schnelle Lieferung, faire Preise, kompetente Beratung aus Altenberge.
           </p>
           
           {/* Call-to-Action Button Bereich */}

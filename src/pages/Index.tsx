@@ -23,15 +23,17 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>KfZ-Teile Hennes Westermann - Ihr Experte für Fahrzeugteile</title>
+        <title>KFZ-Teile Altenberge | Ersatzteile & Autoteile | Hennes Westermann</title>
         <meta 
           name="description" 
-          content="KfZ-Teile Hennes Westermann bietet hochwertige Fahrzeugteile und professionellen Service in Altenberge. Ihr Partner für B2B und B2C Lösungen." 
+          content="KFZ-Teile Hennes Westermann in Altenberge: Günstige Ersatzteile & Autoteile für Privatkunden & Werkstätten im Münsterland. Schnelle Lieferung ✓ Fachberatung ✓" 
         />
-        <meta property="og:title" content="KfZ-Teile Hennes Westermann" />
-        <meta property="og:description" content="Ihr Experte für hochwertige Fahrzeugteile und professionellen Service" />
+        <meta name="keywords" content="KFZ Teile Altenberge, Ersatzteile kaufen, Autoteile kaufen, günstige Autoteile Münsterland, Autoersatzteile bestellen, Werkstattbedarf Altenberge, Bremsen, Filter, Motor, Getriebe" />
+        <meta property="og:title" content="KFZ-Teile Altenberge | Ersatzteile & Autoteile kaufen | Hennes Westermann" />
+        <meta property="og:description" content="Ihr KFZ-Teile Experte in Altenberge: Ersatzteile & Autoteile für alle Fahrzeuge. Für Werkstätten & Privatkunden im Münsterland." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={window.location.origin} />
+        <meta property="og:locale" content="de_DE" />
         <link rel="canonical" href={window.location.origin} />
       </Helmet>
 

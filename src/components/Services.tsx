@@ -27,18 +27,18 @@ const Services = () => {
   const services = [
     {
       icon: Building2, // Gebäude-Icon für B2B-Bereich
-      title: "B2B-Lösungen",
-      description: "Individuelle Betreuung und attraktive Konditionen für Werkstätten, Autohäuser und Reparaturbetriebe – inklusive unkomplizierter Abwicklung von Großbestellungen."
+      title: "B2B-Lösungen & Werkstattbedarf",
+      description: "Individuelle Betreuung und attraktive Konditionen für Werkstätten, Autohäuser und Reparaturbetriebe in Altenberge und dem Münsterland. Profitieren Sie von Großhandelspreisen, unkomplizierter Abwicklung von Großbestellungen und zuverlässiger Lieferung direkt zu Ihrem Betrieb."
     },
     {
       icon: User, // Benutzer-Icon für Privatkunden
-      title: "Privatkunden", 
-      description: "Persönliche Beratung und hochwertige Ersatzteile für Privatkunden. Profitieren Sie von unserer Qualitätsgarantie."
+      title: "Autoteile für Privatkunden", 
+      description: "Persönliche Fachberatung und hochwertige Ersatzteile für Ihr Fahrzeug. Ob Bremsen, Filter, Beleuchtung oder Motor- und Getriebeteile – wir finden das passende Teil für Sie. Profitieren Sie von unserer Qualitätsgarantie und fairen Preisen beim Autoteile kaufen in Altenberge."
     },
     {
       icon: MapPin, // Standort-Icon für Lieferung/Abholung
-      title: "Lieferung oder Abholung",
-      description: "Flexible Bezugsmöglichkeiten für alle Kunden. Schnelle Lieferung oder bequeme Abholung vor Ort."
+      title: "Schnelle Lieferung & Abholung",
+      description: "Maximale Flexibilität für alle Kunden: Wählen Sie zwischen schneller Lieferung direkt zu Ihnen nach Hause oder in Ihre Werkstatt im Münsterland, oder holen Sie Ihre Ersatzteile bequem bei uns in Altenberge ab. Kurze Wege, schnelle Verfügbarkeit."
     }
   ];
 
@@ -46,13 +46,30 @@ const Services = () => {
     <section id="services" className="py-20 bg-gradient-to-b from-corporate-white to-corporate-light-gray">
       <div className="container mx-auto px-6">
         {/* Überschrift und Beschreibung der Services-Sektion */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-corporate-dark-gray mb-4">
-            Unsere Leistungen
+            KFZ-Ersatzteile für Altenberge und das Münsterland
           </h2>
-          <p className="text-xl text-corporate-medium-gray max-w-2xl mx-auto">
-            Ob Geschäftskunde oder Privatperson - wir haben die Teile und das Know-how, um Sie mobil zu halten.
+          <p className="text-xl text-corporate-medium-gray max-w-3xl mx-auto mb-8">
+            Ob Geschäftskunde oder Privatperson – wir haben die passenden Autoteile und das Know-how, um Sie mobil zu halten.
           </p>
+          
+          {/* SEO-optimierter Einleitungstext */}
+          <div className="max-w-4xl mx-auto text-left bg-white/60 backdrop-blur-sm p-8 rounded-lg shadow-sm mb-12">
+            <p className="text-corporate-dark-gray leading-relaxed mb-4">
+              <strong>KFZ-Teile Hennes Westermann</strong> ist Ihr zuverlässiger Partner für hochwertige <strong>Ersatzteile und Autoteile</strong> in <strong>Altenberge</strong> und der gesamten Region Münsterland. Seit 2025 beliefern wir Werkstätten, Autohäuser, Reparaturbetriebe und Privatkunden mit einem umfassenden Sortiment an Fahrzeugteilen – von <strong>Bremsen und Filtern</strong> über <strong>Motor- und Getriebeteile</strong> bis hin zu <strong>Karosserieteilen und Verschleißartikeln</strong>.
+            </p>
+            <p className="text-corporate-dark-gray leading-relaxed mb-4">
+              Unsere Stärke liegt in der individuellen Beratung und schnellen Verfügbarkeit. Egal ob Sie <strong>günstige Autoteile bestellen</strong> möchten oder <strong>Werkstattbedarf in Altenberge</strong> benötigen – wir erstellen Ihnen unverbindliche Angebote von verschiedenen Herstellern und sorgen für eine zügige Lieferung oder bequeme Abholung vor Ort. Dabei legen wir Wert auf Qualität, Transparenz und faire Preise.
+            </p>
+            <p className="text-corporate-dark-gray leading-relaxed">
+              Vertrauen Sie auf unsere Fachkompetenz und profitieren Sie von unserem breiten Netzwerk an renommierten Lieferanten. <strong>KFZ-Teile kaufen war noch nie so einfach</strong> – kontaktieren Sie uns noch heute und überzeugen Sie sich selbst von unserem Service!
+            </p>
+          </div>
+          
+          <h3 className="text-2xl md:text-3xl font-bold text-corporate-dark-gray mb-8">
+            Unsere Leistungen im Überblick
+          </h3>
         </div>
         
         {/* Grid-Layout für Service-Karten - responsive Design */}
