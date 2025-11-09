@@ -71,14 +71,13 @@ const BlogPost = () => {
     if (!error && data) {
       setPost(data);
       
-      await supabase
-        .from("blog_posts")
-        .update({ view_count: data.view_count + 1 })
-        .eq("id", data.id);
+      // Use atomic increment to prevent race conditions
+      await supabase.rpc('increment_view_count', { post_id: data.id });
 
       if (data.author_id) {
+        // Use public_profiles view to get author info without exposing email
         const { data: profile } = await supabase
-          .from("profiles")
+          .from("public_profiles")
           .select("*")
           .eq("id", data.author_id)
           .single();

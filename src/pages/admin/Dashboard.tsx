@@ -35,21 +35,45 @@ const Dashboard = () => {
   const [postsLoading, setPostsLoading] = useState(true);
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
+  
   useEffect(() => {
-    if (!loading) {
-      setIsCheckingAuth(false);
-      if (!user) {
-        navigate("/admin/login", {
-          replace: true
-        });
+    const checkAuth = async () => {
+      if (!loading) {
+        setIsCheckingAuth(false);
+        if (!user) {
+          navigate("/admin/login", { replace: true });
+          return;
+        }
+        
+        // Check if user has admin role
+        const { data: hasAdminRole, error } = await supabase
+          .rpc('has_role', { 
+            _user_id: user.id, 
+            _role: 'admin' 
+          });
+        
+        if (error || !hasAdminRole) {
+          toast({
+            variant: "destructive",
+            title: "Keine Berechtigung",
+            description: "Sie haben keine Berechtigung auf diese Seite zuzugreifen."
+          });
+          navigate("/", { replace: true });
+          return;
+        }
+        
+        setIsAdmin(true);
       }
-    }
+    };
+    
+    checkAuth();
   }, [user, loading, navigate]);
   useEffect(() => {
-    if (user) {
+    if (user && isAdmin) {
       loadPosts();
     }
-  }, [user]);
+  }, [user, isAdmin]);
   const loadPosts = async () => {
     setPostsLoading(true);
     const {
@@ -108,7 +132,7 @@ const Dashboard = () => {
         <div className="text-lg text-blog-accent">Laden...</div>
       </div>;
   }
-  if (!user) {
+  if (!user || !isAdmin) {
     return null;
   }
   return <div className="min-h-screen bg-blog-background">

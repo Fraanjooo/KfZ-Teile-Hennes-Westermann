@@ -43,6 +43,7 @@ const Editor = () => {
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
   const [activeTab, setActiveTab] = useState<string>("edit");
   const [notification, setNotification] = useState<{ type: "info" | "warning" | "success"; message: string } | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
   
   const [formData, setFormData] = useState<EditorState>({
     title: "",
@@ -62,14 +63,35 @@ const Editor = () => {
   });
 
   useEffect(() => {
-    if (!loading && !user) {
-      navigate("/admin/login");
-      return;
-    }
+    const checkAuth = async () => {
+      if (!loading && !user) {
+        navigate("/admin/login");
+        return;
+      }
 
-    if (user && id) {
-      loadPost();
-    }
+      if (user) {
+        // Check if user has admin role
+        const { data: hasAdminRole, error } = await supabase
+          .rpc('has_role', { 
+            _user_id: user.id, 
+            _role: 'admin' 
+          });
+        
+        if (error || !hasAdminRole) {
+          toast.error("Keine Berechtigung - Sie benötigen Admin-Rechte");
+          navigate("/", { replace: true });
+          return;
+        }
+        
+        setIsAdmin(true);
+        
+        if (id) {
+          loadPost();
+        }
+      }
+    };
+    
+    checkAuth();
   }, [user, loading, id, navigate]);
 
   const loadPost = async () => {
@@ -277,7 +299,7 @@ const Editor = () => {
     );
   }
 
-  if (!user) {
+  if (!user || !isAdmin) {
     return null;
   }
 

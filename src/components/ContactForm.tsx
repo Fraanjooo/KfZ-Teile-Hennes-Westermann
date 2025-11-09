@@ -24,6 +24,33 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone } from "lucide-react";
+import { z } from "zod";
+
+// Zod validation schema for contact form
+const contactFormSchema = z.object({
+  firstName: z.string()
+    .trim()
+    .min(2, "Vorname muss mindestens 2 Zeichen lang sein")
+    .max(50, "Vorname darf maximal 50 Zeichen lang sein"),
+  lastName: z.string()
+    .trim()
+    .min(2, "Nachname muss mindestens 2 Zeichen lang sein")
+    .max(50, "Nachname darf maximal 50 Zeichen lang sein"),
+  email: z.string()
+    .trim()
+    .email("Bitte geben Sie eine gültige E-Mail-Adresse ein")
+    .max(255, "E-Mail-Adresse darf maximal 255 Zeichen lang sein"),
+  phone: z.string()
+    .trim()
+    .min(8, "Telefonnummer muss mindestens 8 Zeichen lang sein")
+    .max(20, "Telefonnummer darf maximal 20 Zeichen lang sein")
+    .optional()
+    .or(z.literal("")),
+  desiredPart: z.string()
+    .trim()
+    .min(10, "Beschreibung muss mindestens 10 Zeichen lang sein")
+    .max(2000, "Beschreibung darf maximal 2000 Zeichen lang sein")
+});
 
 /**
  * ContactForm Functional Component
@@ -59,10 +86,24 @@ const ContactForm = () => {
 
   /**
    * Submit-Handler für Formular
-   * Da formsubmit.co verwendet wird, erfolgt der eigentliche Versand über POST
-   * JavaScript zeigt nur Success-Toast an
+   * Validiert Eingaben mit Zod-Schema bevor Formular an formsubmit.co gesendet wird
    */
   const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Validate form data with Zod schema
+    const result = contactFormSchema.safeParse(formData);
+    
+    if (!result.success) {
+      const errors = result.error.errors;
+      toast({
+        variant: "destructive",
+        title: "Validierungsfehler",
+        description: errors[0].message,
+      });
+      return;
+    }
+    
     // formsubmit.co übernimmt E-Mail-Versand - kein JavaScript-Backend nötig
     setIsLoading(true);
     
@@ -72,6 +113,9 @@ const ContactForm = () => {
         title: "Anfrage gesendet!",
         description: "Wir melden uns innerhalb von 24 Stunden mit einem Angebot zurück.",
       });
+      
+      // Submit form to formsubmit.co
+      (e.target as HTMLFormElement).submit();
     }, 500);
   };
 
