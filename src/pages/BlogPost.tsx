@@ -401,15 +401,16 @@ const BlogPost = () => {
               <p className="text-lg text-white/90 mb-8 leading-relaxed">
                 Interessiert an unseren Leistungen? Kontaktieren Sie uns für ein unverbindliches Gespräch.
               </p>
-              <Link to="/#contact">
-                <Button 
-                  size="lg" 
-                  variant="outline"
-                  className="bg-white hover:bg-white/90 text-blog-accent border-0 h-14 px-10 font-medium"
-                >
-                  Projekt anfragen
-                </Button>
-              </Link>
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="bg-white hover:bg-white/90 text-blog-accent border-0 h-14 px-10 font-medium cursor-pointer"
+                onClick={() => {
+                  window.location.href = '/#contact';
+                }}
+              >
+                Projekt anfragen
+              </Button>
             </motion.section>
           </article>
         </main>
