@@ -65,7 +65,7 @@ const Hero = () => {
               variant="automotive" 
               size="lg"
               onClick={scrollToContact}
-              className="text-lg px-8 py-6"
+              className="text-lg px-8 py-7"
             >
               Angebot anfordern
             </Button>
