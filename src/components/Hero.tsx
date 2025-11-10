@@ -26,19 +26,15 @@ const Hero = () => {
    */
   const scrollToContact = () => {
     const contactSection = document.getElementById('contact');
-    contactSection?.scrollIntoView({ behavior: 'smooth' });
+    contactSection?.scrollIntoView({
+      behavior: 'smooth'
+    });
   };
-
-  return (
-    <section className="relative bg-background min-h-[600px] flex items-start justify-center text-foreground overflow-hidden pt-20">
+  return <section className="relative bg-background min-h-[600px] flex items-start justify-center text-foreground overflow-hidden pt-20">
       
       {/* Automotive Hintergrundbild */}
       <div className="absolute inset-0 opacity-20">
-        <img 
-          src={heroAutomotiveBg} 
-          alt="KFZ-Ersatzteile und Autoteile – Mechaniker prüft Antriebsstrang in Altenberger Werkstatt – KFZ-Teile Hennes Westermann" 
-          className="w-full h-full object-cover"
-        />
+        <img src={heroAutomotiveBg} alt="KFZ-Ersatzteile und Autoteile – Mechaniker prüft Antriebsstrang in Altenberger Werkstatt – KFZ-Teile Hennes Westermann" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-background/80"></div>
       </div>
       
@@ -47,9 +43,8 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto text-center">
           
           {/* ✅ SEO-Optimized H1 with main keyword at start */}
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            KFZ-Ersatzteile Altenberge – Autoteile günstig kaufen
-            <span className="block text-corporate-highlight mt-2">Hennes Westermann: Ihr Partner für alle Fahrzeugteile</span>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">KFZ-Teile Hennes Westermann
+Hennes Westermann: Ihr Partner für alle Fahrzeugteile<span className="block text-corporate-highlight mt-2">Hennes Westermann: Ihr Partner für alle Fahrzeugteile</span>
           </h1>
           
           {/* ✅ Enhanced value proposition with keywords */}
@@ -61,19 +56,12 @@ const Hero = () => {
           
           {/* Call-to-Action Button Bereich */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              variant="automotive" 
-              size="lg"
-              onClick={scrollToContact}
-              className="text-lg px-8 py-7"
-            >
+            <Button variant="automotive" size="lg" onClick={scrollToContact} className="text-lg px-8 py-7">
               Angebot anfordern
             </Button>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
