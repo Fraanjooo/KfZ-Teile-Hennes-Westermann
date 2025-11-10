@@ -86,20 +86,35 @@ const Services = () => {
           
           {/* SEO-optimierter Einleitungstext */}
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
             className="max-w-4xl mx-auto text-left bg-white/60 backdrop-blur-sm p-8 rounded-lg shadow-sm mb-12"
           >
-            <p className="text-corporate-dark-gray leading-relaxed mb-4">
+            <motion.p 
+              initial={{ opacity: 0, x: -20 }}
+              animate={isVisible ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-corporate-dark-gray leading-relaxed mb-4"
+            >
               <strong>KFZ-Teile Hennes Westermann</strong> ist Ihr zuverlässiger Partner für hochwertige <strong>Ersatzteile und Autoteile</strong> in <strong>Altenberge</strong> und der gesamten Region Münsterland. Seit 2025 beliefern wir Werkstätten, Autohäuser, Reparaturbetriebe und Privatkunden mit einem umfassenden Sortiment an Fahrzeugteilen – von <strong>Bremsen und Filtern</strong> über <strong>Motor- und Getriebeteile</strong> bis hin zu <strong>Karosserieteilen und Verschleißartikeln</strong>.
-            </p>
-            <p className="text-corporate-dark-gray leading-relaxed mb-4">
+            </motion.p>
+            <motion.p 
+              initial={{ opacity: 0, x: -20 }}
+              animate={isVisible ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-corporate-dark-gray leading-relaxed mb-4"
+            >
               Unsere Stärke liegt in der individuellen Beratung und schnellen Verfügbarkeit. Egal ob Sie <strong>günstige Autoteile bestellen</strong> möchten oder <strong>Werkstattbedarf in Altenberge</strong> benötigen – wir erstellen Ihnen unverbindliche Angebote von verschiedenen Herstellern und sorgen für eine zügige Lieferung oder bequeme Abholung vor Ort. Dabei legen wir Wert auf Qualität, Transparenz und faire Preise.
-            </p>
-            <p className="text-corporate-dark-gray leading-relaxed">
+            </motion.p>
+            <motion.p 
+              initial={{ opacity: 0, x: -20 }}
+              animate={isVisible ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="text-corporate-dark-gray leading-relaxed"
+            >
               Vertrauen Sie auf unsere Fachkompetenz und profitieren Sie von unserem breiten Netzwerk an renommierten Lieferanten. <strong>KFZ-Teile kaufen war noch nie so einfach</strong> – kontaktieren Sie uns noch heute und überzeugen Sie sich selbst von unserem Service!
-            </p>
+            </motion.p>
           </motion.div>
           
           <motion.h3 
