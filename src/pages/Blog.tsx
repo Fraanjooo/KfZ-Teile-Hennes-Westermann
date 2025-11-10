@@ -70,16 +70,14 @@ const Blog = () => {
 
   return (
     <>
-      {/* ✅ Optimized Title & Meta Description for SEO */}
       <Helmet>
-        <title>KFZ Blog Altenberge | Autoteile Ratgeber & Tipps</title>
+        <title>Blog & Insights - KfZ-Teile Hennes Westermann</title>
         <meta
           name="description"
-          content="KFZ-Blog von Hennes Westermann: Ratgeber zu Ersatzteilen, Autoteile-Tipps, Bremsenwechsel, Ölfilter & Autopflege. Fachwissen für Werkstätten & Privatkunden ✓"
+          content="Entdecken Sie unsere neuesten Projekte, Einblicke und Fachwissen aus der Welt der KfZ-Technik und Werkstattentwicklung."
         />
-        <meta name="keywords" content="KFZ Blog, Autoteile Ratgeber, Bremsbeläge wechseln, Ölfilter finden, Autopflege Tipps, KFZ Wartung, Ersatzteile Guide, Altenberge" />
-        <meta property="og:title" content="KFZ Blog Altenberge | Autoteile Ratgeber & Tipps" />
-        <meta property="og:description" content="Fachwissen zu Ersatzteilen, Autoteilen und KFZ-Wartung aus Altenberge" />
+        <meta property="og:title" content="Blog & Insights - KfZ-Teile Hennes Westermann" />
+        <meta property="og:description" content="Aktuelle Einblicke in KfZ-Technik und Werkstattentwicklung" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${window.location.origin}/blog`} />
         <link rel="canonical" href={`${window.location.origin}/blog`} />
@@ -98,12 +96,11 @@ const Blog = () => {
                 transition={{ duration: 0.6 }}
                 className="text-center mb-16"
               >
-                {/* ✅ Optimized H1 with main keyword */}
                 <h1 className="text-5xl md:text-7xl font-serif font-normal mb-6 text-blog-text">
-                  KFZ-Blog: Ratgeber & Tipps zu Autoteilen
+                  Blog & Insights
                 </h1>
                 <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                  Fachwissen zu Ersatzteilen, Autoteile-Wartung und KFZ-Reparaturen für Werkstätten und Privatkunden in Altenberge und dem Münsterland. Von Bremsenwechsel bis Ölfilter – hier finden Sie hilfreiche Anleitungen und Expertentipps.
+                  Entdecken Sie unsere neuesten Projekte, Einblicke und Fachwissen aus der Welt der KfZ-Technik und Werkstattentwicklung.
                 </p>
               </motion.div>
               
@@ -232,14 +229,14 @@ const Blog = () => {
             </div>
           </section>
 
-          {/* ✅ SEO-optimized CTA Section */}
+          {/* Sticky CTA */}
           <section className="py-20 bg-blog-accent">
             <div className="container mx-auto px-4 text-center max-w-4xl">
               <h2 className="text-4xl md:text-5xl font-serif mb-6 text-white">
-                Benötigen Sie KFZ-Ersatzteile aus Altenberge?
+                Bereit für Ihr nächstes Projekt?
               </h2>
               <p className="text-xl text-white/90 mb-10 leading-relaxed">
-                Kontaktieren Sie uns für ein unverbindliches Angebot. Schnelle Lieferung ✓ Faire Preise ✓ Fachberatung ✓
+                Lassen Sie uns gemeinsam Ihre Vision verwirklichen
               </p>
               <Link to="/#contact">
                 <Button 
@@ -247,7 +244,7 @@ const Blog = () => {
                   variant="outline"
                   className="bg-white hover:bg-white/90 text-blog-accent border-0 h-14 px-10 text-lg font-medium"
                 >
-                  Jetzt Angebot anfordern
+                  Projekt anfragen
                 </Button>
               </Link>
             </div>

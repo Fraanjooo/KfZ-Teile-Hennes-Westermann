@@ -45,35 +45,30 @@ const Services = () => {
   return (
     <section id="services" className="py-20 bg-gradient-to-b from-corporate-white to-corporate-light-gray">
       <div className="container mx-auto px-6">
-        {/* ✅ SEO-Optimized Section Header with H2 */}
+        {/* Überschrift und Beschreibung der Services-Sektion */}
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-corporate-dark-gray mb-4">
-            KFZ-Ersatzteile Altenberge: Für Werkstätten & Privatkunden
+            KFZ-Ersatzteile für Altenberge und das Münsterland
           </h2>
           <p className="text-xl text-corporate-medium-gray max-w-3xl mx-auto mb-8">
-            Ob B2B-Großhandel oder Einzelteilbestellung – wir haben die passenden <strong>Autoteile</strong> und das Fachwissen, 
-            um Sie und Ihre Werkstatt mobil zu halten. Profitieren Sie von unserem umfassenden Sortiment an <strong>KFZ-Teilen</strong> in Altenberge.
+            Ob Geschäftskunde oder Privatperson – wir haben die passenden Autoteile und das Know-how, um Sie mobil zu halten.
           </p>
           
-          {/* ✅ SEO-optimized introductory text with internal links */}
+          {/* SEO-optimierter Einleitungstext */}
           <div className="max-w-4xl mx-auto text-left bg-white/60 backdrop-blur-sm p-8 rounded-lg shadow-sm mb-12">
             <p className="text-corporate-dark-gray leading-relaxed mb-4">
-              <strong>KFZ-Teile Hennes Westermann</strong> ist Ihr zuverlässiger Partner für hochwertige <strong>Ersatzteile und Autoteile kaufen</strong> in <strong>Altenberge</strong> und der gesamten Region Münsterland. Seit 2025 beliefern wir Werkstätten, Autohäuser, Reparaturbetriebe und Privatkunden mit einem umfassenden Sortiment an Fahrzeugteilen – von <strong>Bremsen und Filtern</strong> über <strong>Motor- und Getriebeteile</strong> bis hin zu <strong>Karosserieteilen und Verschleißartikeln</strong>. Unser Angebot umfasst sowohl Originalteile als auch kompatible Ersatzteile für alle gängigen Fahrzeugmodelle von Audi, BMW, Mercedes, VW, Ford und viele weitere Marken.
+              <strong>KFZ-Teile Hennes Westermann</strong> ist Ihr zuverlässiger Partner für hochwertige <strong>Ersatzteile und Autoteile</strong> in <strong>Altenberge</strong> und der gesamten Region Münsterland. Seit 2025 beliefern wir Werkstätten, Autohäuser, Reparaturbetriebe und Privatkunden mit einem umfassenden Sortiment an Fahrzeugteilen – von <strong>Bremsen und Filtern</strong> über <strong>Motor- und Getriebeteile</strong> bis hin zu <strong>Karosserieteilen und Verschleißartikeln</strong>.
             </p>
             <p className="text-corporate-dark-gray leading-relaxed mb-4">
-              Unsere Stärke liegt in der individuellen Beratung und schnellen Verfügbarkeit. Egal ob Sie <strong>günstige Autoteile online bestellen</strong> möchten oder <strong>Werkstattbedarf in Altenberge</strong> benötigen – wir erstellen Ihnen unverbindliche Angebote von verschiedenen Herstellern und sorgen für eine zügige Lieferung oder bequeme Abholung vor Ort. Dabei legen wir Wert auf Qualität, Transparenz und faire Preise. Besuchen Sie auch unseren <a href="/blog" className="text-corporate-primary hover:underline font-semibold">KFZ-Blog</a> für hilfreiche Ratgeber zu Wartung, Reparatur und Autopflege.
-            </p>
-            <p className="text-corporate-dark-gray leading-relaxed mb-4">
-              Vertrauen Sie auf unsere Fachkompetenz und profitieren Sie von unserem breiten Netzwerk an renommierten Lieferanten wie Bosch, Brembo, Mann-Filter, Sachs und vielen weiteren Top-Marken. <strong>KFZ-Ersatzteile kaufen war noch nie so einfach</strong> – kontaktieren Sie uns noch heute per E-Mail oder nutzen Sie unser <a href="#contact" className="text-corporate-primary hover:underline font-semibold">Kontaktformular</a> und überzeugen Sie sich selbst von unserem Service!
+              Unsere Stärke liegt in der individuellen Beratung und schnellen Verfügbarkeit. Egal ob Sie <strong>günstige Autoteile bestellen</strong> möchten oder <strong>Werkstattbedarf in Altenberge</strong> benötigen – wir erstellen Ihnen unverbindliche Angebote von verschiedenen Herstellern und sorgen für eine zügige Lieferung oder bequeme Abholung vor Ort. Dabei legen wir Wert auf Qualität, Transparenz und faire Preise.
             </p>
             <p className="text-corporate-dark-gray leading-relaxed">
-              <strong>Unser Service-Gebiet:</strong> Wir beliefern nicht nur Altenberge, sondern die gesamte Region Münsterland inkl. Münster, Greven, Steinfurt, Emsdetten, Nordwalde und Umgebung. <strong>KFZ-Teile Westermann</strong> steht für Qualität, Zuverlässigkeit und Kundenzufriedenheit seit 2025.
+              Vertrauen Sie auf unsere Fachkompetenz und profitieren Sie von unserem breiten Netzwerk an renommierten Lieferanten. <strong>KFZ-Teile kaufen war noch nie so einfach</strong> – kontaktieren Sie uns noch heute und überzeugen Sie sich selbst von unserem Service!
             </p>
           </div>
           
-          {/* ✅ H3 with keyword */}
           <h3 className="text-2xl md:text-3xl font-bold text-corporate-dark-gray mb-8">
-            Unsere Leistungen: KFZ-Ersatzteile für jeden Bedarf
+            Unsere Leistungen im Überblick
           </h3>
         </div>
         

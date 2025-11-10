@@ -46,17 +46,16 @@ const Hero = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           
-          {/* ✅ SEO-Optimized H1 with main keyword at start */}
+          {/* Hauptschlagzeile mit zwei Zeilen für visuelle Hierarchie */}
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            KFZ-Ersatzteile Altenberge – Autoteile günstig kaufen
-            <span className="block text-corporate-highlight mt-2">Hennes Westermann: Ihr Partner für alle Fahrzeugteile</span>
+            KFZ-Teile Altenberge
+            <span className="block text-corporate-highlight">Ersatzteile für jedes Fahrzeug</span>
           </h1>
           
-          {/* ✅ Enhanced value proposition with keywords */}
-          <p className="text-xl md:text-2xl mb-8 text-corporate-highlight/80 max-w-3xl mx-auto leading-relaxed">
-            Hochwertige <strong>KFZ-Ersatzteile und Autoteile</strong> für Privatkunden und Werkstätten im Münsterland. 
-            Von Bremsen über Filter bis zu Motor- und Getriebeteilen – wir liefern schnell, beraten kompetent und bieten faire Preise. 
-            Vertrauen Sie auf unsere Erfahrung seit 2025 in <strong>Altenberge</strong>.
+          {/* Untertitel mit Wertversprechen */}
+          <p className="text-xl md:text-2xl mb-8 text-corporate-highlight/80 max-w-2xl mx-auto leading-relaxed">
+            Hochwertige Ersatzteile & Autoteile für Privatkunden und Werkstätten im Münsterland. 
+            Schnelle Lieferung, faire Preise, kompetente Beratung aus Altenberge.
           </p>
           
           {/* Call-to-Action Button Bereich */}
