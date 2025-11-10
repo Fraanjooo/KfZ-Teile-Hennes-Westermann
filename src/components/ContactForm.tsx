@@ -153,18 +153,19 @@ const ContactForm = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-16 px-4"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-corporate-dark-gray mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-corporate-dark-gray mb-3 md:mb-4">
             Ersatzteile Angebot anfordern
           </h2>
-          <p className="text-xl text-corporate-medium-gray max-w-2xl mx-auto">
-            Sie suchen günstige Autoteile in Altenberge oder dem Münsterland? Teilen Sie uns mit, welches Ersatzteil Sie benötigen, und wir erstellen Ihnen ein unverbindliches Angebot von verschiedenen Herstellern – schnell, transparent und zu fairen Preisen.
+          <p className="text-base sm:text-lg md:text-xl text-corporate-medium-gray max-w-2xl mx-auto">
+            <span className="hidden sm:inline">Sie suchen günstige Autoteile in Altenberge oder dem Münsterland? Teilen Sie uns mit, welches Ersatzteil Sie benötigen, und wir erstellen Ihnen ein unverbindliches Angebot von verschiedenen Herstellern – schnell, transparent und zu fairen Preisen.</span>
+            <span className="sm:hidden">Teilen Sie uns mit, welches Ersatzteil Sie benötigen. Wir erstellen ein unverbindliches Angebot.</span>
           </p>
         </motion.div>
 
         {/* Grid-Layout: Kontaktinfo (1/3) + Formular (2/3) */}
-        <div className="grid lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-3 gap-6 md:gap-12 max-w-6xl mx-auto px-4">
           
           {/* Linke Spalte: Kontaktinformationen */}
           <motion.div 
@@ -174,28 +175,29 @@ const ContactForm = () => {
             className="lg:col-span-1"
           >
             <Card className="h-full border-0 bg-corporate-primary text-corporate-white hover:shadow-xl transition-shadow duration-300">
-              <CardHeader>
-                <CardTitle className="text-2xl">Kontakt</CardTitle>
-                <CardDescription className="text-white">
-                  Verschiedene Wege, unser Team zu erreichen
+              <CardHeader className="p-4 sm:p-6">
+                <CardTitle className="text-lg sm:text-xl md:text-2xl">Kontakt</CardTitle>
+                <CardDescription className="text-white text-sm sm:text-base">
+                  <span className="hidden sm:inline">Verschiedene Wege, unser Team zu erreichen</span>
+                  <span className="sm:hidden">So erreichen Sie uns</span>
                 </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-6">
+              <CardContent className="space-y-4 sm:space-y-6 p-4 sm:p-6 pt-0">
                 {/* E-Mail Kontakt */}
-                <div className="flex items-start gap-4">
-                  <Mail className="w-6 h-6 text-corporate-highlight mt-1" />
-                  <div>
-                    <h4 className="font-semibold mb-1">E-Mail</h4>
-                    <p className="text-white">info@kfz-westermann.de</p>
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-corporate-highlight mt-1 flex-shrink-0" />
+                  <div className="min-w-0">
+                    <h4 className="font-semibold mb-1 text-sm sm:text-base">E-Mail</h4>
+                    <p className="text-white text-xs sm:text-sm break-all">info@kfz-westermann.de</p>
                   </div>
                 </div>
                 
                 {
-                <div className="flex items-start gap-4">
-                  <Phone className="w-6 h-6 text-corporate-highlight mt-1" />
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-corporate-highlight mt-1 flex-shrink-0" />
                   <div>
-                    <h4 className="font-semibold mb-1">Telefon</h4>
-                    <p className="text-white">+49 (0) 155 66486776</p>
+                    <h4 className="font-semibold mb-1 text-sm sm:text-base">Telefon</h4>
+                    <p className="text-white text-xs sm:text-sm">+49 (0) 155 66486776</p>
                   </div>
                 </div>
                 }
@@ -212,24 +214,25 @@ const ContactForm = () => {
             className="lg:col-span-2"
           >
             <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <CardHeader>
-                <CardTitle className="text-2xl text-corporate-dark-gray">Ihr Wunschteil anfragen</CardTitle>
-                <CardDescription>
-                  Füllen Sie das Formular aus und wir melden uns mit Preisen und Verfügbarkeit zurück.
+              <CardHeader className="p-4 sm:p-6">
+                <CardTitle className="text-lg sm:text-xl md:text-2xl text-corporate-dark-gray">Ihr Wunschteil anfragen</CardTitle>
+                <CardDescription className="text-sm sm:text-base">
+                  <span className="hidden sm:inline">Füllen Sie das Formular aus und wir melden uns mit Preisen und Verfügbarkeit zurück.</span>
+                  <span className="sm:hidden">Wir melden uns zurück.</span>
                 </CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="p-4 sm:p-6 pt-0">
                 {/* Formular mit formsubmit.co Integration */}
                 <form 
                   action="https://formsubmit.co/info@kfz-westermann.de" 
                   method="POST"
                   onSubmit={handleSubmit} 
-                  className="space-y-6"
+                  className="space-y-4 sm:space-y-6"
                 >
                   {/* Erste Reihe: Vor- und Nachname */}
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="grid md:grid-cols-2 gap-3 sm:gap-4">
                     <div>
-                      <Label htmlFor="firstName">Vorname *</Label>
+                      <Label htmlFor="firstName" className="text-sm sm:text-base">Vorname *</Label>
                       <Input
                         id="firstName"
                         name="firstName"
@@ -240,7 +243,7 @@ const ContactForm = () => {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="lastName">Nachname *</Label>
+                      <Label htmlFor="lastName" className="text-sm sm:text-base">Nachname *</Label>
                       <Input
                         id="lastName"
                         name="lastName"
@@ -253,9 +256,9 @@ const ContactForm = () => {
                   </div>
 
                   {/* Zweite Reihe: E-Mail und Telefon */}
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="grid md:grid-cols-2 gap-3 sm:gap-4">
                     <div>
-                      <Label htmlFor="email">E-Mail-Adresse *</Label>
+                      <Label htmlFor="email" className="text-sm sm:text-base">E-Mail-Adresse *</Label>
                       <Input
                         id="email"
                         name="email"
@@ -267,7 +270,7 @@ const ContactForm = () => {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="phone">Telefonnummer</Label>
+                      <Label htmlFor="phone" className="text-sm sm:text-base">Telefonnummer</Label>
                       <Input
                         id="phone"
                         name="phone"
@@ -281,15 +284,15 @@ const ContactForm = () => {
 
                   {/* Textarea für Teilebeschreibung */}
                   <div>
-                    <Label htmlFor="desiredPart">Beschreibung des gewünschten Teils *</Label>
+                    <Label htmlFor="desiredPart" className="text-sm sm:text-base">Beschreibung des gewünschten Teils *</Label>
                     <Textarea
                       id="desiredPart"
                       name="desiredPart"
                       value={formData.desiredPart}
                       onChange={handleInputChange}
                       required
-                      className="mt-1 min-h-[100px]"
-                      placeholder="Bitte beschreiben Sie das benötigte Teil und geben Sie bestenfalls ihre Fahrgestellnummer ein (z.B. Bremsbeläge für SL500 (R129), Lichtmaschine für Porsche 964 WP0ZZZ..., Hydraulikpumpe für New Holland T7, etc.)"
+                      className="mt-1 min-h-[100px] text-sm sm:text-base"
+                      placeholder="Bitte beschreiben Sie das benötigte Teil und geben Sie bestenfalls ihre Fahrgestellnummer ein (z.B. Bremsbeläge, Lichtmaschine, etc.)"
                     />
                   </div>
 
@@ -298,7 +301,7 @@ const ContactForm = () => {
                     type="submit"  
                     disabled={isLoading}
                     variant="automotive"
-                    className="w-full hover:scale-105 transition-transform duration-300"
+                    className="w-full hover:scale-105 transition-transform duration-300 text-sm sm:text-base"
                   >
                     {isLoading ? "Wird gesendet..." : "Anfrage senden"}
                   </Button>

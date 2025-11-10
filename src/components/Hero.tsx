@@ -68,10 +68,10 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 leading-tight"
           >
-            KFZ-Teile Altenberge
-            <span className="block text-corporate-highlight">Ersatzteile für jedes Fahrzeug</span>
+            <span className="block md:inline">KFZ-Teile Altenberge</span>
+            <span className="block text-corporate-highlight text-2xl sm:text-3xl md:text-5xl lg:text-7xl mt-2">Ersatzteile für jedes Fahrzeug</span>
           </motion.h1>
           
           {/* Untertitel mit Wertversprechen */}
@@ -79,10 +79,10 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="text-xl md:text-2xl mb-8 text-corporate-highlight/80 max-w-2xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 text-corporate-highlight/80 max-w-2xl mx-auto leading-relaxed"
           >
-            Hochwertige Ersatzteile & Autoteile für Privatkunden und Werkstätten im Münsterland. 
-            Schnelle Lieferung, faire Preise, kompetente Beratung aus Altenberge.
+            <span className="hidden sm:inline">Hochwertige Ersatzteile & Autoteile für Privatkunden und Werkstätten im Münsterland. Schnelle Lieferung, faire Preise, kompetente Beratung aus Altenberge.</span>
+            <span className="sm:hidden">Ersatzteile & Autoteile für Werkstätten und Privatkunden. Schnelle Lieferung aus Altenberge.</span>
           </motion.p>
           
           {/* Call-to-Action Button Bereich */}
@@ -96,7 +96,7 @@ const Hero = () => {
               variant="automotive" 
               size="lg"
               onClick={scrollToContact}
-              className="text-lg px-8 py-6 hover:scale-105 transition-transform duration-300"
+              className="text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 hover:scale-105 transition-transform duration-300"
             >
               Angebot anfordern
             </Button>

@@ -62,7 +62,7 @@ const Header = () => {
           : 'bg-corporate-white/95 border-corporate-light-gray'
       }`}
     >
-      <div className="container mx-auto px-6 py-4">
+      <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
         <div className="flex items-center justify-between">
           {/* Anklickbares Firmenlogo mit EB Garamond Schriftart */}
           <motion.div 
@@ -70,7 +70,7 @@ const Header = () => {
             transition={{ type: "spring", stiffness: 300 }}
             className="flex items-center"
           >
-            <a href="/" className="text-2xl text-corporate-dark-gray font-garamond hover:text-corporate-primary transition-colors">
+            <a href="/" className="text-lg sm:text-xl md:text-2xl text-corporate-dark-gray font-garamond hover:text-corporate-primary transition-colors">
               Kfz-Teile Hennes Westermann
             </a>
           </motion.div>
@@ -93,10 +93,10 @@ const Header = () => {
           </nav>
           
           {/* Mobile Navigation */}
-          <div className="md:hidden flex items-center gap-4">
+          <div className="md:hidden flex items-center gap-2 sm:gap-4">
             <Link 
               to="/blog" 
-              className="text-sm text-corporate-dark-gray hover:text-corporate-primary transition-colors"
+              className="text-xs sm:text-sm text-corporate-dark-gray hover:text-corporate-primary transition-colors"
             >
               Blog
             </Link>
@@ -104,7 +104,7 @@ const Header = () => {
               variant="automotive" 
               size="sm" 
               onClick={handleRequestQuote}
-              className="hover:scale-105 transition-transform duration-300"
+              className="hover:scale-105 transition-transform duration-300 text-xs sm:text-sm px-3 py-2"
             >
               Angebot
             </Button>
