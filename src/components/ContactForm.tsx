@@ -128,7 +128,7 @@ const ContactForm = () => {
             Ersatzteile Angebot anfordern
           </h2>
           <p className="text-xl text-corporate-medium-gray max-w-2xl mx-auto">
-            Teilen Sie uns mit, welches Ersatzteil Sie benötigen – wir erstellen ein unverbindliches Angebot.
+            Sie suchen günstige Autoteile in Altenberge oder dem Münsterland? Teilen Sie uns mit, welches Ersatzteil Sie benötigen, und wir erstellen Ihnen ein unverbindliches Angebot von verschiedenen Herstellern – schnell, transparent und zu fairen Preisen.
           </p>
         </div>
 
@@ -141,7 +141,7 @@ const ContactForm = () => {
               <CardHeader>
                 <CardTitle className="text-2xl">Kontakt</CardTitle>
                 <CardDescription className="text-white">
-                  So erreichen Sie uns
+                  Verschiedene Wege, unser Team zu erreichen
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -174,7 +174,7 @@ const ContactForm = () => {
               <CardHeader>
                 <CardTitle className="text-2xl text-corporate-dark-gray">Ihr Wunschteil anfragen</CardTitle>
                 <CardDescription>
-                  Wir melden uns mit Preisen und Verfügbarkeit zurück.
+                  Füllen Sie das Formular aus und wir melden uns mit Preisen und Verfügbarkeit zurück.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -248,7 +248,7 @@ const ContactForm = () => {
                       onChange={handleInputChange}
                       required
                       className="mt-1 min-h-[100px]"
-                      placeholder="Beschreiben Sie das benötigte Teil und Ihr Fahrzeugmodell (z.B. Bremsbeläge für SL500 R129, Lichtmaschine für Porsche 964)"
+                      placeholder="Bitte beschreiben Sie das benötigte Teil und geben Sie bestenfalls ihre Fahrgestellnummer ein (z.B. Bremsbeläge für SL500 (R129), Lichtmaschine für Porsche 964 WP0ZZZ..., Hydraulikpumpe für New Holland T7, etc.)"
                     />
                   </div>
 
