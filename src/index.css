@@ -8,111 +8,118 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* ✅ Modern Werkstatt Design System - KFZ-Teile Hennes Westermann */
-    --background: 0 0% 100%;
-    --foreground: 220 26% 14%;
-    
+    --background: 0 0% 96%;
+    --foreground: 0 0% 10%;
+
     --card: 0 0% 100%;
-    --card-foreground: 220 26% 14%;
-    
+    --card-foreground: 0 0% 10%;
+
     --popover: 0 0% 100%;
-    --popover-foreground: 220 26% 14%;
-    
-    /* Primary: Dunkles Stahlgrau - Professionalität & Stabilität */
-    --primary: 210 25% 23%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 20 100% 50%;
     --primary-foreground: 0 0% 100%;
-    
-    /* Secondary/Accent: Warmes Signalorange - Energie & Dynamik */
-    --secondary: 29 100% 50%;
-    --secondary-foreground: 0 0% 100%;
-    
-    /* Muted: Sehr helles Grau-Weiß - Sauberkeit & Freiraum */
-    --muted: 210 40% 98%;
-    --muted-foreground: 217 16% 34%;
-    
-    /* Accent für interaktive Elemente */
-    --accent: 29 100% 50%;
+
+    --secondary: 0 0% 94%;
+    --secondary-foreground: 0 0% 10%;
+
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 20 100% 50%;
     --accent-foreground: 0 0% 100%;
-    
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 20 100% 50%;
+
+    /* Blog Design System - KfZ Hennes Westermann */
+    --blog-text: 0 0% 12%;
+    --blog-background: 0 0% 97%;
+    --blog-accent: 209 75% 21%;
+    --blog-accent-hover: 209 75% 28%;
+    --blog-card-bg: 0 0% 100%;
+    --blog-border: 0 0% 90%;
+    --blog-badge-bg: 209 70% 95%;
     
-    --border: 214 31% 91%;
-    --input: 214 31% 91%;
-    --ring: 29 100% 50%;
+    /* Corporate Color Palette (Legacy) */
+    --corporate-primary: 209 75% 21%;
+    --corporate-accent: 209 75% 21%;
+    --corporate-highlight: 209 75% 21%;
+    --corporate-dark-gray: 210 29% 24%;
+    --corporate-medium-gray: 210 20% 50%;
+    --corporate-light-gray: 192 15% 94%;
+    --corporate-black: 0 0% 0%;
+    --corporate-white: 0 0% 100%;
+    
+    /* Custom Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--blog-accent)) 0%, hsl(var(--blog-accent-hover)) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(var(--blog-card-bg)) 0%, hsl(var(--blog-background)) 100%);
+    
+    /* Custom Shadows */
+    --shadow-blog: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+    --shadow-blog-hover: 0 20px 40px -15px rgba(17, 66, 97, 0.15);
+    --shadow-card: 0 2px 10px rgba(0, 0, 0, 0.05);
+    --shadow-corporate: 0 10px 30px -10px hsl(var(--corporate-primary) / 0.25);
+
     --radius: 0.75rem;
-    
-    /* ✅ Brand Colors - Modern Automotive */
-    --brand-steel: 210 25% 23%;
-    --brand-orange: 29 100% 50%;
-    --brand-orange-hover: 29 100% 45%;
-    --brand-light: 210 40% 98%;
-    --brand-text-primary: 220 26% 14%;
-    --brand-text-secondary: 217 16% 34%;
-    
-    /* ✅ Custom Shadows - Subtil und modern */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.05);
-    --shadow-orange: 0 4px 14px 0 rgba(255, 122, 0, 0.15);
-    
-    /* Sidebar */
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 220 26% 14%;
-    --sidebar-primary: 210 25% 23%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 210 40% 98%;
-    --sidebar-accent-foreground: 220 26% 14%;
-    --sidebar-border: 214 31% 91%;
-    --sidebar-ring: 29 100% 50%;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    /* ✅ Dark Mode - Modern Werkstatt Design */
-    --background: 220 26% 14%;
+    --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
-    
-    --card: 210 25% 23%;
+
+    --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
-    
-    --popover: 210 25% 23%;
+
+    --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-    
+
     --primary: 210 40% 98%;
-    --primary-foreground: 210 25% 23%;
-    
-    --secondary: 29 100% 50%;
-    --secondary-foreground: 0 0% 100%;
-    
-    --muted: 210 25% 30%;
-    --muted-foreground: 217 16% 65%;
-    
-    --accent: 29 100% 50%;
-    --accent-foreground: 0 0% 100%;
-    
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    
-    --border: 217 16% 25%;
-    --input: 217 16% 25%;
-    --ring: 29 100% 50%;
-    
-    /* Brand Colors für Dark Mode */
-    --brand-steel: 210 40% 98%;
-    --brand-orange: 29 100% 55%;
-    --brand-orange-hover: 29 100% 60%;
-    --brand-light: 210 25% 20%;
-    --brand-text-primary: 210 40% 98%;
-    --brand-text-secondary: 217 16% 70%;
-    
-    --sidebar-background: 210 25% 23%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 29 100% 50%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 210 25% 30%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 217 16% 25%;
-    --sidebar-ring: 29 100% 50%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
