@@ -33,9 +33,9 @@ const Hero = () => {
   return <section className="relative bg-background min-h-[600px] flex items-start justify-center text-foreground overflow-hidden pt-20">
       
       {/* Automotive Hintergrundbild */}
-      <div className="absolute inset-0 opacity-20">
+      <div className="absolute inset-0 opacity-10">
         <img src={heroAutomotiveBg} alt="KFZ-Ersatzteile und Autoteile – Mechaniker prüft Antriebsstrang in Altenberger Werkstatt – KFZ-Teile Hennes Westermann" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-background/80"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-background"></div>
       </div>
       
       {/* Hauptinhalt des Hero-Bereichs */}
@@ -43,18 +43,20 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto text-center">
           
           {/* ✅ SEO-Optimized H1 with main keyword at start */}
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">KFZ-Teile Hennes Westermann<span className="block text-corporate-highlight mt-2">Ihr Partner für alle Fahrzeugteile</span>
+          <h1 className="text-5xl md:text-7xl font-heading font-bold mb-8 leading-tight text-foreground">
+            KFZ-Teile Hennes Westermann
+            <span className="block text-accent mt-3 text-4xl md:text-5xl">Ihr Partner für alle Fahrzeugteile</span>
           </h1>
           
           {/* ✅ Enhanced value proposition with keywords */}
-          <p className="text-xl md:text-2xl mb-8 text-corporate-highlight/80 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl mb-10 text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Hochwertige <strong>KFZ-Ersatzteile und Autoteile</strong> für Privatkunden und Werkstätten im Münsterland. 
             Von Bremsen über Filter bis zu Motor- und Getriebeteilen. Vertrauen Sie auf unsere Erfahrung seit 2025 in <strong>Altenberge</strong>.
           </p>
           
           {/* Call-to-Action Button Bereich */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="automotive" size="lg" onClick={scrollToContact} className="text-lg px-8 py-7">
+            <Button variant="automotive" size="lg" onClick={scrollToContact} className="text-base font-semibold uppercase tracking-wide">
               Angebot anfordern
             </Button>
           </div>

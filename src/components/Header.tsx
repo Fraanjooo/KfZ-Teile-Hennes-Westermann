@@ -39,12 +39,12 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-corporate-white/95 backdrop-blur-sm border-b border-corporate-light-gray sticky top-0 z-50">
+    <header className="bg-background/95 backdrop-blur-sm border-b border-border sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          {/* Anklickbares Firmenlogo mit EB Garamond Schriftart */}
+          {/* ✅ Modernes Firmenlogo mit Outfit Font */}
           <div className="flex items-center">
-            <a href="/" className="text-2xl text-corporate-dark-gray font-garamond hover:text-corporate-primary transition-colors">
+            <a href="/" className="text-2xl font-heading font-bold text-foreground hover:text-accent transition-colors">
               Kfz-Teile Hennes Westermann
             </a>
           </div>
@@ -53,7 +53,7 @@ const Header = () => {
           <nav className="hidden md:flex items-center space-x-8">
             <Link 
               to="/blog" 
-              className="text-corporate-dark-gray hover:text-corporate-primary transition-colors"
+              className="text-foreground hover:text-accent transition-colors font-medium"
             >
               Blog
             </Link>
@@ -66,7 +66,7 @@ const Header = () => {
           <div className="md:hidden flex items-center gap-4">
             <Link 
               to="/blog" 
-              className="text-sm text-corporate-dark-gray hover:text-corporate-primary transition-colors"
+              className="text-sm text-foreground hover:text-accent transition-colors font-medium"
             >
               Blog
             </Link>

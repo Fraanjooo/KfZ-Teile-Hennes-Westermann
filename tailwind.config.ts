@@ -21,8 +21,8 @@ export default {
     extend: {
       fontFamily: {
         'sans': ['Inter', 'sans-serif'],
-        'serif': ['"DM Serif Display"', 'serif'],
-        'heading': ['Inter', 'sans-serif'],
+        'heading': ['Outfit', 'sans-serif'],
+        'body': ['Inter', 'sans-serif'],
       },
       colors: {
         border: 'hsl(var(--border))',
@@ -58,15 +58,13 @@ export default {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
         },
-        corporate: {
-          primary: 'hsl(var(--corporate-primary))',
-          accent: 'hsl(var(--corporate-accent))',
-          highlight: 'hsl(var(--corporate-highlight))',
-          'dark-gray': 'hsl(var(--corporate-dark-gray))',
-          'medium-gray': 'hsl(var(--corporate-medium-gray))',
-          'light-gray': 'hsl(var(--corporate-light-gray))',
-          black: 'hsl(var(--corporate-black))',
-          white: 'hsl(var(--corporate-white))'
+        brand: {
+          steel: 'hsl(var(--brand-steel))',
+          orange: 'hsl(var(--brand-orange))',
+          'orange-hover': 'hsl(var(--brand-orange-hover))',
+          light: 'hsl(var(--brand-light))',
+          'text-primary': 'hsl(var(--brand-text-primary))',
+          'text-secondary': 'hsl(var(--brand-text-secondary))'
         },
         blog: {
           text: 'hsl(var(--blog-text))',
@@ -94,10 +92,10 @@ export default {
         sm: 'calc(var(--radius) - 4px)'
       },
       boxShadow: {
-        'blog': 'var(--shadow-blog)',
-        'blog-hover': 'var(--shadow-blog-hover)',
-        'card': 'var(--shadow-card)',
-        'corporate': 'var(--shadow-corporate)'
+        'sm': 'var(--shadow-sm)',
+        'md': 'var(--shadow-md)',
+        'lg': 'var(--shadow-lg)',
+        'orange': 'var(--shadow-orange)'
       },
       keyframes: {
         'accordion-down': {
