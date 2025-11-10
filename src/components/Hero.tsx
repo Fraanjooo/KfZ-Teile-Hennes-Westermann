@@ -44,7 +44,7 @@ const Hero = () => {
           
           {/* ✅ SEO-Optimized H1 with main keyword at start */}
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">KFZ-Teile Hennes Westermann
-Hennes Westermann: Ihr Partner für alle Fahrzeugteile<span className="block text-corporate-highlight mt-2">Hennes Westermann: Ihr Partner für alle Fahrzeugteile</span>
+Ihr Partner für alle Fahrzeugteile<span className="block text-corporate-highlight mt-2">Ihr Partner für alle Fahrzeugteile</span>
           </h1>
           
           {/* ✅ Enhanced value proposition with keywords */}
