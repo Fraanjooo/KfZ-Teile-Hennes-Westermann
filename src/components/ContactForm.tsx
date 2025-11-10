@@ -16,7 +16,7 @@
  * und responsive Grid-Layout für optimale UX auf allen Geräten.
  */
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -25,6 +25,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone } from "lucide-react";
 import { z } from "zod";
+import { motion } from "framer-motion";
 
 // Zod validation schema for contact form
 const contactFormSchema = z.object({
@@ -71,6 +72,31 @@ const ContactForm = () => {
   
   // Toast-Hook für Benachrichtigungen
   const { toast } = useToast();
+
+  // Intersection Observer für Scroll-Animationen
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, []);
 
   /**
    * Handler für Eingabefeld-Änderungen (Input und Textarea)
@@ -120,24 +146,34 @@ const ContactForm = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-b from-corporate-light-gray to-corporate-white">
+    <section ref={ref} id="contact" className="py-20 bg-gradient-to-b from-corporate-light-gray to-corporate-white">
       <div className="container mx-auto px-6">
         {/* Sektion-Header mit Titel und Beschreibung */}
-        <div className="text-center mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-4xl md:text-5xl font-bold text-corporate-dark-gray mb-4">
             Ersatzteile Angebot anfordern
           </h2>
           <p className="text-xl text-corporate-medium-gray max-w-2xl mx-auto">
             Sie suchen günstige Autoteile in Altenberge oder dem Münsterland? Teilen Sie uns mit, welches Ersatzteil Sie benötigen, und wir erstellen Ihnen ein unverbindliches Angebot von verschiedenen Herstellern – schnell, transparent und zu fairen Preisen.
           </p>
-        </div>
+        </motion.div>
 
         {/* Grid-Layout: Kontaktinfo (1/3) + Formular (2/3) */}
         <div className="grid lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
           
           {/* Linke Spalte: Kontaktinformationen */}
-          <div className="lg:col-span-1">
-            <Card className="h-full border-0 bg-corporate-primary text-corporate-white">
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            animate={isVisible ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="lg:col-span-1"
+          >
+            <Card className="h-full border-0 bg-corporate-primary text-corporate-white hover:shadow-xl transition-shadow duration-300">
               <CardHeader>
                 <CardTitle className="text-2xl">Kontakt</CardTitle>
                 <CardDescription className="text-white">
@@ -166,11 +202,16 @@ const ContactForm = () => {
                 
               </CardContent>
             </Card>
-          </div>
+          </motion.div>
 
           {/* Rechte Spalte: Kontaktformular */}
-          <div className="lg:col-span-2">
-            <Card className="border-0 shadow-lg">
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            animate={isVisible ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="lg:col-span-2"
+          >
+            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
               <CardHeader>
                 <CardTitle className="text-2xl text-corporate-dark-gray">Ihr Wunschteil anfragen</CardTitle>
                 <CardDescription>
@@ -257,7 +298,7 @@ const ContactForm = () => {
                     type="submit"  
                     disabled={isLoading}
                     variant="automotive"
-                    className="w-full"
+                    className="w-full hover:scale-105 transition-transform duration-300"
                   >
                     {isLoading ? "Wird gesendet..." : "Anfrage senden"}
                   </Button>
@@ -265,7 +306,7 @@ const ContactForm = () => {
                 </form>
               </CardContent>
             </Card>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

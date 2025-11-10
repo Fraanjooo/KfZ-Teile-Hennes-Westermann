@@ -13,6 +13,8 @@
  */
 
 import { List } from "lucide-react";
+import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
 
 /**
    * Navigations-Funktion für "Angebot anfordern" Button
@@ -47,21 +49,53 @@ import { List } from "lucide-react";
  * Rendert den Fußbereich der Website mit Firmeninfos und Navigation
  */
 const Footer = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, []);
+
   return (
-    <footer className="bg-corporate-dark-gray text-corporate-white py-12">
+    <footer ref={ref} className="bg-corporate-dark-gray text-corporate-white py-12">
       <div className="container mx-auto px-6">
         {/* Dreispaltiges Grid-Layout für Footer-Inhalte */}
         <div className="grid md:grid-cols-3 gap-8">
           {/* Erste Spalte: Firmenbranding und Beschreibung */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+          >
             <h3 className="text-xl mb-4 font-garamond">KFZ-Teile Hennes Westermann</h3>
             <p className="text-corporate-medium-gray leading-relaxed">
               Ihr zuverlässiger Partner für hochwertige Ersatzteile und Autoteile in Altenberge und dem Münsterland. Seit 2025 beliefern wir Werkstätten, Autohäuser und Privatkunden mit Qualität, Fachkompetenz und fairen Preisen.
             </p>
-          </div>
+          </motion.div>
           
           {/* Zweite Spalte: Schnellzugriff-Navigation */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             <h4 className="text-lg font-semibold mb-4">Schnellzugriff</h4>
             <ul className="space-y-2 text-corporate-medium-gray">
               <li>
@@ -85,22 +119,31 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
-          </div>
+          </motion.div>
           
           {/* Dritte Spalte: Kontaktdaten */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
             <h4 className="text-lg font-semibold mb-4">Kontaktdaten</h4>
             <div className="space-y-2 text-corporate-medium-gray">
               <p>📧 info@kfz-westermann.de</p>
               <p></p>
             </div>
-          </div>
+          </motion.div>
         </div>
         
         {/* Copyright-Bereich mit Trennlinie */}
-        <div className="border-t border-corporate-medium-gray/30 mt-8 pt-8 text-center text-corporate-medium-gray">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={isVisible ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="border-t border-corporate-medium-gray/30 mt-8 pt-8 text-center text-corporate-medium-gray"
+        >
           <p>&copy; {new Date().getFullYear()} Kfz-Teile Hennes Westermann. Alle Rechte vorbehalten.</p>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );
