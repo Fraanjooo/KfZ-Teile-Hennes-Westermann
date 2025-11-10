@@ -65,15 +65,11 @@ const Header = () => {
       <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
         <div className="flex items-center justify-between">
           {/* Anklickbares Firmenlogo mit EB Garamond Schriftart */}
-          <motion.div 
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300 }}
-            className="flex items-center"
-          >
+          <div className="flex items-center">
             <a href="/" className="text-lg sm:text-xl md:text-2xl text-corporate-dark-gray font-garamond hover:text-corporate-primary transition-colors">
               Kfz-Teile Hennes Westermann
             </a>
-          </motion.div>
+          </div>
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
