@@ -30,7 +30,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative bg-background min-h-[600px] flex items-center justify-center text-foreground overflow-hidden">
+    <section className="relative bg-background min-h-[600px] flex items-start justify-center text-foreground overflow-hidden pt-20">
       
       {/* Automotive Hintergrundbild */}
       <div className="absolute inset-0 opacity-20">
