@@ -56,7 +56,7 @@ const Footer = () => {
           <div>
             <h3 className="text-xl mb-4 font-garamond">KFZ-Teile Hennes Westermann</h3>
             <p className="text-corporate-medium-gray leading-relaxed">
-              Ihr zuverlässiger Partner für hochwertige Ersatzteile und Autoteile in Altenberge und dem Münsterland. Seit 2025 beliefern wir Werkstätten, Autohäuser und Privatkunden mit Qualität, Fachkompetenz und fairen Preisen.
+              Ersatzteile und Autoteile in Altenberge – für Werkstätten und Privatkunden. Qualität, Fachkompetenz, faire Preise seit 2025.
             </p>
           </div>
           
