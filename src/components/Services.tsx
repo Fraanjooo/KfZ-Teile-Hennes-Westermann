@@ -53,12 +53,12 @@ const Services = () => {
     {
       icon: Building2, // Gebäude-Icon für B2B-Bereich
       title: "B2B-Lösungen & Werkstattbedarf",
-      description: "Individuelle Betreuung und attraktive Konditionen für Werkstätten, Autohäuser und Reparaturbetriebe in Altenberge und dem Münsterland. Profitieren Sie von Großhandelspreisen, unkomplizierter Abwicklung von Großbestellungen und zuverlässiger Lieferung direkt zu Ihrem Betrieb."
+      description: "Attraktive Konditionen für Werkstätten, Autohäuser und Reparaturbetriebe in Altenberge und dem Münsterland. Profitieren Sie von Großhandelspreisen und unkomplizierter Abwicklung von Großbestellungen."
     },
     {
       icon: User, // Benutzer-Icon für Privatkunden
       title: "Autoteile für Privatkunden", 
-      description: "Persönliche Fachberatung und hochwertige Ersatzteile für Ihr Fahrzeug. Ob Bremsen, Filter, Beleuchtung oder Motor- und Getriebeteile – wir finden das passende Teil für Sie. Profitieren Sie von unserer Qualitätsgarantie und fairen Preisen beim Autoteile kaufen in Altenberge."
+      description: "Hochwertige Ersatzteile für Ihr Fahrzeug. Ob Bremsen, Filter, Beleuchtung oder Motor- und Getriebeteile – wir finden das passende Teil für Sie."
     },
     {
       icon: MapPin, // Standort-Icon für Lieferung/Abholung
@@ -106,7 +106,7 @@ const Services = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-sm sm:text-base text-corporate-dark-gray leading-relaxed mb-3 md:mb-4"
             >
-              <span className="hidden sm:inline">Unsere Stärke liegt in der individuellen Beratung und schnellen Verfügbarkeit. Egal ob Sie <strong>günstige Autoteile bestellen</strong> möchten oder <strong>Werkstattbedarf in Altenberge</strong> benötigen – wir erstellen Ihnen unverbindliche Angebote von verschiedenen Herstellern und sorgen für eine zügige Lieferung oder bequeme Abholung vor Ort. Dabei legen wir Wert auf Qualität, Transparenz und faire Preise.</span>
+              <span className="hidden sm:inline">Unsere Stärke liegt in der schnellen Verfügbarkeit. Egal ob Sie <strong>günstige Autoteile bestellen</strong> möchten oder <strong>Werkstattbedarf in Altenberge</strong> benötigen – wir erstellen Ihnen unverbindliche Angebote von verschiedenen Herstellern und sorgen für eine zügige Lieferung oder bequeme Abholung vor Ort. Dabei legen wir Wert auf Qualität, Transparenz und faire Preise.</span>
               <span className="sm:hidden">Schnelle Verfügbarkeit, faire Preise und persönliche Beratung für <strong>Autoteile</strong> und <strong>Werkstattbedarf</strong>.</span>
             </motion.p>
             <motion.p 
